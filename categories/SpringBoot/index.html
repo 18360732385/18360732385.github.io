@@ -112,7 +112,7 @@
                   
                     id="home"
                   >
-                  <i class='fas fa-rss fa-fw'></i>博客
+                  <i class='fas fa-rss fa-fw'></i>首页
                 </a>
                 
               </li>
@@ -161,38 +161,6 @@
                     id="archives"
                   >
                   <i class='fas fa-archive fa-fw'></i>归档
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/friends/
-                  
-                  
-                  
-                    id="friends"
-                  >
-                  <i class='fas fa-link fa-fw'></i>友链
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/about/
-                  
-                  
-                  
-                    id="about"
-                  >
-                  <i class='fas fa-info-circle fa-fw'></i>关于
                 </a>
                 
               </li>
@@ -226,7 +194,7 @@
                   
                     id="home"
                   >
-                  <i class='fas fa-rss fa-fw'></i>博客
+                  <i class='fas fa-rss fa-fw'></i>首页
                 </a>
                 
               </li>
@@ -275,38 +243,6 @@
                     id="archives"
                   >
                   <i class='fas fa-archive fa-fw'></i>归档
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/friends/
-                  
-                  
-                  
-                    id="friends"
-                  >
-                  <i class='fas fa-link fa-fw'></i>友链
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/about/
-                  
-                  
-                  
-                    id="about"
-                  >
-                  <i class='fas fa-info-circle fa-fw'></i>关于
                 </a>
                 
               </li>
@@ -366,9 +302,9 @@
             
               
 <div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://avatar.csdnimg.cn/C/F/7/1_jueduifeng.jpg">
+    <p>明菜</p>
   </a>
 </div>
 
@@ -426,120 +362,18 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Bean生命周期"><a href="#Bean生命周期" class="headerlink" title="Bean生命周期"></a>Bean生命周期</h1><blockquote>
+        <h3 id="1-Bean生命周期阶段及接口"><a href="#1-Bean生命周期阶段及接口" class="headerlink" title="1.Bean生命周期阶段及接口"></a>1.Bean生命周期阶段及接口</h3><blockquote>
 <p>​    Spring Bean的生命周期有四个阶段：<strong>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</strong></p>
 <p>​    <strong>Bean级生命周期接口</strong>：(4个)：</p>
-<ul>
-<li><p>BeanNameAware</p>
-</li>
-<li><p>BeanFactoryAware</p>
-</li>
-<li><p>InitializingBean</p>
-</li>
-<li><p>DisposableBean</p>
-<p><strong>容器级Bean生命周期接口</strong>：(下图中<strong>星号</strong>)：</p>
-</li>
-<li><p>抽象类：InstantiationAwareBeanPostProcessorAdapter</p>
-</li>
-<li><p>接口BeanPostProcessor</p>
-<p>​</p>
-</li>
-</ul>
-</blockquote>
-<h2 id="bean生命周期的流程"><a href="#bean生命周期的流程" class="headerlink" title="bean生命周期的流程"></a>bean生命周期的流程</h2><blockquote>
-<ul>
-<li><p>调用InstantiationAwareBeanPostProcessor（抽象类）的 <strong>postProcessBeforeInstantiation（）</strong> 方法</p>
-<ul>
-<li><h4 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h4></li>
-</ul>
-</li>
-<li><p>调用InstantiationAwareBeanPostProcessor（抽象类）的 <strong>postProcessAfterInstantiation（）</strong> 方法</p>
-</li>
-<li><p>调用InstantiationAwareBeanPostProcessor（抽象类）的 <strong>postProcessPropertyValues（）</strong> 方法</p>
-<ul>
-<li><h4 id="属性赋值"><a href="#属性赋值" class="headerlink" title="属性赋值"></a>属性赋值</h4></li>
-<li><p><strong>如果</strong>Bean实现了*Aware接口，就调用相应方法，如：</p>
-<p>实现了BeanNameAware接口，调用<strong>setBeanName()</strong>方法；</p>
-<p>实现了BeanFactoryAware接口，调用<strong>setBeanFactory()</strong>方法</p>
-</li>
-</ul>
-</li>
-<li><p>执行BeanPostProcessor接口的<strong>postProcessBeforeInitialization()</strong>方法</p>
-<ul>
-<li><h4 id="初始化。。。"><a href="#初始化。。。" class="headerlink" title="初始化。。。"></a>初始化。。。</h4></li>
-<li><p><strong>如果</strong>Bean实现了InitializingBean接口，执行<strong>afterPropertiesSet()</strong>方法。</p>
-</li>
-<li><p><strong>如果</strong>Bean在配置文件中的定义包含init-method属性，执行指定的方法。</p>
-</li>
-</ul>
-</li>
-<li><p>执行BeanPostProcessor接口的<strong>postProcessAfterInitialization()</strong>方法。</p>
-<ul>
-<li><h4 id="销毁。。。"><a href="#销毁。。。" class="headerlink" title="销毁。。。"></a>销毁。。。</h4></li>
-<li><p><strong>如果</strong>Bean实现了DisposableBean接口，执行<strong>destroy()</strong>方法。</p>
-</li>
-<li><p><strong>如果</strong>Bean在配置文件中的定义包含destroy-method属性，执行指定的方法。</p>
-</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<p><img src="https://img-blog.csdn.net/20180802223029954?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIzODUxOTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
-<h2 id="如何针对指定Bean的初始化设置"><a href="#如何针对指定Bean的初始化设置" class="headerlink" title="如何针对指定Bean的初始化设置"></a>如何针对指定Bean的初始化设置</h2><blockquote>
-<p>​    有时我们需要在Bean属性值set好之后（初始化）和Bean销毁之前做一些事情，比如检查Bean中某个属性是否被正常的设置好值了。Spring框架提供了多种方法，让我们可以在Spring Bean的生命周期中执行initialization和pre-destroy方法。</p>
-<p>​    主要有3种实现方式:</p>
-</blockquote>
-<p><strong>1.实现InitializingBean和DisposableBean接口</strong></p>
-<p>​    这种方法比较简单，但是不建议使用。因为这样会将Bean的实现和Spring框架耦合在一起。</p>
-<ul>
-<li>通过实现InitializingBean接口的<strong>afterPropertiesSet()</strong>方法，可以在Bean属性值设置好之后做一些操作    </li>
-</ul>
-<ul>
-<li>实现DisposableBean接口的<strong>destroy()</strong>方法可以在销毁Bean之前做一些操作。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class GiraffeService implements InitializingBean,DisposableBean &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;执行InitializingBean接口的afterPropertiesSet方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;执行DisposableBean接口的destroy方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>2.在bean的配置文件中指定init-method和destroy-method方法 （推荐）</strong></p>
-<p><strong>3.使用@PostConstruct和@PreDestroy注解</strong></p>
-<p>​    需要配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;org.springframework.context.annotation.CommonAnnotationBeanPostProcessor&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class GiraffeService &#123;</span><br><span class="line">    @PostConstruct</span><br><span class="line">    public void initPostConstruct()&#123;</span><br><span class="line">        System.out.println(&quot;执行PostConstruct注解标注的方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @PreDestroy</span><br><span class="line">    public void preDestroy()&#123;</span><br><span class="line">        System.out.println(&quot;执行preDestroy注解标注的方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="如何针对所有Bean的初始化设置"><a href="#如何针对所有Bean的初始化设置" class="headerlink" title="如何针对所有Bean的初始化设置"></a>如何针对所有Bean的初始化设置</h2><blockquote>
-<p>​    Spring可以针对<strong>容器中的所有Bean</strong>，或者某些Bean定制初始化过程（可以利用BeanName比较判断），只需提供一个实现<strong>BeanPostProcessor</strong>接口的类即可。 该接口中包含两个方法：</p>
-<ul>
-<li>postProcessBeforeInitialization方法，会在容器中的Bean初始化之前执行</li>
-</ul>
-<ul>
-<li>postProcessAfterInitialization方法，在容器中的Bean初始化之后执行</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class CustomerBeanPostProcessor implements BeanPostProcessor &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">        System.out.println(&quot;执行BeanPostProcessor的postProcessBeforeInitialization方法,beanName&#x3D;&quot; + beanName);</span><br><span class="line">        return bean;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">        System.out.println(&quot;执行BeanPostProcessor的postProcessAfterInitialization方法,beanName&#x3D;&quot; + beanName);</span><br><span class="line">        return bean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
-<ol>
-<li><p>通过实现BeanFactory的Bean生命周期相关接口，虽然让Bean具有了更详细的生命周期阶段，但是也让Spring框架和Bean紧密联系在了一起，同时也增加了代码复杂度。因此，<strong>如果用户希望在Bean的生命周期中实现自己的业务，不需要和特定框架关联，可以通过 bean 的 init-method 和 destroy-method 配置方法来进行业务实现。</strong></p>
-</li>
-<li><p>Spring还拥有一个Bean后置处理器InitDestroyAnnotationBeanPostProcessor，它负责对标注了 @PostConstruct 和 @PreDestroy 的 Bean 进行处理，在 Bean 初始化及销毁前执行相应的业务逻辑。</p>
-</li>
-<li><p>通常情况下，可以抛弃<strong>Bean级的生命周期的4个接口</strong>，用更加方便的方法进行代替（如1、2点中的方法）。但是<strong>容器级Bean生命周期接口可以合理的使用，处理一些共同的业务。</strong></p>
-</li>
-<li><p>为什么我们使用ApplicationContext，而不是BeanFactory：</p>
-<ul>
-<li><p>ApplicationContext相比BeanFactory来说，实现了更多的接口，功能更丰富和高级。</p>
-</li>
-<li><p>ApplicationContext会利用Java反射机制自动识别出配置文件中定义的BeanPostProcessor、InstantiationAwareBeanPostProcessor和BeanFactoryPostProcessor，并自动将它们注册到应用上下文中。</p>
-<p> 而BeanFactory需要在代码中通过手工调用addBeanPostProcessor()方法进行注册。<strong>这也是为什么在应用开发时，我们普遍使用ApplicationContext而很少使用BeanFactory的原因之一。</strong><br> ​</p>
-</li>
-</ul>
-</li>
-</ol>
-</blockquote>
-
       
     </div>
     
+      
+        <div class="button readmore">
+          <a href="/2020/06/19/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
       
     
   </section>
@@ -580,7 +414,7 @@
     
       
         <a class='avatar flat-box' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png'/>
+          <img no-lazy src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2398570443,2150428803&fm=26&gp=0.jpg'/>
         </a>
       
     
@@ -656,12 +490,7 @@
           <li><a class="flat-box"
             title="/categories/Bean/" href="/categories/Bean/"
             id="categoriesBean"
-            ><div class='name'>Bean</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Kafka/" href="/categories/Kafka/"
-            id="categoriesKafka"
-            ><div class='name'>Kafka</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>Bean</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/SpringBoot/" href="/categories/SpringBoot/"
