@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"18360732385.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="IO模式 ​    对于一次IO访问（以read举例），数据会先被拷贝到操作系统内核的缓冲区中，然后才会从操作系统内核的缓冲区拷贝到应用程序的内存地址空间。所以说，当一个read操作发生时，它会经历两个阶段：  等待内核缓冲区中数据准备 (Waiting for the data to be ready)  将数据从内核缓冲区拷贝到进程中 (Copying the data from the ke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IO模式">
+<meta property="og:url" content="https://18360732385.github.io/2020/06/19/IO%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="zj183">
+<meta property="og:description" content="IO模式 ​    对于一次IO访问（以read举例），数据会先被拷贝到操作系统内核的缓冲区中，然后才会从操作系统内核的缓冲区拷贝到应用程序的内存地址空间。所以说，当一个read操作发生时，它会经历两个阶段：  等待内核缓冲区中数据准备 (Waiting for the data to be ready)  将数据从内核缓冲区拷贝到进程中 (Copying the data from the ke">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-19T02:45:59.045Z">
+<meta property="article:modified_time" content="2020-04-27T07:27:07.532Z">
+<meta property="article:author" content="zj">
+<meta property="article:tag" content="zj183">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://18360732385.github.io/2020/06/19/IO%E6%A8%A1%E5%BC%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>IO模式 | zj183</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">zj183</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://18360732385.github.io/2020/06/19/IO%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zj183">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IO模式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 10:45:59" itemprop="dateCreated datePublished" datetime="2020-06-19T10:45:59+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-27 15:27:07" itemprop="dateModified" datetime="2020-04-27T15:27:07+08:00">2020-04-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="IO模式"><a href="#IO模式" class="headerlink" title="IO模式"></a>IO模式</h1><blockquote>
+<p>​    对于一次IO访问（以read举例），数据会先被拷贝到操作系统内核的缓冲区中，然后才会从操作系统内核的缓冲区拷贝到应用程序的内存地址空间。所以说，当一个read操作发生时，它会经历两个阶段：</p>
+<ol>
+<li><p>等待内核缓冲区中数据准备 (Waiting for the data to be ready)</p>
+</li>
+<li><p>将数据从内核缓冲区拷贝到进程中 (Copying the data from the kernel to the process)</p>
+<p>正式因为这两个阶段，linux系统产生了下面五种IO模式的方案：</p>
+</li>
+</ol>
+<ul>
+<li>阻塞 I/O（blocking IO）</li>
+<li>非阻塞 I/O（nonblocking IO）</li>
+<li>I/O 多路复用（ IO multiplexing）</li>
+<li>异步 I/O（asynchronous IO）</li>
+<li>信号驱动 I/O（ signal driven IO）</li>
+</ul>
+</blockquote>
+<h3 id="阻塞-I-O（BIO）"><a href="#阻塞-I-O（BIO）" class="headerlink" title="阻塞 I/O（BIO）"></a>阻塞 I/O（BIO）</h3><blockquote>
+<p>​    当一个进程需要read数据时，它需要先从内核缓存区中读取数据，当在内核中数据还未准备好时，则该进程会被阻塞（block），直到数据准备好为止。</p>
+</blockquote>
+<h3 id="非阻塞-I-O"><a href="#非阻塞-I-O" class="headerlink" title="非阻塞 I/O"></a>非阻塞 I/O</h3><blockquote>
+<p>​    一个进程需要read数据时，它需要先从内核缓存区中读取数据，当在内核中数据还未准备好时，内核立即返回error，用户进程得知error后，会继续read，直到数据准备好为止。</p>
+<p>​    使用轮询去获取数据，<strong>浪费CPU</strong>。</p>
+</blockquote>
+<h3 id="I-O-多路复用"><a href="#I-O-多路复用" class="headerlink" title="I/O 多路复用"></a>I/O 多路复用</h3><blockquote>
+<p>​    上述阻塞IO和非阻塞IO，当时一个用户进程对应一个IO操作，IO多路复用则通过一定的机制实现了一个进程可以对应多个IO操作。</p>
+<p>​    IO多路复用主要有select、poll、epoll三种模式，select/poll相差不大，主要是通过轮询来不断的检测是否有描述符已就绪，select默认情况下支持最多监控1024个描述符，poll则没有这个限制（底层通过链表实现，可动态增加）；epoll不是通过轮询，而是通过回调（callback）方式主动通知已有描述符已就绪，相比较select/poll效率有明显提升。</p>
+<p>​    <strong>不管哪种模式的IO多路复用，还都是同步IO，</strong>比如当监控的所有的描述符都还没有准备就绪，那么该进程还是阻塞在此，下面将介绍异步IO</p>
+<p>​    <strong>I/O多路复用的典型是：nignx和redis</strong></p>
+</blockquote>
+<h3 id="异步-I-O（AIO）"><a href="#异步-I-O（AIO）" class="headerlink" title="异步 I/O（AIO）"></a>异步 I/O（AIO）</h3><blockquote>
+<p>​    相比较同步IO，异步IO就显得更加高大上了，基本原理是用户进程发起read操作之后，立刻就可以开始去做其它的事。而另一方面，从kernel的角度，当它受到一个asynchronous read之后，首先它会立刻返回，所以不会对用户进程产生任何block。<strong>然后kernel会等待数据准备完成，然后将数据拷贝到用户内存，当这一切都完成之后，kernel会给用户进程发送一个signal，告诉它read操作完成了</strong>，用户进程收到signal后获取已准备好的数据。</p>
+</blockquote>
+<h3 id="信号驱动-I-O"><a href="#信号驱动-I-O" class="headerlink" title="信号驱动 I/O"></a>信号驱动 I/O</h3><blockquote>
+<p>​    信号驱动IO和异步IO类似，甚至有些人认为信号驱动IO就是异步IO，当kernel准备好数据后，会发送signal给用户进程，告诉进程数据已经准备就绪，<strong>这时进程会主动去read数据将数据拷贝到用户内存，这一步是由应用程序自己操作的，而异步IO则是由kernal实现，区别在此。</strong></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/19/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="prev" title="Bean生命周期">
+      <i class="fa fa-chevron-left"></i> Bean生命周期
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/19/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="next" title="Kafka消息队列">
+      Kafka消息队列 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IO模式"><span class="nav-number">1.</span> <span class="nav-text">IO模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞-I-O（BIO）"><span class="nav-number">1.0.1.</span> <span class="nav-text">阻塞 I&#x2F;O（BIO）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非阻塞-I-O"><span class="nav-number">1.0.2.</span> <span class="nav-text">非阻塞 I&#x2F;O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-O-多路复用"><span class="nav-number">1.0.3.</span> <span class="nav-text">I&#x2F;O 多路复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步-I-O（AIO）"><span class="nav-number">1.0.4.</span> <span class="nav-text">异步 I&#x2F;O（AIO）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信号驱动-I-O"><span class="nav-number">1.0.5.</span> <span class="nav-text">信号驱动 I&#x2F;O</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

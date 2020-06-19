@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"18360732385.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="加解密流程名词解释 #####key:  对称加密需要的秘钥，用来对明文加密。速度快，适用对报文加密。 privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。#####salt:  盐值，一串随机数。对明文签名，防止报文被篡改。 sign:  签名，明文+salt后使用散列算法后生成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="加解密流程">
+<meta property="og:url" content="https://18360732385.github.io/2020/06/19/%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:site_name" content="zj183">
+<meta property="og:description" content="加解密流程名词解释 #####key:  对称加密需要的秘钥，用来对明文加密。速度快，适用对报文加密。 privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。#####salt:  盐值，一串随机数。对明文签名，防止报文被篡改。 sign:  签名，明文+salt后使用散列算法后生成">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-19T02:45:59.041Z">
+<meta property="article:modified_time" content="2020-05-05T11:07:51.715Z">
+<meta property="article:author" content="zj">
+<meta property="article:tag" content="zj183">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://18360732385.github.io/2020/06/19/%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%B5%81%E7%A8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>加解密流程 | zj183</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">zj183</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://18360732385.github.io/2020/06/19/%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%B5%81%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zj183">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          加解密流程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 10:45:59" itemprop="dateCreated datePublished" datetime="2020-06-19T10:45:59+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-05 19:07:51" itemprop="dateModified" datetime="2020-05-05T19:07:51+08:00">2020-05-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="加解密流程"><a href="#加解密流程" class="headerlink" title="加解密流程"></a>加解密流程</h2><h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><blockquote>
+<p>#####key:  对称加密需要的秘钥，用来对明文加密。速度快，适用对报文加密。</p>
+<h5 id="privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。"><a href="#privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。" class="headerlink" title="privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。"></a>privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。</h5><p>#####salt:  盐值，一串随机数。对明文签名，防止报文被篡改。</p>
+<h5 id="sign-签名，明文-salt后使用散列算法后生成的密文，用于验签确认是数据是完整无篡改的。"><a href="#sign-签名，明文-salt后使用散列算法后生成的密文，用于验签确认是数据是完整无篡改的。" class="headerlink" title="sign:  签名，明文+salt后使用散列算法后生成的密文，用于验签确认是数据是完整无篡改的。"></a>sign:  签名，明文+salt后使用散列算法后生成的密文，用于验签确认是数据是完整无篡改的。</h5></blockquote>
+<h3 id="客户端加密"><a href="#客户端加密" class="headerlink" title="客户端加密"></a>客户端加密</h3><blockquote>
+<ol>
+<li><h5 id="本地初始化生成一个对称加密的秘钥key，同时随机生成一个salt"><a href="#本地初始化生成一个对称加密的秘钥key，同时随机生成一个salt" class="headerlink" title="本地初始化生成一个对称加密的秘钥key，同时随机生成一个salt"></a>本地初始化生成一个对称加密的秘钥key，同时随机生成一个salt</h5></li>
+<li><h5 id="将key和salt拼接，使用公钥非对称加密-gt-gt-gt-gt-gt-gt-gt-获得密文KEY"><a href="#将key和salt拼接，使用公钥非对称加密-gt-gt-gt-gt-gt-gt-gt-获得密文KEY" class="headerlink" title="将key和salt拼接，使用公钥非对称加密&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文KEY"></a>将key和salt拼接，使用公钥非对称加密&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文KEY</h5></li>
+<li><h5 id="使用key对明文plainText进行对称加密-gt-gt-gt-gt-gt-gt-gt-获得密文content"><a href="#使用key对明文plainText进行对称加密-gt-gt-gt-gt-gt-gt-gt-获得密文content" class="headerlink" title="使用key对明文plainText进行对称加密&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文content"></a>使用key对明文plainText进行对称加密&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文content</h5></li>
+<li><h5 id="将密文content和salt进行sha256算法签名-gt-gt-gt-gt-gt-gt-gt-gt-gt-gt-获得密文sign"><a href="#将密文content和salt进行sha256算法签名-gt-gt-gt-gt-gt-gt-gt-gt-gt-gt-获得密文sign" class="headerlink" title="将密文content和salt进行sha256算法签名&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文sign"></a>将密文content和salt进行sha256算法签名&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文sign</h5></li>
+</ol>
+</blockquote>
+<h3 id="服务端解密"><a href="#服务端解密" class="headerlink" title="服务端解密"></a>服务端解密</h3><blockquote>
+<ol>
+<li><h5 id="使用私钥对密文KEY进行非对称解密-gt-gt-gt-gt-gt-gt-gt-gt-获得key和salt"><a href="#使用私钥对密文KEY进行非对称解密-gt-gt-gt-gt-gt-gt-gt-gt-获得key和salt" class="headerlink" title="使用私钥对密文KEY进行非对称解密&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得key和salt"></a>使用私钥对密文KEY进行非对称解密&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得key和salt</h5></li>
+<li><h5 id="将密文content和salt进行签名，对比sign是否一致：验签-gt-gt-gt-gt-gt-gt-gt-gt-gt-确认内容无篡改"><a href="#将密文content和salt进行签名，对比sign是否一致：验签-gt-gt-gt-gt-gt-gt-gt-gt-gt-确认内容无篡改" class="headerlink" title="将密文content和salt进行签名，对比sign是否一致：验签&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;确认内容无篡改"></a>将密文content和salt进行签名，对比sign是否一致：验签&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;确认内容无篡改</h5></li>
+<li><h5 id="使用key对密文content对称解密-gt-gt-gt-gt-gt-gt-gt-gt-gt-获得明文plainText"><a href="#使用key对密文content对称解密-gt-gt-gt-gt-gt-gt-gt-gt-gt-获得明文plainText" class="headerlink" title="使用key对密文content对称解密&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得明文plainText"></a>使用key对密文content对称解密&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得明文plainText</h5></li>
+</ol>
+</blockquote>
+<h3 id="CFCA安全控件思路"><a href="#CFCA安全控件思路" class="headerlink" title="CFCA安全控件思路"></a>CFCA安全控件思路</h3><h5 id="App情况下，上述的加解密其实会容易被破解。因为很多黑盒测试可能会破壳或暴力破解app，存在拿到本地秘钥、salt甚至是源码的情况。主流加解密的算法就那么几种，可以试出来。所以如何保证信息安全，其实很大程度上要靠对秘钥的存储方式。"><a href="#App情况下，上述的加解密其实会容易被破解。因为很多黑盒测试可能会破壳或暴力破解app，存在拿到本地秘钥、salt甚至是源码的情况。主流加解密的算法就那么几种，可以试出来。所以如何保证信息安全，其实很大程度上要靠对秘钥的存储方式。" class="headerlink" title="App情况下，上述的加解密其实会容易被破解。因为很多黑盒测试可能会破壳或暴力破解app，存在拿到本地秘钥、salt甚至是源码的情况。主流加解密的算法就那么几种，可以试出来。所以如何保证信息安全，其实很大程度上要靠对秘钥的存储方式。"></a>App情况下，上述的加解密其实会容易被破解。因为很多黑盒测试可能会破壳或暴力破解app，存在拿到本地秘钥、salt甚至是源码的情况。主流加解密的算法就那么几种，可以试出来。所以如何保证信息安全，其实很大程度上要靠对秘钥的存储方式。</h5><h5 id="以下是CFCA安全控件的加解密流程："><a href="#以下是CFCA安全控件的加解密流程：" class="headerlink" title="以下是CFCA安全控件的加解密流程："></a>以下是CFCA安全控件的加解密流程：</h5><blockquote>
+<ol>
+<li><h5 id="客户端第一次请求服务端，将必要的自身信息用公钥加密，给服务器"><a href="#客户端第一次请求服务端，将必要的自身信息用公钥加密，给服务器" class="headerlink" title="客户端第一次请求服务端，将必要的自身信息用公钥加密，给服务器"></a>客户端第一次请求服务端，将必要的自身信息用公钥加密，给服务器</h5></li>
+<li><h5 id="服务端私钥解密后，生成一个随机数Rs，传给客户端，同时储存在Redis中的会话信息里"><a href="#服务端私钥解密后，生成一个随机数Rs，传给客户端，同时储存在Redis中的会话信息里" class="headerlink" title="服务端私钥解密后，生成一个随机数Rs，传给客户端，同时储存在Redis中的会话信息里"></a>服务端私钥解密后，生成一个随机数Rs，传给客户端，同时储存在Redis中的会话信息里</h5></li>
+<li><h5 id="客户端自己生成一个随机数Ra，计算R-Rs-Ra，将R作为key。"><a href="#客户端自己生成一个随机数Ra，计算R-Rs-Ra，将R作为key。" class="headerlink" title="客户端自己生成一个随机数Ra，计算R=Rs+Ra，将R作为key。"></a>客户端自己生成一个随机数Ra，计算R=Rs+Ra，将R作为key。</h5></li>
+<li><h5 id="进行正常的客户端加解密"><a href="#进行正常的客户端加解密" class="headerlink" title="进行正常的客户端加解密"></a>进行正常的客户端加解密</h5></li>
+</ol>
+</blockquote>
+<h5 id="这种情况中客户端和服务端都参与了对key的生成过程，且Rs和Ra不会在同一个请求中同时出现，加大了破解密码的难度。但使用了Redis中间件，也增加了系统的难度和不稳定性。"><a href="#这种情况中客户端和服务端都参与了对key的生成过程，且Rs和Ra不会在同一个请求中同时出现，加大了破解密码的难度。但使用了Redis中间件，也增加了系统的难度和不稳定性。" class="headerlink" title="这种情况中客户端和服务端都参与了对key的生成过程，且Rs和Ra不会在同一个请求中同时出现，加大了破解密码的难度。但使用了Redis中间件，也增加了系统的难度和不稳定性。"></a>这种情况中客户端和服务端都参与了对key的生成过程，且Rs和Ra不会在同一个请求中同时出现，加大了破解密码的难度。但使用了Redis中间件，也增加了系统的难度和不稳定性。</h5><h5 id="如果不考虑性能，那么甚至使用秘钥集（一次一密），请求过程中全程不传输key。key和salt也可以存储在Redis或内存中。"><a href="#如果不考虑性能，那么甚至使用秘钥集（一次一密），请求过程中全程不传输key。key和salt也可以存储在Redis或内存中。" class="headerlink" title="如果不考虑性能，那么甚至使用秘钥集（一次一密），请求过程中全程不传输key。key和salt也可以存储在Redis或内存中。"></a>如果不考虑性能，那么甚至使用秘钥集（一次一密），请求过程中全程不传输key。key和salt也可以存储在Redis或内存中。</h5>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/19/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="prev" title="集合源码解析">
+      <i class="fa fa-chevron-left"></i> 集合源码解析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/19/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="next" title="Bean生命周期">
+      Bean生命周期 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#加解密流程"><span class="nav-number">1.</span> <span class="nav-text">加解密流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#名词解释"><span class="nav-number">1.1.</span> <span class="nav-text">名词解释</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sign-签名，明文-salt后使用散列算法后生成的密文，用于验签确认是数据是完整无篡改的。"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">sign:  签名，明文+salt后使用散列算法后生成的密文，用于验签确认是数据是完整无篡改的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端加密"><span class="nav-number">1.2.</span> <span class="nav-text">客户端加密</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#本地初始化生成一个对称加密的秘钥key，同时随机生成一个salt"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">本地初始化生成一个对称加密的秘钥key，同时随机生成一个salt</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#将key和salt拼接，使用公钥非对称加密-gt-gt-gt-gt-gt-gt-gt-获得密文KEY"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">将key和salt拼接，使用公钥非对称加密&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文KEY</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用key对明文plainText进行对称加密-gt-gt-gt-gt-gt-gt-gt-获得密文content"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">使用key对明文plainText进行对称加密&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#将密文content和salt进行sha256算法签名-gt-gt-gt-gt-gt-gt-gt-gt-gt-gt-获得密文sign"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">将密文content和salt进行sha256算法签名&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文sign</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端解密"><span class="nav-number">1.3.</span> <span class="nav-text">服务端解密</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用私钥对密文KEY进行非对称解密-gt-gt-gt-gt-gt-gt-gt-gt-获得key和salt"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">使用私钥对密文KEY进行非对称解密&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得key和salt</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#将密文content和salt进行签名，对比sign是否一致：验签-gt-gt-gt-gt-gt-gt-gt-gt-gt-确认内容无篡改"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">将密文content和salt进行签名，对比sign是否一致：验签&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;确认内容无篡改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用key对密文content对称解密-gt-gt-gt-gt-gt-gt-gt-gt-gt-获得明文plainText"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">使用key对密文content对称解密&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得明文plainText</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CFCA安全控件思路"><span class="nav-number">1.4.</span> <span class="nav-text">CFCA安全控件思路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#App情况下，上述的加解密其实会容易被破解。因为很多黑盒测试可能会破壳或暴力破解app，存在拿到本地秘钥、salt甚至是源码的情况。主流加解密的算法就那么几种，可以试出来。所以如何保证信息安全，其实很大程度上要靠对秘钥的存储方式。"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">App情况下，上述的加解密其实会容易被破解。因为很多黑盒测试可能会破壳或暴力破解app，存在拿到本地秘钥、salt甚至是源码的情况。主流加解密的算法就那么几种，可以试出来。所以如何保证信息安全，其实很大程度上要靠对秘钥的存储方式。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以下是CFCA安全控件的加解密流程："><span class="nav-number">1.4.0.2.</span> <span class="nav-text">以下是CFCA安全控件的加解密流程：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#客户端第一次请求服务端，将必要的自身信息用公钥加密，给服务器"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">客户端第一次请求服务端，将必要的自身信息用公钥加密，给服务器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#服务端私钥解密后，生成一个随机数Rs，传给客户端，同时储存在Redis中的会话信息里"><span class="nav-number">1.4.0.4.</span> <span class="nav-text">服务端私钥解密后，生成一个随机数Rs，传给客户端，同时储存在Redis中的会话信息里</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#客户端自己生成一个随机数Ra，计算R-Rs-Ra，将R作为key。"><span class="nav-number">1.4.0.5.</span> <span class="nav-text">客户端自己生成一个随机数Ra，计算R&#x3D;Rs+Ra，将R作为key。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#进行正常的客户端加解密"><span class="nav-number">1.4.0.6.</span> <span class="nav-text">进行正常的客户端加解密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#这种情况中客户端和服务端都参与了对key的生成过程，且Rs和Ra不会在同一个请求中同时出现，加大了破解密码的难度。但使用了Redis中间件，也增加了系统的难度和不稳定性。"><span class="nav-number">1.4.0.7.</span> <span class="nav-text">这种情况中客户端和服务端都参与了对key的生成过程，且Rs和Ra不会在同一个请求中同时出现，加大了破解密码的难度。但使用了Redis中间件，也增加了系统的难度和不稳定性。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如果不考虑性能，那么甚至使用秘钥集（一次一密），请求过程中全程不传输key。key和salt也可以存储在Redis或内存中。"><span class="nav-number">1.4.0.8.</span> <span class="nav-text">如果不考虑性能，那么甚至使用秘钥集（一次一密），请求过程中全程不传输key。key和salt也可以存储在Redis或内存中。</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

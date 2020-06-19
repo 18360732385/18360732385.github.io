@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"18360732385.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="常用的加解密算法1.散列（哈希） ​    散列函数，又称散列算法、哈希函数，是一种从任何一种数据中创建小的数字“指纹”的方法。将数据（如一段文字）运算变为另一固定长度值，是散列算法的基础原理，被广泛应用于数字签名。有以下特点：  对相同数据运算，结果相同 对不同数据运算，结果长度相同 运算单向不可逆    常用算法 :  MD5（MD5消息摘要算法） SHA家族（安全散列算法，有sha1、sha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="加解密算法">
+<meta property="og:url" content="https://18360732385.github.io/2020/06/19/%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="zj183">
+<meta property="og:description" content="常用的加解密算法1.散列（哈希） ​    散列函数，又称散列算法、哈希函数，是一种从任何一种数据中创建小的数字“指纹”的方法。将数据（如一段文字）运算变为另一固定长度值，是散列算法的基础原理，被广泛应用于数字签名。有以下特点：  对相同数据运算，结果相同 对不同数据运算，结果长度相同 运算单向不可逆    常用算法 :  MD5（MD5消息摘要算法） SHA家族（安全散列算法，有sha1、sha">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-19T02:45:54.218Z">
+<meta property="article:modified_time" content="2020-03-06T02:48:34.507Z">
+<meta property="article:author" content="zj">
+<meta property="article:tag" content="zj183">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://18360732385.github.io/2020/06/19/%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>加解密算法 | zj183</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">zj183</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://18360732385.github.io/2020/06/19/%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zj183">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          加解密算法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 10:45:54" itemprop="dateCreated datePublished" datetime="2020-06-19T10:45:54+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 10:48:34" itemprop="dateModified" datetime="2020-03-06T10:48:34+08:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="常用的加解密算法"><a href="#常用的加解密算法" class="headerlink" title="常用的加解密算法"></a>常用的加解密算法</h2><h3 id="1-散列（哈希）"><a href="#1-散列（哈希）" class="headerlink" title="1.散列（哈希）"></a>1.散列（哈希）</h3><blockquote>
+<p>​    <strong>散列函数</strong>，又称<strong>散列算法</strong>、<strong>哈希函数</strong>，是一种从任何一种数据中创建小的数字“指纹”的方法。<strong>将数据（如一段文字）运算变为另一固定长度值，是散列算法的基础原理，被广泛应用于数字签名。</strong>有以下特点：</p>
+<ul>
+<li>对相同数据运算，结果相同</li>
+<li>对不同数据运算，结果长度相同</li>
+<li>运算单向不可逆</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>常用算法</strong> :</p>
+<ul>
+<li>MD5（MD5消息摘要算法）</li>
+<li>SHA家族（安全散列算法，有sha1、sha256、sha512）</li>
+</ul>
+</blockquote>
+<h3 id="2-对称加密"><a href="#2-对称加密" class="headerlink" title="2.对称加密"></a>2.对称加密</h3><blockquote>
+<p>​    这类算法在加密和解密时使用相同的密钥，或是使用两个可以简单地相互推算的密钥。对称加密一般加密后，都使用base64编码。具有以下特点：</p>
+<ul>
+<li>计算量小</li>
+<li>加密速度快、机密效率高</li>
+<li>加密和解密使用相同秘钥，安全隐患大</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>常用算法</strong>:</p>
+<ul>
+<li>DES（数据加密标准），不安全</li>
+<li>3DES（<strong>三重数据加密算法</strong>）</li>
+<li>AES（<strong>三重数据加密算法</strong>）</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密码学中，分组（block）密码的工作模式（mode of operation）允许使用同一个分组密码密钥对多于一块的数据进行加密，并保证其安全性。分组密码自身只能加密长度等于密码分组长度的单块数据，若要加密变长数据，则数据必须先被划分为一些单独的密码块。通常而言，最后一块数据也需要使用合适填充方式将数据扩展到匹配密码块大小的长度。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-非对称加密"><a href="#3-非对称加密" class="headerlink" title="3.非对称加密"></a>3.非对称加密</h3><blockquote>
+<p>​    它需要两个密钥，一个是公开密钥，另一个是私有密钥；一个用作加密的时候，另一个则用作解密。使用其中一个密钥把明文加密后所得的密文，只能用相对应的另一个密钥才能解密得到原本的明文。有以下特点：</p>
+<ul>
+<li>RSA效率要慢得多，一般加密小量的数据（盐、随机数），所以RSA一般配合对称加密算法一起使用。</li>
+<li>对极大整数做<a href="https://zh.wikipedia.org/wiki/%E5%9B%A0%E6%95%B0%E5%88%86%E8%A7%A3" target="_blank" rel="noopener">因数分解</a>的难度决定了RSA算法的可靠性。安全性可靠。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>常用算法</strong>：</p>
+<ul>
+<li>RSA（最广泛的非对称加密算法，麻省理工三人组R、S、A推出）</li>
+</ul>
+</blockquote>
+<h3 id="国密算法"><a href="#国密算法" class="headerlink" title="国密算法"></a>国密算法</h3><blockquote>
+<p>​    国密即国家密码局认定的国产密码算法。主要有SM1，SM2，SM3，SM4。密钥长度和分组长度均为128位。其特点分别如下：</p>
+<ul>
+<li>SM1 为对称加密。其加密强度与AES相当。该算法不公开，调用该算法时，需要通过加密芯片的接口进行调用。</li>
+<li>SM2为非对称加密，基于ECC。该算法已公开。由于该算法基于ECC，故其签名速度与秘钥生成速度都快于RSA。ECC 256位（SM2采用的就是ECC 256位的一种）安全强度比RSA 2048位高，但运算速度快于RSA。</li>
+<li>SM3 消息摘要。可以用MD5作为对比理解。该算法已公开。校验结果为256位。</li>
+<li>SM4 无线局域网标准的分组数据算法。对称加密，密钥长度和分组长度均为128位。</li>
+</ul>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/19/MySQL%E4%B9%90%E8%A7%82%E9%94%81MVCC%E6%9C%BA%E5%88%B6/" rel="prev" title="MySQL乐观锁MVCC机制">
+      <i class="fa fa-chevron-left"></i> MySQL乐观锁MVCC机制
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/19/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/" rel="next" title="秒杀系统">
+      秒杀系统 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的加解密算法"><span class="nav-number">1.</span> <span class="nav-text">常用的加解密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-散列（哈希）"><span class="nav-number">1.1.</span> <span class="nav-text">1.散列（哈希）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-对称加密"><span class="nav-number">1.2.</span> <span class="nav-text">2.对称加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-非对称加密"><span class="nav-number">1.3.</span> <span class="nav-text">3.非对称加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#国密算法"><span class="nav-number">1.4.</span> <span class="nav-text">国密算法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

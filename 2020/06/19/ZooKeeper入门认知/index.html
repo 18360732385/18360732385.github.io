@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"18360732385.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="ZooKeeper入门认知定义 ​    Zookeeper 从设计模式角度来看，是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper 就将负责通知已经在 Zookeeper 上注册的那些观察者做出相应的反应，从而实现集群中类似 Master&#x2F;Slave 管理模式。  ZooKeeper是一个分布式下数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZooKeeper入门认知">
+<meta property="og:url" content="https://18360732385.github.io/2020/06/19/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/index.html">
+<meta property="og:site_name" content="zj183">
+<meta property="og:description" content="ZooKeeper入门认知定义 ​    Zookeeper 从设计模式角度来看，是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper 就将负责通知已经在 Zookeeper 上注册的那些观察者做出相应的反应，从而实现集群中类似 Master&#x2F;Slave 管理模式。  ZooKeeper是一个分布式下数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/image001.gif">
+<meta property="og:image" content="https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/image002.gif">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/2BGWl1qPxib1WCfFk2icxudIMHNPQMHIDJ4lnbuRg5lEDmjlSTmdarCs8Dq7Pjg213pAq7QlXxzc7dIklkGuAWYQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2020-06-19T02:45:59.034Z">
+<meta property="article:modified_time" content="2020-04-28T02:47:15.614Z">
+<meta property="article:author" content="zj">
+<meta property="article:tag" content="zj183">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/image001.gif">
+
+<link rel="canonical" href="https://18360732385.github.io/2020/06/19/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ZooKeeper入门认知 | zj183</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">zj183</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://18360732385.github.io/2020/06/19/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zj183">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ZooKeeper入门认知
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 10:45:59" itemprop="dateCreated datePublished" datetime="2020-06-19T10:45:59+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-28 10:47:15" itemprop="dateModified" datetime="2020-04-28T10:47:15+08:00">2020-04-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="ZooKeeper入门认知"><a href="#ZooKeeper入门认知" class="headerlink" title="ZooKeeper入门认知"></a>ZooKeeper入门认知</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>​    Zookeeper 从设计模式角度来看，是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper 就将负责通知已经在 Zookeeper 上注册的那些观察者做出相应的反应，从而实现集群中类似 Master/Slave 管理模式。</p>
+<ul>
+<li>ZooKeeper是一个<strong>分布式下数据一致性解决方案</strong>，基于CAP理论中的CP（Eurka基于AP，更适用高并发），可以用ZooKeeper来做：统一配置管理、统一命名服务、分布式锁、集群管理。</li>
+<li>使用分布式系统就无法避免对节点管理的问题(需要实时感知节点的状态、对节点进行统一管理等等)，而由于这些问题处理起来可能相对麻烦和提高了系统的复杂性，ZooKeeper作为一个能够通用解决这些问题的中间件就应运而生了。</li>
+</ul>
+</blockquote>
+<p>###数据模型</p>
+<blockquote>
+<p>​    Zookeeper 会维护一个具有层次关系的数据结构，它非常类似于Uinux下标准的文件系统。ZooKeeper的节点我们称之为<strong>Znode</strong>，Znode分为<strong>两种</strong>类型：</p>
+<ul>
+<li><p><strong>临时节点(Ephemeral)</strong>：当客户端和服务端断开连接后，所创建的Znode(节点)<strong>会自动删除</strong></p>
+</li>
+<li><p><strong>持久节点(Persistent)</strong>：当客户端和服务端断开连接后，所创建的Znode(节点)<strong>不会删除</strong></p>
+<p>ZooKeeper和Redis一样，也是C/S结构(分成客户端和服务端)。</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/image001.gif" alt=""></p>
+<h3 id="节点特征"><a href="#节点特征" class="headerlink" title="节点特征"></a>节点特征</h3><blockquote>
+<ol>
+<li>每个子目录项如 NameService 都被称作为 znode，这个 znode 是被它所在的路径唯一标识，如 Server1 这个 znode 的标识为 /NameService/Server1</li>
+<li>znode 可以有子节点目录，并且每个 znode 可以存储数据，*<em>注意临时节点不能有子节点目录（临时节点下不能再存储节点，防止失效后数据丢失） *</em></li>
+<li>znode 是有版本的，每个 znode 中存储的数据可以有多个版本，也就是一个访问路径中可以存储多份数据</li>
+<li>znode 可以是临时节点，一旦创建这个 znode 的客户端与服务器失去联系，这个 znode 也将自动删除，Zookeeper 的客户端和服务器通信采用长连接方式，每个客户端和服务器通过心跳来保持连接，这个连接状态称为 session，如果 znode 是临时节点，这个 session 失效，znode 也就删除了</li>
+<li>znode 的目录名可以自动编号，如 App1 已经存在，再创建的话，将会自动命名为 App2</li>
+<li>znode 可以被监控，包括这个目录节点中存储的数据的修改，子节点目录的变化等，一旦变化可以通知设置监控的客户端。</li>
+</ol>
+</blockquote>
+<blockquote>
+<h5 id="节点监听是-Zookeeper-的核心特性，Zookeeper-的很多功能都是基于这个特性实现的。关于znode节点的监听，可以分为2种："><a href="#节点监听是-Zookeeper-的核心特性，Zookeeper-的很多功能都是基于这个特性实现的。关于znode节点的监听，可以分为2种：" class="headerlink" title="节点监听是 Zookeeper 的核心特性，Zookeeper 的很多功能都是基于这个特性实现的。关于znode节点的监听，可以分为2种："></a>节点监听是 Zookeeper 的核心特性，Zookeeper 的很多功能都是基于这个特性实现的。关于znode节点的监听，可以分为2种：</h5><ul>
+<li>监听Znode节点的<strong>数据变化</strong></li>
+<li>监听Znode节点下子节点的<strong>增减变化</strong></li>
+</ul>
+</blockquote>
+<h3 id="统一配置管理（数据发布-订阅）"><a href="#统一配置管理（数据发布-订阅）" class="headerlink" title="统一配置管理（数据发布/订阅）"></a>统一配置管理（数据发布/订阅）</h3><blockquote>
+<p>​    配置的管理在分布式应用环境中很常见，例如同一个应用系统需要多台 PC Server 运行，但是它们运行的应用系统的某些配置项是相同的，如果要修改这些相同的配置项，那么就必须同时修改每台运行这个应用系统的 PC Server，这样非常麻烦而且容易出错。</p>
+<p>​    像这样的配置信息完全可以交给 Zookeeper 来管理，将配置信息保存在 Zookeeper 的某个目录节点中，然后将所有需要修改的应用机器监控配置信息的状态，一旦配置信息发生变化，每台应用机器就会收到 Zookeeper 的通知，然后从 Zookeeper 获取新的配置信息应用到系统中。</p>
+<p>​    <a href="https://blog.csdn.net/u011320740/article/details/78742625" target="_blank" rel="noopener">https://blog.csdn.net/u011320740/article/details/78742625</a></p>
+</blockquote>
+<p><img src="https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/image002.gif" alt=""></p>
+<h3 id="统一命名服务（负载均衡）"><a href="#统一命名服务（负载均衡）" class="headerlink" title="统一命名服务（负载均衡）"></a>统一命名服务（负载均衡）</h3><blockquote>
+<p>​    统一命名服务的理解其实跟<strong>域名</strong>一样，是我们为这某一部分的资源给它<strong>取一个名字</strong>，别人通过这个名字就可以拿到对应的资源。比如说，现在我有一个域名<code>www.java3y.com</code>，但我这个域名下有多台机器：</p>
+<ul>
+<li><p>192.168.1.1</p>
+</li>
+<li><p>192.168.1.2</p>
+</li>
+<li><p>192.168.1.3</p>
+</li>
+<li><p>192.168.1.4</p>
+<p>​</p>
+<p>别人访问<code>www.java3y.com</code>即可访问到我的机器，而不是通过IP去访问。在此基础上，加上一定的负载均衡算法，则可以</p>
+</li>
+</ul>
+<p>达到动态负载均衡的效果。</p>
+</blockquote>
+<h3 id="集群管理和Master选举"><a href="#集群管理和Master选举" class="headerlink" title="集群管理和Master选举"></a>集群管理和Master选举</h3><blockquote>
+<p>​    集群管理其实很容易实现，只要在ZooKeeper中创建<strong>临时节点</strong>即可。只要系统A挂了，那<code>/groupMember/A</code>这个节点就会删除，通过<strong>监听</strong><code>groupMember</code>下的子节点，系统B和C就能够感知到系统A已经挂了(新增也是同理)。</p>
+<p>​    除了能够感知节点的上下线变化，ZooKeeper还可以实现<strong>动态选举Master</strong>的功能(如果集群是主从架构模式下)。原理也很简单，如果想要实现动态选举Master的功能，Znode节点的类型是带<strong>顺序号的临时节点</strong>(<code>EPHEMERAL_SEQUENTIAL</code>)就好了。</p>
+<ul>
+<li>Zookeeper会每次选举最小编号的作为Master，如果Master挂了，自然对应的Znode节点就会删除。然后让<strong>新的最小编号作为Master</strong>，这样就可以实现动态选举的功能了。</li>
+</ul>
+</blockquote>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/2BGWl1qPxib1WCfFk2icxudIMHNPQMHIDJ4lnbuRg5lEDmjlSTmdarCs8Dq7Pjg213pAq7QlXxzc7dIklkGuAWYQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt=""></p>
+<h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><h4 id="排它锁"><a href="#排它锁" class="headerlink" title="排它锁"></a>排它锁</h4><blockquote>
+<p>​    通过 ZooKeeper 上的 Znode 可以表示一个锁，<code>/x_lock/lock</code>。</p>
+<ol>
+<li>获取锁 所有客户端都会通过调用 <code>create()</code> 接口尝试在 <code>/x_lock</code> 创建临时子节点 <code>/x_lock/lock</code>。最终只有一个客户端创建成功，那么该客户端就获取了锁。同时没有获取到锁的其他客户端，<strong>注册一个子节点变更</strong>的 Watcher 监听。</li>
+<li>释放锁 获取锁的客户端发生宕机或者正常完成业务逻辑后，就会把临时节点删除。临时子节点删除后，其他客户端又开始新的一轮获取锁的过程。</li>
+</ol>
+</blockquote>
+<h4 id="共享锁（读写锁）"><a href="#共享锁（读写锁）" class="headerlink" title="共享锁（读写锁）"></a>共享锁（读写锁）</h4><blockquote>
+<p>​    如果事务 T1 对数据对象 O1 加上了共享锁，那么当前事务 T1 只能对 O1 进行读取操作，其他事务也只能对这个数据对象加共享锁，直到数据对象上的所有共享锁都被释放。</p>
+<p>​    通过 ZooKeeper 上的 Znode 表示一个锁，<code>/s_lock/[HOSTNAME]-请求类型-序号</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;</span><br><span class="line">├── &#x2F;host1-R-000000001</span><br><span class="line">├── &#x2F;host2-R-000000002</span><br><span class="line">├── &#x2F;host3-W-000000003</span><br><span class="line">├── &#x2F;host4-R-000000004</span><br><span class="line">├── &#x2F;host5-R-000000005</span><br><span class="line">├── &#x2F;host6-R-000000006</span><br><span class="line">└── &#x2F;host7-W-000000007</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ol>
+<li>获取锁 需要获得共享锁的客户端都会在 <code>s_lock</code> 这个节点下面创建一个<strong>临时顺序节点</strong>，如果当前是读请求，就创建类型为 R 的临时节点，如果是写请求，就创建类型为 W 的临时节点。</li>
+<li>判断读写顺序 共享锁下不同事务可以同时对同一个数据对象进行读取操作，而更新操作必须在当前没有任何事务进行读写操作的情况下进行。 <ul>
+<li>2.1 创建完节点后，获取 <code>s_lock</code> 的所有子节点，并对该节点注册子节点变更的 Watcher 监听</li>
+<li>2.2 然后确定自己的节点序号在所有的子节点中的顺序 </li>
+<li>2.3 对于读请求，如果没有比自己小的子节点，那么表明自己已经成功获取到了共享锁，同时开始执行读取逻辑，如果有比自己序号小的写请求，那么就需要进行等待 </li>
+<li>2.4 接收到 Watcher 通知后重复 2.1</li>
+</ul>
+</li>
+<li>释放锁 获取锁的客户端发生宕机或者正常完成业务逻辑后，就会把临时节点删除。临时子节点删除后，其他客户端又开始新的一轮获取锁的过程。</li>
+</ol>
+</blockquote>
+<h4 id="羊群效应"><a href="#羊群效应" class="headerlink" title="羊群效应"></a>羊群效应</h4><blockquote>
+<p>​    介绍的共享锁中，在判断读写顺序的时候会出现一个问题，假如 host4 在移除自己的节点的时候，后面 host5-7 都需要接收 Watcher 事件通知，但是实际上，只有 host5 接收到事件就可以了。因此以上的实现方式会产生大量的 Watcher 通知。这样会对 ZooKeeper 服务器造成了巨大的性能影响和网络冲击，这就是<strong>羊群效应</strong>。</p>
+<p>​    改进的一步在于，调用 <code>getChildren</code> 接口的时候获取到所有已经创建的子节点列表，<strong>但是这个时候不要注册任何的 Watcher</strong>。当无法获取共享锁的时候，调用 <code>exist()</code> 来对比自己小的那个节点注册 Wathcer。而对于读写请求，会有不同的定义:</p>
+<ol>
+<li>读请求: <strong>在比自己序号小的最后一个写请求节点注册 Watcher。</strong></li>
+<li>写请求: <strong>向比自己序号小的最后一个节点注册 Watcher。</strong></li>
+</ol>
+</blockquote>
+<h3 id="分布式队列"><a href="#分布式队列" class="headerlink" title="分布式队列"></a>分布式队列</h3><h4 id="FIFO"><a href="#FIFO" class="headerlink" title="FIFO"></a>FIFO</h4><blockquote>
+<p>​    使用 ZooKeeper 实现 FIFO 队列，<strong>入队操作</strong>就是在 <code>queue_fifo</code> 下创建自增序的子节点，并把数据（队列大小）放入节点内。<strong>出队操作</strong>就是先找到 <code>queue_fifo</code> 下序号最下的那个节点，取出数据，然后删除此节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;queue_fifo</span><br><span class="line">|</span><br><span class="line">├── &#x2F;host1-000000001</span><br><span class="line">├── &#x2F;host2-000000002</span><br><span class="line">├── &#x2F;host3-000000003</span><br><span class="line">└── &#x2F;host4-000000004</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>创建完节点后，根据以下步骤确定执行顺序:</p>
+<ol>
+<li>通过 <code>get_children()</code> 接口获取 <code>/queue_fifo</code> 节点下所有子节点</li>
+<li>通过自己的节点序号在所有子节点中的顺序</li>
+<li>如果不是最小的子节点，那么进入等待，同时<strong>向比自己序号小的最后一个子节点注册 Watcher 监听</strong></li>
+<li>接收到 Watcher 通知后重复 1</li>
+</ol>
+</blockquote>
+<h4 id="同步队列（Barrier）"><a href="#同步队列（Barrier）" class="headerlink" title="同步队列（Barrier）"></a>同步队列（Barrier）</h4><blockquote>
+<p>​    当有些操作需要并行执行，但后续操作又需要串行执行，此时必须等待所有并行执行的线程全部结束，才开始串行，于是就需要一个屏障，来控制所有线程同时开始，并等待所有线程全部结束。</p>
+</blockquote>
+<blockquote>
+<p>​    利用 ZooKeeper 的实现，开始时 <code>queue_barrier</code> 节点是一个已经存在的默认节点，并且将其节点的数据内容赋值为一个数字 n 来代表 Barrier 值，比如 n=10 代表只有当 <code>/queue_barrier</code> 节点下的子节点个数达到10才会打开 Barrier。之后所有客户端都会在 <code>queue_barrier</code> 节点下创建一个临时节点，如 <code>queue_barrier/host1</code>。</p>
+<p>​    <strong>如何控制所有线程同时开始？</strong> 所有的线程启动时在 ZooKeeper 节点 <code>/queue_barrier</code> 下插入顺序临时节点，然后检查 <code>/queue/barrier</code> 下所有 children 节点的数量是否为所有的线程数，如果不是，则等待，如果是，则开始执行。具体的步骤如下:</p>
+<ol>
+<li><code>getData()</code> 获取 <code>/queue_barrier</code> 节点的数据内容</li>
+<li><code>getChildren()</code> 获取 <code>/queue_barrier</code> 节点下的所有子节点，同时注册对子节点列表变更的 Watche 监听。</li>
+<li>统计子节点的个数</li>
+<li>如果子节点个数不足10，那么进入等待</li>
+<li>接收 Watcher 通知后，重复2</li>
+</ol>
+<p>​     <strong>如何等待所有线程结束？</strong> 所有线程在执行完毕后，都检查 <code>/queue/barrier</code> 下所有 children 节点数量是否为0，若不为0，则继续等待。</p>
+</blockquote>
+<blockquote>
+<p>  ​    <strong>用什么类型的节点？</strong> 根节点使用持久节点，子节点使用临时节点，根节点为什么要用持久节点？首先因为临时节点不能有子节点，所以根节点要用持久节点，并且在程序中要判断根节点是否存在。 子节点为什么要用临时节点？临时节点随着连接的断开而消失，在程序中，虽然会删除临时节点，但可能会出现程序在节点被删除之前就 crash了，如果是持久节点，节点不会被删除。</p>
+</blockquote>
+<h3 id="ZK集群"><a href="#ZK集群" class="headerlink" title="ZK集群"></a>ZK集群</h3><blockquote>
+<p>​    在集群的情况下，zk会选举出一个leader负责写操作，剩下的都可以负载读操作，这样就可以将<strong>读写分离</strong> ，保证的单一性，避免数据不一致的情况。ZooKeeper 集群中包含 <strong>Leader、Follower 以及 Observer</strong> 三个角色：</p>
+<ul>
+<li>Leader：负责进行投票的发起和决议，更新系统状态，Leader 是由选举产生;</li>
+<li>Follower： 用于接受客户端请求并向客户端返回结果，在选主过程中参与投票;</li>
+<li>Observer：可以接受客户端连接，接受读写请求，写请求转发给 Leader，但 Observer 不参加投票过程，只同步 Leader 的状态，Observer 的目的是为了扩展系统，提高读取速度。</li>
+</ul>
+</blockquote>
+<h3 id="ZK和Eurka作为高可用注册中心的区别"><a href="#ZK和Eurka作为高可用注册中心的区别" class="headerlink" title="ZK和Eurka作为高可用注册中心的区别"></a>ZK和Eurka作为高可用注册中心的区别</h3><blockquote>
+<p>​    zk基于CAP理论中的CP，Eurka基于AP，更适用高并发。zookepper集群超过一半的机器宕机就不能对外提供服务，而eurka只要有一台机器就可以对外提供服务</p>
+</blockquote>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><blockquote>
+<p>​    入门认识Zookeeper，看这篇文章，注意它提到的参考资料，也要看</p>
+<p>&lt;<a href="https://mp.weixin.qq.com/s/lVGbtyDI670jHB5XV9ElAQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/lVGbtyDI670jHB5XV9ElAQ</a></p>
+<p>​    Zookeeper的典型使用场景</p>
+<p><a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/index.html" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/index.html</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/19/MySQL%E7%B4%A2%E5%BC%95/" rel="prev" title="MySQL索引">
+      <i class="fa fa-chevron-left"></i> MySQL索引
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/19/%E5%A4%A7%E7%BA%B2/" rel="next" title="大纲">
+      大纲 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ZooKeeper入门认知"><span class="nav-number">1.</span> <span class="nav-text">ZooKeeper入门认知</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点特征"><span class="nav-number">1.2.</span> <span class="nav-text">节点特征</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#节点监听是-Zookeeper-的核心特性，Zookeeper-的很多功能都是基于这个特性实现的。关于znode节点的监听，可以分为2种："><span class="nav-number">1.2.0.1.</span> <span class="nav-text">节点监听是 Zookeeper 的核心特性，Zookeeper 的很多功能都是基于这个特性实现的。关于znode节点的监听，可以分为2种：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统一配置管理（数据发布-订阅）"><span class="nav-number">1.3.</span> <span class="nav-text">统一配置管理（数据发布&#x2F;订阅）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统一命名服务（负载均衡）"><span class="nav-number">1.4.</span> <span class="nav-text">统一命名服务（负载均衡）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群管理和Master选举"><span class="nav-number">1.5.</span> <span class="nav-text">集群管理和Master选举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式锁"><span class="nav-number">1.6.</span> <span class="nav-text">分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#排它锁"><span class="nav-number">1.6.1.</span> <span class="nav-text">排它锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享锁（读写锁）"><span class="nav-number">1.6.2.</span> <span class="nav-text">共享锁（读写锁）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#羊群效应"><span class="nav-number">1.6.3.</span> <span class="nav-text">羊群效应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式队列"><span class="nav-number">1.7.</span> <span class="nav-text">分布式队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FIFO"><span class="nav-number">1.7.1.</span> <span class="nav-text">FIFO</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步队列（Barrier）"><span class="nav-number">1.7.2.</span> <span class="nav-text">同步队列（Barrier）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZK集群"><span class="nav-number">1.8.</span> <span class="nav-text">ZK集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZK和Eurka作为高可用注册中心的区别"><span class="nav-number">1.9.</span> <span class="nav-text">ZK和Eurka作为高可用注册中心的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">1.10.</span> <span class="nav-text">链接</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
