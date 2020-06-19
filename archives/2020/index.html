@@ -427,6 +427,216 @@
         
           
         
+          
+            <div class='post-wrapper'>
+              <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/06/19/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+      Bean生命周期
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Bean/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>SpringBoot/Bean</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2020年6月19日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item top-post">
+    <a class='notlink'>
+      <i class="fas fa-angle-double-up fa-fw" aria-hidden="true"></i>
+      <p>近期更新</p>
+    </a>
+  </div>
+
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bean生命周期"><a href="#Bean生命周期" class="headerlink" title="Bean生命周期"></a>Bean生命周期</h1><blockquote>
+<p>​    Spring Bean的生命周期有四个阶段：<strong>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</strong></p>
+<p>​    <strong>Bean级生命周期接口</strong>：(4个)：</p>
+<ul>
+<li><p>BeanNameAware</p>
+</li>
+<li><p>BeanFactoryAware</p>
+</li>
+<li><p>InitializingBean</p>
+</li>
+<li><p>DisposableBean</p>
+<p><strong>容器级Bean生命周期接口</strong>：(下图中<strong>星号</strong>)：</p>
+</li>
+<li><p>抽象类：InstantiationAwareBeanPostProcessorAdapter</p>
+</li>
+<li><p>接口BeanPostProcessor</p>
+<p>​</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="bean生命周期的流程"><a href="#bean生命周期的流程" class="headerlink" title="bean生命周期的流程"></a>bean生命周期的流程</h2><blockquote>
+<ul>
+<li><p>调用InstantiationAwareBeanPostProcessor（抽象类）的 <strong>postProcessBeforeInstantiation（）</strong> 方法</p>
+<ul>
+<li><h4 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h4></li>
+</ul>
+</li>
+<li><p>调用InstantiationAwareBeanPostProcessor（抽象类）的 <strong>postProcessAfterInstantiation（）</strong> 方法</p>
+</li>
+<li><p>调用InstantiationAwareBeanPostProcessor（抽象类）的 <strong>postProcessPropertyValues（）</strong> 方法</p>
+<ul>
+<li><h4 id="属性赋值"><a href="#属性赋值" class="headerlink" title="属性赋值"></a>属性赋值</h4></li>
+<li><p><strong>如果</strong>Bean实现了*Aware接口，就调用相应方法，如：</p>
+<p>实现了BeanNameAware接口，调用<strong>setBeanName()</strong>方法；</p>
+<p>实现了BeanFactoryAware接口，调用<strong>setBeanFactory()</strong>方法</p>
+</li>
+</ul>
+</li>
+<li><p>执行BeanPostProcessor接口的<strong>postProcessBeforeInitialization()</strong>方法</p>
+<ul>
+<li><h4 id="初始化。。。"><a href="#初始化。。。" class="headerlink" title="初始化。。。"></a>初始化。。。</h4></li>
+<li><p><strong>如果</strong>Bean实现了InitializingBean接口，执行<strong>afterPropertiesSet()</strong>方法。</p>
+</li>
+<li><p><strong>如果</strong>Bean在配置文件中的定义包含init-method属性，执行指定的方法。</p>
+</li>
+</ul>
+</li>
+<li><p>执行BeanPostProcessor接口的<strong>postProcessAfterInitialization()</strong>方法。</p>
+<ul>
+<li><h4 id="销毁。。。"><a href="#销毁。。。" class="headerlink" title="销毁。。。"></a>销毁。。。</h4></li>
+<li><p><strong>如果</strong>Bean实现了DisposableBean接口，执行<strong>destroy()</strong>方法。</p>
+</li>
+<li><p><strong>如果</strong>Bean在配置文件中的定义包含destroy-method属性，执行指定的方法。</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><img src="https://img-blog.csdn.net/20180802223029954?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIzODUxOTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<h2 id="如何针对指定Bean的初始化设置"><a href="#如何针对指定Bean的初始化设置" class="headerlink" title="如何针对指定Bean的初始化设置"></a>如何针对指定Bean的初始化设置</h2><blockquote>
+<p>​    有时我们需要在Bean属性值set好之后（初始化）和Bean销毁之前做一些事情，比如检查Bean中某个属性是否被正常的设置好值了。Spring框架提供了多种方法，让我们可以在Spring Bean的生命周期中执行initialization和pre-destroy方法。</p>
+<p>​    主要有3种实现方式:</p>
+</blockquote>
+<p><strong>1.实现InitializingBean和DisposableBean接口</strong></p>
+<p>​    这种方法比较简单，但是不建议使用。因为这样会将Bean的实现和Spring框架耦合在一起。</p>
+<ul>
+<li>通过实现InitializingBean接口的<strong>afterPropertiesSet()</strong>方法，可以在Bean属性值设置好之后做一些操作    </li>
+</ul>
+<ul>
+<li>实现DisposableBean接口的<strong>destroy()</strong>方法可以在销毁Bean之前做一些操作。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class GiraffeService implements InitializingBean,DisposableBean &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;执行InitializingBean接口的afterPropertiesSet方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;执行DisposableBean接口的destroy方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.在bean的配置文件中指定init-method和destroy-method方法 （推荐）</strong></p>
+<p><strong>3.使用@PostConstruct和@PreDestroy注解</strong></p>
+<p>​    需要配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;org.springframework.context.annotation.CommonAnnotationBeanPostProcessor&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class GiraffeService &#123;</span><br><span class="line">    @PostConstruct</span><br><span class="line">    public void initPostConstruct()&#123;</span><br><span class="line">        System.out.println(&quot;执行PostConstruct注解标注的方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @PreDestroy</span><br><span class="line">    public void preDestroy()&#123;</span><br><span class="line">        System.out.println(&quot;执行preDestroy注解标注的方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何针对所有Bean的初始化设置"><a href="#如何针对所有Bean的初始化设置" class="headerlink" title="如何针对所有Bean的初始化设置"></a>如何针对所有Bean的初始化设置</h2><blockquote>
+<p>​    Spring可以针对<strong>容器中的所有Bean</strong>，或者某些Bean定制初始化过程（可以利用BeanName比较判断），只需提供一个实现<strong>BeanPostProcessor</strong>接口的类即可。 该接口中包含两个方法：</p>
+<ul>
+<li>postProcessBeforeInitialization方法，会在容器中的Bean初始化之前执行</li>
+</ul>
+<ul>
+<li>postProcessAfterInitialization方法，在容器中的Bean初始化之后执行</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class CustomerBeanPostProcessor implements BeanPostProcessor &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">        System.out.println(&quot;执行BeanPostProcessor的postProcessBeforeInitialization方法,beanName&#x3D;&quot; + beanName);</span><br><span class="line">        return bean;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">        System.out.println(&quot;执行BeanPostProcessor的postProcessAfterInitialization方法,beanName&#x3D;&quot; + beanName);</span><br><span class="line">        return bean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<ol>
+<li><p>通过实现BeanFactory的Bean生命周期相关接口，虽然让Bean具有了更详细的生命周期阶段，但是也让Spring框架和Bean紧密联系在了一起，同时也增加了代码复杂度。因此，<strong>如果用户希望在Bean的生命周期中实现自己的业务，不需要和特定框架关联，可以通过 bean 的 init-method 和 destroy-method 配置方法来进行业务实现。</strong></p>
+</li>
+<li><p>Spring还拥有一个Bean后置处理器InitDestroyAnnotationBeanPostProcessor，它负责对标注了 @PostConstruct 和 @PreDestroy 的 Bean 进行处理，在 Bean 初始化及销毁前执行相应的业务逻辑。</p>
+</li>
+<li><p>通常情况下，可以抛弃<strong>Bean级的生命周期的4个接口</strong>，用更加方便的方法进行代替（如1、2点中的方法）。但是<strong>容器级Bean生命周期接口可以合理的使用，处理一些共同的业务。</strong></p>
+</li>
+<li><p>为什么我们使用ApplicationContext，而不是BeanFactory：</p>
+<ul>
+<li><p>ApplicationContext相比BeanFactory来说，实现了更多的接口，功能更丰富和高级。</p>
+</li>
+<li><p>ApplicationContext会利用Java反射机制自动识别出配置文件中定义的BeanPostProcessor、InstantiationAwareBeanPostProcessor和BeanFactoryPostProcessor，并自动将它们注册到应用上下文中。</p>
+<p> 而BeanFactory需要在代码中通过手工调用addBeanPostProcessor()方法进行注册。<strong>这也是为什么在应用开发时，我们普遍使用ApplicationContext而很少使用BeanFactory的原因之一。</strong><br> ​</p>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+            </div>
+          
+        
       
     
     
@@ -469,6 +679,14 @@
           
             
               
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Kafka/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>Bean/Kafka</p>
+    </a>
+  </div>
+
 
             
           
@@ -512,47 +730,23 @@
 <p>​    <strong>topic：生产者将消息发送给指定的topic，消费者通过订阅该topic来消费消息</strong></p>
 <p>​    <strong>partition：分区，属于topic的一部分，消息实际上存储在partition中。一个topic可以有多个partition，并且同一个topic下的partition可以分布在不同的broker上。即一个topic可以存在在多个broker上。</strong></p>
 </blockquote>
-<h3 id="消费组"><a href="#消费组" class="headerlink" title="消费组"></a>消费组</h3><blockquote>
-<p>​    每个Consumer Group可以包含多个消费实例，即可以启动多个消息队列Kafka版 Consumer，并把参数<code>group.id</code>设置成相同的值。属于同一个Consumer Group的消费实例会负载消费订阅的Topic。</p>
-<p>​    举例：Consumer Group A订阅了Topic A，并开启三个消费实例C1、C2、C3，<strong>则发送到Topic A的每条消息最终只会传给C1、C2、C3的某一个。</strong>Kafka默认会均匀地把消息传给各个消息实例，以做到消费负载均衡。</p>
-<p>​    Kafka负载消费的内部原理是，把订阅的Topic的分区，平均分配给各个消费实例。<strong>因此，消费实例的个数不要大于分区的数量，否则会有实例分配不到任何分区而处于空跑状态。</strong>这个负载均衡发生的时间，除了第一次启动上线之外，后续消费实例发生重启、增加、减少等变更时，都会触发一次负载均衡。</p>
-</blockquote>
-<h3 id="分区的多副本机制"><a href="#分区的多副本机制" class="headerlink" title="分区的多副本机制"></a>分区的多副本机制</h3><blockquote>
-<p>​    Kafka 为分区（Partition）引入了多副本（Replica）机制。分区（Partition）中的多个副本之间会有一个叫做 leader 的家伙，其他副本称为 follower。我们发送的消息会被发送到 leader 副本，然后 follower 副本才能从 leader 副本中拉取消息进行同步。</p>
-<p>​    <strong>生产者和消费者只与 leader 副本交互</strong>。你可以理解为其他副本只是 leader 副本的拷贝，<strong>它们的存在只是为了保证消息存储的安全性</strong>。当 leader 副本发生故障时会从 follower 中选举出一个 leader,但是 follower 中如果有和 leader 同步程度达不到要求的参加不了 leader 的竞选。</p>
-</blockquote>
-<h3 id="Kafka如何保证消息的消费顺序"><a href="#Kafka如何保证消息的消费顺序" class="headerlink" title="Kafka如何保证消息的消费顺序"></a>Kafka如何保证消息的消费顺序</h3><blockquote>
-<p>​    kafka只能保证在同一个分区下的消息的顺序，因为消息加入分区中时都是尾加法，同时分配一个偏移量（offest），offest保证了分区内消息的顺序。</p>
-<p>​    保证所有分区下的消息都具有顺序有2种方法：</p>
-<ul>
-<li>1个topic对应一个partition（浪费了kafka的特性）    </li>
-<li>发送消息时指定同一个partition</li>
-</ul>
-</blockquote>
-<h3 id="Kafka如何保证消息不丢失"><a href="#Kafka如何保证消息不丢失" class="headerlink" title="Kafka如何保证消息不丢失"></a>Kafka如何保证消息不丢失</h3><blockquote>
-<p><strong>生产者消息丢失：</strong></p>
-<p>​    生产者send消息时是异步操作，我们可以把它变成同步操作，<strong>更推荐使用回调函数</strong>，同时会有重试机制</p>
-<p><strong>消费者消息丢失：</strong></p>
-<p>​    消费者拉取partition消息时，kafka利用offest+1确定当前消费的消息位置。当消费者将要消费消息时宕机，消息实际未消费，可offest自动提交。</p>
-<p>​    解决方法是，关闭自动移交offest，改为手动提交。此时则会出现统一消息多次消费，所以要保证消费的业务幂等性。</p>
-<p><strong>Kafka自己丢失了消息:</strong></p>
-<p>​    leader宕机时，选举后新的leader缺少了一部分消息。可以设置acks=all</p>
-</blockquote>
-<h3 id="关于Kafka实践注意事项"><a href="#关于Kafka实践注意事项" class="headerlink" title="关于Kafka实践注意事项"></a>关于Kafka实践注意事项</h3><blockquote>
-<p>​    参数设置和最佳实践：</p>
-<p>​    <a href="https://help.aliyun.com/document_detail/68166.html?spm=a2c4g.11186623.6.612.2f0064abDtYOPD" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/68166.html?spm=a2c4g.11186623.6.612.2f0064abDtYOPD</a></p>
-<p>​    <a href="https://blog.csdn.net/qq_35641192/article/details/80956244" target="_blank" rel="noopener">https://blog.csdn.net/qq_35641192/article/details/80956244</a></p>
-</blockquote>
-
       
     </div>
     
+      
+        <div class="button readmore">
+          <a href="/2020/06/19/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
       
     
   </section>
 </article>
 
           </div>
+        
+      
         
       
     
@@ -638,6 +832,39 @@
   
     
     
+  
+
+  <section class="widget category shadow desktop">
+    
+  <header>
+    
+      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/Bean/" href="/categories/Bean/"
+            id="categoriesBean"
+            ><div class='name'>Bean</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Kafka/" href="/categories/Kafka/"
+            id="categoriesKafka"
+            ><div class='name'>Kafka</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/SpringBoot/" href="/categories/SpringBoot/"
+            id="categoriesSpringBoot"
+            ><div class='name'>SpringBoot</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
 
   
 
