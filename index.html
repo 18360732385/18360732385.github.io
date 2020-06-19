@@ -1,186 +1,515 @@
 <!DOCTYPE html>
-
-
-<html lang="zh-CN">
-
-
-<head>
-  <meta charset="utf-8" />
-   
-  <meta name="keywords" content="zj183" />
-   
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>
-     zj183
-  </title>
-  <meta name="generator" content="hexo-theme-ayer">
+<html>
+<head hexo-theme='https://volantis.js.org/#2.6.6'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
   
-  <link rel="shortcut icon" href="/favicon.ico" />
+    
+      
+        <meta name="robots" content="index,follow">
+      
+    
   
-  
-<link rel="stylesheet" href="/dist/main.css">
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+  <!-- 页面元数据 -->
   
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
-
+    <title></title>
   
-<link rel="stylesheet" href="/css/custom.css">
-
-  
-  
-<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
+    <meta name="keywords" content="zj183">
   
   
 
+  <!-- feed -->
   
 
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
 </head>
 
-</html>
-
 <body>
-  <div id="app">
+  
+  <div class="cover-wrapper">
     
-      
-    <main class="content on">
-      
-<section class="cover">
+      <cover class='cover  full'>
+        <div class='cover-body'>
+  <div class='a'>
     
-      
-      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
-        target="_blank"><img width="149" height="149" src="/images/forkme.png"
-          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
     
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover1.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">zj183</a></h1>
-      <div id="subtitle-box">
+      <p class="title">Volantis</p>
+    
+    
+      <p class="subtitle">A Wonderful Theme for Hexo</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
         
-        <span id="subtitle"></span>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/getting-started/"
+                
+                
+                id="https:volantisjsorggetting-started">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/archives/"
+                
+                
+                id="https:volantisjsorgarchives">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/examples/"
+                
+                
+                id="https:volantisjsorgexamples">
+                <i class='fas fa-play-circle fa-fw'></i>示例
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://github.com/xaoxuu/hexo-theme-volantis/"
+                
+                  rel="external nofollow noopener noreferrer"
+                
+                
+                  target="_blank"
+                
+                id="https:githubcomxaoxuuhexo-theme-volantis">
+                <i class='fas fa-file-code fa-fw'></i>源码
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="https://volantis.js.org/contributors/"
+                
+                
+                id="https:volantisjsorgcontributors">
+                <i class='fas fa-handshake fa-fw'></i>鸣谢
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+        <div class="scroll-down"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+      </cover>
+    
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+          
+            VOLANTIS <b><sup style='color:#3AA757'>2.6.6</sup></b>
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+  <section class="post-list ">
+    
+      
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/06/19/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+      Kafka消息队列
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2020年6月19日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
         
       </div>
-      <div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
+    
+  </section>
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
-
-<div id="main">
-  <section class="outer">
-  <article class="articles">
-    
-    
-    
-    
-    <article
-  id="post-MQ的高可用的降级方案"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/19/MQ%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E9%99%8D%E7%BA%A7%E6%96%B9%E6%A1%88/"
-    >MQ的高可用的降级方案</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/19/MQ%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E9%99%8D%E7%BA%A7%E6%96%B9%E6%A1%88/" class="article-date">
-  <time datetime="2020-06-19T02:45:59.050Z" itemprop="datePublished">2020-06-19</time>
-</a>    
-    </div>
-      
+  <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="MQ的高可用的降级方案"><a href="#MQ的高可用的降级方案" class="headerlink" title="MQ的高可用的降级方案"></a>MQ的高可用的降级方案</h1><blockquote>
-<p>​    项目中依靠的MQ一旦完全不可用，就会导致业务系统的各个服务之间无法通过MQ来投递消息，导致业务流程中断。</p>
-<p>​    对于一些核心业务，我们有必要设计一套针对MQ的高可用的降级方案。</p>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/1J6IbIcPCLYiazmIVqBccDANpd4TTBhb7WQ4y6ULyKibIj3jejUey9pFjdjicB6fngd9z9fjiaAtic0B9T4eRaAQ4ww/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<h2 id="基于kv存储中队列的降级方案"><a href="#基于kv存储中队列的降级方案" class="headerlink" title="基于kv存储中队列的降级方案"></a>基于kv存储中队列的降级方案</h2><blockquote>
-<p>​    由于redis本身就支持队列的功能，还有类似队列的各种数据结构，所以你可以将消息写入kv存储格式的队列数据结构中去。（这里没有考虑高并发情况）</p>
-</blockquote>
-<blockquote>
-<p>​    <strong>第一</strong>，任何kv存储的集合类数据结构，建议不要往里面写入数据量过大，否则会导致大value的情况发生，引发严重的后果。因此绝不能在redis里搞一个key，就拼命往这个数据结构中一直写入消息，这是肯定不行的。</p>
-<p>​    <strong>第二</strong>，绝对不能往少数key对应的数据结构中持续写入数据，那样会导致热key的产生，也就是某几个key特别热。大家要知道，一般kv集群，都是根据key来hash分配到各个机器上的，你要是老写少数几个key，会导致kv集群中的某台机器访问过高，负载过大。</p>
-</blockquote>
-<h2 id="下游服务消费MQ的降级感知"><a href="#下游服务消费MQ的降级感知" class="headerlink" title="下游服务消费MQ的降级感知"></a>下游服务消费MQ的降级感知</h2><blockquote>
-<p>​    下游服务消费MQ也是通过自行封装的组件来做的，此时那个组件如果从zk感知到降级开关打开了，首先会判断自己是否还能继续从MQ消费到数据？</p>
-<p>​    如果不能了，就开启多个线程，并发的从kv存储的各个预设好的上百个队列中不断的获取数据。</p>
-<p>​    每次获取到一条数据，就交给下游服务的业务逻辑来执行。</p>
-<p>​    通过这套机制，就实现了MQ故障时候的自动故障感知，以及自动降级。如果系统的负载和并发不是很高的话，用这套方案大致是没没问题的。</p>
-</blockquote>
-<h2 id="故障的自动恢复"><a href="#故障的自动恢复" class="headerlink" title="故障的自动恢复"></a>故障的自动恢复</h2><blockquote>
-<p>​    如果降级开关打开之后，自行封装的组件需要开启一个线程，每隔一段时间尝试给MQ投递一个消息看看是否恢复了。</p>
-<p>​    如果MQ已经恢复可以正常投递消息了，此时就可以通过zk关闭降级开关，然后可靠消息服务继续投递消息到MQ，下游服务在确认kv存储的各个队列中已经没有数据之后，就可以重新切换为从MQ消费消息。</p>
-</blockquote>
- 
-      <!-- reward -->
       
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Kafka消息队列"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/19/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"
-    >Kafka消息队列</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/19/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="article-date">
-  <time datetime="2020-06-19T02:45:59.048Z" itemprop="datePublished">2020-06-19</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="Kafka消息队列"><a href="#Kafka消息队列" class="headerlink" title="Kafka消息队列"></a>Kafka消息队列</h1><h3 id="Kafka消息模型"><a href="#Kafka消息模型" class="headerlink" title="Kafka消息模型"></a>Kafka消息模型</h3><blockquote>
-<p>​    早期的消息队列使用队列（Queue）作为消息载体，Kafka使用的是发布/订阅（Pub/Sub）模型，使用主题（Topic）作为消息的载体。 </p>
+        <h1 id="Kafka消息队列"><a href="#Kafka消息队列" class="headerlink" title="Kafka消息队列"></a>Kafka消息队列</h1><h3 id="Kafka消息模型"><a href="#Kafka消息模型" class="headerlink" title="Kafka消息模型"></a>Kafka消息模型</h3><blockquote>
+<p>​    早期的消息队列使用队列（Queue）作为消息载体，Kafka使用的是发布/订阅（Pub/Sub）模型，使用主题（Topic）作为消息的载体。</p>
 </blockquote>
 <h3 id="Broker、Topic、Partition的概念"><a href="#Broker、Topic、Partition的概念" class="headerlink" title="Broker、Topic、Partition的概念"></a>Broker、Topic、Partition的概念</h3><blockquote>
 <p>​    <strong>broker：代理，可以看做一个独立的kafka实例，多个broker组成一个kafka cluster</strong></p>
@@ -218,1299 +547,346 @@
 <p>​    <a href="https://help.aliyun.com/document_detail/68166.html?spm=a2c4g.11186623.6.612.2f0064abDtYOPD" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/68166.html?spm=a2c4g.11186623.6.612.2f0064abDtYOPD</a></p>
 <p>​    <a href="https://blog.csdn.net/qq_35641192/article/details/80956244" target="_blank" rel="noopener">https://blog.csdn.net/qq_35641192/article/details/80956244</a></p>
 </blockquote>
- 
-      <!-- reward -->
+
       
     </div>
     
-
-    <!-- copyright -->
+      
     
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
+  </section>
 </article>
 
-    
-    <article
-  id="post-IO模式"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/19/IO%E6%A8%A1%E5%BC%8F/"
-    >IO模式</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/19/IO%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time datetime="2020-06-19T02:45:59.045Z" itemprop="datePublished">2020-06-19</time>
-</a>    
-    </div>
+          </div>
+        
       
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="IO模式"><a href="#IO模式" class="headerlink" title="IO模式"></a>IO模式</h1><blockquote>
-<p>​    对于一次IO访问（以read举例），数据会先被拷贝到操作系统内核的缓冲区中，然后才会从操作系统内核的缓冲区拷贝到应用程序的内存地址空间。所以说，当一个read操作发生时，它会经历两个阶段：</p>
-<ol>
-<li><p>等待内核缓冲区中数据准备 (Waiting for the data to be ready)</p>
-</li>
-<li><p>将数据从内核缓冲区拷贝到进程中 (Copying the data from the kernel to the process)</p>
-<p>正式因为这两个阶段，linux系统产生了下面五种IO模式的方案：</p>
-</li>
-</ol>
-<ul>
-<li>阻塞 I/O（blocking IO）</li>
-<li>非阻塞 I/O（nonblocking IO）</li>
-<li>I/O 多路复用（ IO multiplexing）</li>
-<li>异步 I/O（asynchronous IO）</li>
-<li>信号驱动 I/O（ signal driven IO）</li>
-</ul>
-</blockquote>
-<h3 id="阻塞-I-O（BIO）"><a href="#阻塞-I-O（BIO）" class="headerlink" title="阻塞 I/O（BIO）"></a>阻塞 I/O（BIO）</h3><blockquote>
-<p>​    当一个进程需要read数据时，它需要先从内核缓存区中读取数据，当在内核中数据还未准备好时，则该进程会被阻塞（block），直到数据准备好为止。</p>
-</blockquote>
-<h3 id="非阻塞-I-O"><a href="#非阻塞-I-O" class="headerlink" title="非阻塞 I/O"></a>非阻塞 I/O</h3><blockquote>
-<p>​    一个进程需要read数据时，它需要先从内核缓存区中读取数据，当在内核中数据还未准备好时，内核立即返回error，用户进程得知error后，会继续read，直到数据准备好为止。</p>
-<p>​    使用轮询去获取数据，<strong>浪费CPU</strong>。</p>
-</blockquote>
-<h3 id="I-O-多路复用"><a href="#I-O-多路复用" class="headerlink" title="I/O 多路复用"></a>I/O 多路复用</h3><blockquote>
-<p>​    上述阻塞IO和非阻塞IO，当时一个用户进程对应一个IO操作，IO多路复用则通过一定的机制实现了一个进程可以对应多个IO操作。</p>
-<p>​    IO多路复用主要有select、poll、epoll三种模式，select/poll相差不大，主要是通过轮询来不断的检测是否有描述符已就绪，select默认情况下支持最多监控1024个描述符，poll则没有这个限制（底层通过链表实现，可动态增加）；epoll不是通过轮询，而是通过回调（callback）方式主动通知已有描述符已就绪，相比较select/poll效率有明显提升。</p>
-<p>​    <strong>不管哪种模式的IO多路复用，还都是同步IO，</strong>比如当监控的所有的描述符都还没有准备就绪，那么该进程还是阻塞在此，下面将介绍异步IO</p>
-<p>​    <strong>I/O多路复用的典型是：nignx和redis</strong></p>
-</blockquote>
-<h3 id="异步-I-O（AIO）"><a href="#异步-I-O（AIO）" class="headerlink" title="异步 I/O（AIO）"></a>异步 I/O（AIO）</h3><blockquote>
-<p>​    相比较同步IO，异步IO就显得更加高大上了，基本原理是用户进程发起read操作之后，立刻就可以开始去做其它的事。而另一方面，从kernel的角度，当它受到一个asynchronous read之后，首先它会立刻返回，所以不会对用户进程产生任何block。<strong>然后kernel会等待数据准备完成，然后将数据拷贝到用户内存，当这一切都完成之后，kernel会给用户进程发送一个signal，告诉它read操作完成了</strong>，用户进程收到signal后获取已准备好的数据。</p>
-</blockquote>
-<h3 id="信号驱动-I-O"><a href="#信号驱动-I-O" class="headerlink" title="信号驱动 I/O"></a>信号驱动 I/O</h3><blockquote>
-<p>​    信号驱动IO和异步IO类似，甚至有些人认为信号驱动IO就是异步IO，当kernel准备好数据后，会发送signal给用户进程，告诉进程数据已经准备就绪，<strong>这时进程会主动去read数据将数据拷贝到用户内存，这一步是由应用程序自己操作的，而异步IO则是由kernal实现，区别在此。</strong></p>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
+    
+  </section>
+  
+    
+    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+    
     
 
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Bean生命周期"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/19/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"
-    >Bean生命周期</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/19/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="article-date">
-  <time datetime="2020-06-19T02:45:59.043Z" itemprop="datePublished">2020-06-19</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="Bean生命周期"><a href="#Bean生命周期" class="headerlink" title="Bean生命周期"></a>Bean生命周期</h1><blockquote>
-<p>​    Spring Bean的生命周期有四个阶段：<strong>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</strong></p>
-<p>​    <strong>Bean级生命周期接口</strong>：(4个)：</p>
-<ul>
-<li><p>BeanNameAware</p>
-</li>
-<li><p>BeanFactoryAware</p>
-</li>
-<li><p>InitializingBean</p>
-</li>
-<li><p>DisposableBean</p>
-<p><strong>容器级Bean生命周期接口</strong>：(下图中<strong>星号</strong>)：</p>
-</li>
-<li><p>抽象类：InstantiationAwareBeanPostProcessorAdapter</p>
-</li>
-<li><p>接口BeanPostProcessor</p>
-<p>​</p>
-</li>
-</ul>
-</blockquote>
-<h2 id="bean生命周期的流程"><a href="#bean生命周期的流程" class="headerlink" title="bean生命周期的流程"></a>bean生命周期的流程</h2><blockquote>
-<ul>
-<li><p>调用InstantiationAwareBeanPostProcessor（抽象类）的 <strong>postProcessBeforeInstantiation（）</strong> 方法</p>
-<ul>
-<li><h4 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h4></li>
-</ul>
-</li>
-<li><p>调用InstantiationAwareBeanPostProcessor（抽象类）的 <strong>postProcessAfterInstantiation（）</strong> 方法</p>
-</li>
-<li><p>调用InstantiationAwareBeanPostProcessor（抽象类）的 <strong>postProcessPropertyValues（）</strong> 方法</p>
-<ul>
-<li><h4 id="属性赋值"><a href="#属性赋值" class="headerlink" title="属性赋值"></a>属性赋值</h4></li>
-<li><p><strong>如果</strong>Bean实现了*Aware接口，就调用相应方法，如：</p>
-<p>实现了BeanNameAware接口，调用<strong>setBeanName()</strong>方法；</p>
-<p>实现了BeanFactoryAware接口，调用<strong>setBeanFactory()</strong>方法</p>
-</li>
-</ul>
-</li>
-<li><p>执行BeanPostProcessor接口的<strong>postProcessBeforeInitialization()</strong>方法</p>
-<ul>
-<li><h4 id="初始化。。。"><a href="#初始化。。。" class="headerlink" title="初始化。。。"></a>初始化。。。</h4></li>
-<li><p><strong>如果</strong>Bean实现了InitializingBean接口，执行<strong>afterPropertiesSet()</strong>方法。</p>
-</li>
-<li><p><strong>如果</strong>Bean在配置文件中的定义包含init-method属性，执行指定的方法。</p>
-</li>
-</ul>
-</li>
-<li><p>执行BeanPostProcessor接口的<strong>postProcessAfterInitialization()</strong>方法。</p>
-<ul>
-<li><h4 id="销毁。。。"><a href="#销毁。。。" class="headerlink" title="销毁。。。"></a>销毁。。。</h4></li>
-<li><p><strong>如果</strong>Bean实现了DisposableBean接口，执行<strong>destroy()</strong>方法。</p>
-</li>
-<li><p><strong>如果</strong>Bean在配置文件中的定义包含destroy-method属性，执行指定的方法。</p>
-</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<p><img src="https://img-blog.csdn.net/20180802223029954?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIzODUxOTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
-<h2 id="如何针对指定Bean的初始化设置"><a href="#如何针对指定Bean的初始化设置" class="headerlink" title="如何针对指定Bean的初始化设置"></a>如何针对指定Bean的初始化设置</h2><blockquote>
-<p>​    有时我们需要在Bean属性值set好之后（初始化）和Bean销毁之前做一些事情，比如检查Bean中某个属性是否被正常的设置好值了。Spring框架提供了多种方法，让我们可以在Spring Bean的生命周期中执行initialization和pre-destroy方法。</p>
-<p>​    主要有3种实现方式:</p>
-</blockquote>
-<p><strong>1.实现InitializingBean和DisposableBean接口</strong></p>
-<p>​    这种方法比较简单，但是不建议使用。因为这样会将Bean的实现和Spring框架耦合在一起。</p>
-<ul>
-<li>通过实现InitializingBean接口的<strong>afterPropertiesSet()</strong>方法，可以在Bean属性值设置好之后做一些操作    </li>
-</ul>
-<ul>
-<li>实现DisposableBean接口的<strong>destroy()</strong>方法可以在销毁Bean之前做一些操作。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class GiraffeService implements InitializingBean,DisposableBean &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;执行InitializingBean接口的afterPropertiesSet方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;执行DisposableBean接口的destroy方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>2.在bean的配置文件中指定init-method和destroy-method方法 （推荐）</strong></p>
-<p><strong>3.使用@PostConstruct和@PreDestroy注解</strong></p>
-<p>​    需要配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;org.springframework.context.annotation.CommonAnnotationBeanPostProcessor&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class GiraffeService &#123;</span><br><span class="line">    @PostConstruct</span><br><span class="line">    public void initPostConstruct()&#123;</span><br><span class="line">        System.out.println(&quot;执行PostConstruct注解标注的方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @PreDestroy</span><br><span class="line">    public void preDestroy()&#123;</span><br><span class="line">        System.out.println(&quot;执行preDestroy注解标注的方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="如何针对所有Bean的初始化设置"><a href="#如何针对所有Bean的初始化设置" class="headerlink" title="如何针对所有Bean的初始化设置"></a>如何针对所有Bean的初始化设置</h2><blockquote>
-<p>​    Spring可以针对<strong>容器中的所有Bean</strong>，或者某些Bean定制初始化过程（可以利用BeanName比较判断），只需提供一个实现<strong>BeanPostProcessor</strong>接口的类即可。 该接口中包含两个方法：</p>
-<ul>
-<li>postProcessBeforeInitialization方法，会在容器中的Bean初始化之前执行</li>
-</ul>
-<ul>
-<li>postProcessAfterInitialization方法，在容器中的Bean初始化之后执行</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class CustomerBeanPostProcessor implements BeanPostProcessor &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">        System.out.println(&quot;执行BeanPostProcessor的postProcessBeforeInitialization方法,beanName&#x3D;&quot; + beanName);</span><br><span class="line">        return bean;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">        System.out.println(&quot;执行BeanPostProcessor的postProcessAfterInitialization方法,beanName&#x3D;&quot; + beanName);</span><br><span class="line">        return bean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
-<ol>
-<li><p>通过实现BeanFactory的Bean生命周期相关接口，虽然让Bean具有了更详细的生命周期阶段，但是也让Spring框架和Bean紧密联系在了一起，同时也增加了代码复杂度。因此，<strong>如果用户希望在Bean的生命周期中实现自己的业务，不需要和特定框架关联，可以通过 bean 的 init-method 和 destroy-method 配置方法来进行业务实现。</strong></p>
-</li>
-<li><p>Spring还拥有一个Bean后置处理器InitDestroyAnnotationBeanPostProcessor，它负责对标注了 @PostConstruct 和 @PreDestroy 的 Bean 进行处理，在 Bean 初始化及销毁前执行相应的业务逻辑。</p>
-</li>
-<li><p>通常情况下，可以抛弃<strong>Bean级的生命周期的4个接口</strong>，用更加方便的方法进行代替（如1、2点中的方法）。但是<strong>容器级Bean生命周期接口可以合理的使用，处理一些共同的业务。</strong></p>
-</li>
-<li><p>为什么我们使用ApplicationContext，而不是BeanFactory：</p>
-<ul>
-<li><p>ApplicationContext相比BeanFactory来说，实现了更多的接口，功能更丰富和高级。</p>
-</li>
-<li><p>ApplicationContext会利用Java反射机制自动识别出配置文件中定义的BeanPostProcessor、InstantiationAwareBeanPostProcessor和BeanFactoryPostProcessor，并自动将它们注册到应用上下文中。</p>
-<p> 而BeanFactory需要在代码中通过手工调用addBeanPostProcessor()方法进行注册。<strong>这也是为什么在应用开发时，我们普遍使用ApplicationContext而很少使用BeanFactory的原因之一。</strong><br> ​</p>
-</li>
-</ul>
-</li>
-</ol>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-加解密流程"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/19/%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%B5%81%E7%A8%8B/"
-    >加解密流程</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/19/%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%B5%81%E7%A8%8B/" class="article-date">
-  <time datetime="2020-06-19T02:45:59.041Z" itemprop="datePublished">2020-06-19</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="加解密流程"><a href="#加解密流程" class="headerlink" title="加解密流程"></a>加解密流程</h2><h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><blockquote>
-<p>#####key:  对称加密需要的秘钥，用来对明文加密。速度快，适用对报文加密。</p>
-<h5 id="privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。"><a href="#privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。" class="headerlink" title="privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。"></a>privateKey和publicKey：私钥和公钥，非对称加密需要的一对秘钥，私钥保存一份放在服务端，公钥可以有无数个，分发给客户端。加密速度慢，一般用于对key加密。</h5><p>#####salt:  盐值，一串随机数。对明文签名，防止报文被篡改。</p>
-<h5 id="sign-签名，明文-salt后使用散列算法后生成的密文，用于验签确认是数据是完整无篡改的。"><a href="#sign-签名，明文-salt后使用散列算法后生成的密文，用于验签确认是数据是完整无篡改的。" class="headerlink" title="sign:  签名，明文+salt后使用散列算法后生成的密文，用于验签确认是数据是完整无篡改的。"></a>sign:  签名，明文+salt后使用散列算法后生成的密文，用于验签确认是数据是完整无篡改的。</h5></blockquote>
-<h3 id="客户端加密"><a href="#客户端加密" class="headerlink" title="客户端加密"></a>客户端加密</h3><blockquote>
-<ol>
-<li><h5 id="本地初始化生成一个对称加密的秘钥key，同时随机生成一个salt"><a href="#本地初始化生成一个对称加密的秘钥key，同时随机生成一个salt" class="headerlink" title="本地初始化生成一个对称加密的秘钥key，同时随机生成一个salt"></a>本地初始化生成一个对称加密的秘钥key，同时随机生成一个salt</h5></li>
-<li><h5 id="将key和salt拼接，使用公钥非对称加密-gt-gt-gt-gt-gt-gt-gt-获得密文KEY"><a href="#将key和salt拼接，使用公钥非对称加密-gt-gt-gt-gt-gt-gt-gt-获得密文KEY" class="headerlink" title="将key和salt拼接，使用公钥非对称加密&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文KEY"></a>将key和salt拼接，使用公钥非对称加密&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文KEY</h5></li>
-<li><h5 id="使用key对明文plainText进行对称加密-gt-gt-gt-gt-gt-gt-gt-获得密文content"><a href="#使用key对明文plainText进行对称加密-gt-gt-gt-gt-gt-gt-gt-获得密文content" class="headerlink" title="使用key对明文plainText进行对称加密&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文content"></a>使用key对明文plainText进行对称加密&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文content</h5></li>
-<li><h5 id="将密文content和salt进行sha256算法签名-gt-gt-gt-gt-gt-gt-gt-gt-gt-gt-获得密文sign"><a href="#将密文content和salt进行sha256算法签名-gt-gt-gt-gt-gt-gt-gt-gt-gt-gt-获得密文sign" class="headerlink" title="将密文content和salt进行sha256算法签名&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文sign"></a>将密文content和salt进行sha256算法签名&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得密文sign</h5></li>
-</ol>
-</blockquote>
-<h3 id="服务端解密"><a href="#服务端解密" class="headerlink" title="服务端解密"></a>服务端解密</h3><blockquote>
-<ol>
-<li><h5 id="使用私钥对密文KEY进行非对称解密-gt-gt-gt-gt-gt-gt-gt-gt-获得key和salt"><a href="#使用私钥对密文KEY进行非对称解密-gt-gt-gt-gt-gt-gt-gt-gt-获得key和salt" class="headerlink" title="使用私钥对密文KEY进行非对称解密&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得key和salt"></a>使用私钥对密文KEY进行非对称解密&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得key和salt</h5></li>
-<li><h5 id="将密文content和salt进行签名，对比sign是否一致：验签-gt-gt-gt-gt-gt-gt-gt-gt-gt-确认内容无篡改"><a href="#将密文content和salt进行签名，对比sign是否一致：验签-gt-gt-gt-gt-gt-gt-gt-gt-gt-确认内容无篡改" class="headerlink" title="将密文content和salt进行签名，对比sign是否一致：验签&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;确认内容无篡改"></a>将密文content和salt进行签名，对比sign是否一致：验签&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;确认内容无篡改</h5></li>
-<li><h5 id="使用key对密文content对称解密-gt-gt-gt-gt-gt-gt-gt-gt-gt-获得明文plainText"><a href="#使用key对密文content对称解密-gt-gt-gt-gt-gt-gt-gt-gt-gt-获得明文plainText" class="headerlink" title="使用key对密文content对称解密&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得明文plainText"></a>使用key对密文content对称解密&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;获得明文plainText</h5></li>
-</ol>
-</blockquote>
-<h3 id="CFCA安全控件思路"><a href="#CFCA安全控件思路" class="headerlink" title="CFCA安全控件思路"></a>CFCA安全控件思路</h3><h5 id="App情况下，上述的加解密其实会容易被破解。因为很多黑盒测试可能会破壳或暴力破解app，存在拿到本地秘钥、salt甚至是源码的情况。主流加解密的算法就那么几种，可以试出来。所以如何保证信息安全，其实很大程度上要靠对秘钥的存储方式。"><a href="#App情况下，上述的加解密其实会容易被破解。因为很多黑盒测试可能会破壳或暴力破解app，存在拿到本地秘钥、salt甚至是源码的情况。主流加解密的算法就那么几种，可以试出来。所以如何保证信息安全，其实很大程度上要靠对秘钥的存储方式。" class="headerlink" title="App情况下，上述的加解密其实会容易被破解。因为很多黑盒测试可能会破壳或暴力破解app，存在拿到本地秘钥、salt甚至是源码的情况。主流加解密的算法就那么几种，可以试出来。所以如何保证信息安全，其实很大程度上要靠对秘钥的存储方式。"></a>App情况下，上述的加解密其实会容易被破解。因为很多黑盒测试可能会破壳或暴力破解app，存在拿到本地秘钥、salt甚至是源码的情况。主流加解密的算法就那么几种，可以试出来。所以如何保证信息安全，其实很大程度上要靠对秘钥的存储方式。</h5><h5 id="以下是CFCA安全控件的加解密流程："><a href="#以下是CFCA安全控件的加解密流程：" class="headerlink" title="以下是CFCA安全控件的加解密流程："></a>以下是CFCA安全控件的加解密流程：</h5><blockquote>
-<ol>
-<li><h5 id="客户端第一次请求服务端，将必要的自身信息用公钥加密，给服务器"><a href="#客户端第一次请求服务端，将必要的自身信息用公钥加密，给服务器" class="headerlink" title="客户端第一次请求服务端，将必要的自身信息用公钥加密，给服务器"></a>客户端第一次请求服务端，将必要的自身信息用公钥加密，给服务器</h5></li>
-<li><h5 id="服务端私钥解密后，生成一个随机数Rs，传给客户端，同时储存在Redis中的会话信息里"><a href="#服务端私钥解密后，生成一个随机数Rs，传给客户端，同时储存在Redis中的会话信息里" class="headerlink" title="服务端私钥解密后，生成一个随机数Rs，传给客户端，同时储存在Redis中的会话信息里"></a>服务端私钥解密后，生成一个随机数Rs，传给客户端，同时储存在Redis中的会话信息里</h5></li>
-<li><h5 id="客户端自己生成一个随机数Ra，计算R-Rs-Ra，将R作为key。"><a href="#客户端自己生成一个随机数Ra，计算R-Rs-Ra，将R作为key。" class="headerlink" title="客户端自己生成一个随机数Ra，计算R=Rs+Ra，将R作为key。"></a>客户端自己生成一个随机数Ra，计算R=Rs+Ra，将R作为key。</h5></li>
-<li><h5 id="进行正常的客户端加解密"><a href="#进行正常的客户端加解密" class="headerlink" title="进行正常的客户端加解密"></a>进行正常的客户端加解密</h5></li>
-</ol>
-</blockquote>
-<h5 id="这种情况中客户端和服务端都参与了对key的生成过程，且Rs和Ra不会在同一个请求中同时出现，加大了破解密码的难度。但使用了Redis中间件，也增加了系统的难度和不稳定性。"><a href="#这种情况中客户端和服务端都参与了对key的生成过程，且Rs和Ra不会在同一个请求中同时出现，加大了破解密码的难度。但使用了Redis中间件，也增加了系统的难度和不稳定性。" class="headerlink" title="这种情况中客户端和服务端都参与了对key的生成过程，且Rs和Ra不会在同一个请求中同时出现，加大了破解密码的难度。但使用了Redis中间件，也增加了系统的难度和不稳定性。"></a>这种情况中客户端和服务端都参与了对key的生成过程，且Rs和Ra不会在同一个请求中同时出现，加大了破解密码的难度。但使用了Redis中间件，也增加了系统的难度和不稳定性。</h5><h5 id="如果不考虑性能，那么甚至使用秘钥集（一次一密），请求过程中全程不传输key。key和salt也可以存储在Redis或内存中。"><a href="#如果不考虑性能，那么甚至使用秘钥集（一次一密），请求过程中全程不传输key。key和salt也可以存储在Redis或内存中。" class="headerlink" title="如果不考虑性能，那么甚至使用秘钥集（一次一密），请求过程中全程不传输key。key和salt也可以存储在Redis或内存中。"></a>如果不考虑性能，那么甚至使用秘钥集（一次一密），请求过程中全程不传输key。key和salt也可以存储在Redis或内存中。</h5> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-集合源码解析"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/19/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"
-    >集合源码解析</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/19/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" class="article-date">
-  <time datetime="2020-06-19T02:45:59.039Z" itemprop="datePublished">2020-06-19</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><blockquote>
-<p>​    HashMap数据结构为数组+链表，jdk8以后，链表数量&gt;8后会转换成红黑树（将链表转换成红黑树前会判断，<strong>如果当前数组的长度小于 64，那么会选择先进行数组扩容</strong>，而不是转换为红黑树），红黑树节点数量&lt;6退化成链表。</p>
-</blockquote>
-<h3 id="插入和扩容原理"><a href="#插入和扩容原理" class="headerlink" title="插入和扩容原理"></a>插入和扩容原理</h3><blockquote>
-<ol>
-<li>插入前判断数组是否为空，为空进行初始化。默认大小16，负载因子0.75;</li>
-<li>不为空，计算 k 的 hash 值，通过 (n - 1) &amp; hash计算应当存放在数组中的下标 index ;</li>
-<li>查看 table[index] 是否存在数据，没有数据就构造一个Node节点存放在 table[index] 中；</li>
-<li>存在数据，说明发生了hash冲突, 继续判断key是否相等，相等，用新的value替换原数据；</li>
-<li>如果不相等，判断当前节点类型是不是树型节点，如果是树型节点，创建树型节点插入红黑树中；</li>
-<li>如果不是树型节点，创建普通Node加入链表中，<strong>然后</strong>判断链表长度是否大于 8， 大于的话链表转换为红黑树；</li>
-<li><strong>插入完成之后判断</strong>当前节点数是否大于阈值（<strong>当前大小*0.75</strong>），<strong>如果大于开始扩容为原数组的二倍。</strong></li>
-</ol>
-</blockquote>
-<p><img src="http://p1.pstatp.com/large/pgc-image/8453e4034cf94f29a890f95008db50fc" alt=""></p>
-<h3 id="jdk1-8优化"><a href="#jdk1-8优化" class="headerlink" title="jdk1.8优化"></a>jdk1.8优化</h3><blockquote>
-<p>​    jdk1.8有以下优化：</p>
-<ol>
-<li><p>数组+链表改成了数组+链表或红黑树；</p>
-</li>
-<li><p>链表的插入方式从<strong>头插法改成了尾插法</strong>，简单说就是插入时，如果数组位置上已经有元素，1.7将新元素放到数组中，原始节点作为新节点的后继节点，1.8遍历链表，将元素放置到链表的最后；</p>
-</li>
-<li><p>扩容的时候，1.7需要对原数组中的元素进行重新hash定位在新数组的位置，<strong>1.8采用更简单的判断逻辑，位置不变或索引+旧容量大小；</strong></p>
-</li>
-<li><p>在插入时，1.7先判断是否需要扩容，再插入，<strong>而1.8先进行插入，插入完成再判断是否需要扩容</strong>；</p>
-<p>这样的好处是：</p>
-<ul>
-<li>防止发生hash冲突，链表长度过长，将时间复杂度由O(n)降为O(logn);</li>
-<li>因为1.7头插法扩容时，头插法会使链表发生反转，多线程环境下会产生环，死循环；</li>
-</ul>
-</li>
-</ol>
-</blockquote>
-<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><blockquote>
-<p>​    hashMap不是线程安全的。在多线程环境下，<strong>1.7 会产生死循环、数据丢失、数据覆盖的问题，1.8 中会有数据覆盖的问题。</strong> 多线程下可以使用<strong>ConcurrentHashMap</strong></p>
-</blockquote>
-<h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><p>​    ArrayList 的底层是数组队列，相当于动态数组。与 Java 中的数组相比，它的容量能动态增长。在添加大量元素前，应用程序可以使用<code>ensureCapacity</code>操作来增加 ArrayList 实例的容量。这可以减少递增式再分配的数量。</p>
-<blockquote>
-<p>​    创建时不指定长度，则是空数组。当add元素时，会初始化一个默认容量为10的数组，后面如果遇到扩容，会调用grow（）方法，扩容的容量是原先容量的1.5倍。</p>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-ZooKeeper入门认知"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/19/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/"
-    >ZooKeeper入门认知</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/19/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/" class="article-date">
-  <time datetime="2020-06-19T02:45:59.034Z" itemprop="datePublished">2020-06-19</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="ZooKeeper入门认知"><a href="#ZooKeeper入门认知" class="headerlink" title="ZooKeeper入门认知"></a>ZooKeeper入门认知</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
-<p>​    Zookeeper 从设计模式角度来看，是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper 就将负责通知已经在 Zookeeper 上注册的那些观察者做出相应的反应，从而实现集群中类似 Master/Slave 管理模式。</p>
-<ul>
-<li>ZooKeeper是一个<strong>分布式下数据一致性解决方案</strong>，基于CAP理论中的CP（Eurka基于AP，更适用高并发），可以用ZooKeeper来做：统一配置管理、统一命名服务、分布式锁、集群管理。</li>
-<li>使用分布式系统就无法避免对节点管理的问题(需要实时感知节点的状态、对节点进行统一管理等等)，而由于这些问题处理起来可能相对麻烦和提高了系统的复杂性，ZooKeeper作为一个能够通用解决这些问题的中间件就应运而生了。</li>
-</ul>
-</blockquote>
-<p>###数据模型</p>
-<blockquote>
-<p>​    Zookeeper 会维护一个具有层次关系的数据结构，它非常类似于Uinux下标准的文件系统。ZooKeeper的节点我们称之为<strong>Znode</strong>，Znode分为<strong>两种</strong>类型：</p>
-<ul>
-<li><p><strong>临时节点(Ephemeral)</strong>：当客户端和服务端断开连接后，所创建的Znode(节点)<strong>会自动删除</strong></p>
-</li>
-<li><p><strong>持久节点(Persistent)</strong>：当客户端和服务端断开连接后，所创建的Znode(节点)<strong>不会删除</strong></p>
-<p>ZooKeeper和Redis一样，也是C/S结构(分成客户端和服务端)。</p>
-</li>
-</ul>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/image001.gif" alt=""></p>
-<h3 id="节点特征"><a href="#节点特征" class="headerlink" title="节点特征"></a>节点特征</h3><blockquote>
-<ol>
-<li>每个子目录项如 NameService 都被称作为 znode，这个 znode 是被它所在的路径唯一标识，如 Server1 这个 znode 的标识为 /NameService/Server1</li>
-<li>znode 可以有子节点目录，并且每个 znode 可以存储数据，*<em>注意临时节点不能有子节点目录（临时节点下不能再存储节点，防止失效后数据丢失） *</em></li>
-<li>znode 是有版本的，每个 znode 中存储的数据可以有多个版本，也就是一个访问路径中可以存储多份数据</li>
-<li>znode 可以是临时节点，一旦创建这个 znode 的客户端与服务器失去联系，这个 znode 也将自动删除，Zookeeper 的客户端和服务器通信采用长连接方式，每个客户端和服务器通过心跳来保持连接，这个连接状态称为 session，如果 znode 是临时节点，这个 session 失效，znode 也就删除了</li>
-<li>znode 的目录名可以自动编号，如 App1 已经存在，再创建的话，将会自动命名为 App2</li>
-<li>znode 可以被监控，包括这个目录节点中存储的数据的修改，子节点目录的变化等，一旦变化可以通知设置监控的客户端。</li>
-</ol>
-</blockquote>
-<blockquote>
-<h5 id="节点监听是-Zookeeper-的核心特性，Zookeeper-的很多功能都是基于这个特性实现的。关于znode节点的监听，可以分为2种："><a href="#节点监听是-Zookeeper-的核心特性，Zookeeper-的很多功能都是基于这个特性实现的。关于znode节点的监听，可以分为2种：" class="headerlink" title="节点监听是 Zookeeper 的核心特性，Zookeeper 的很多功能都是基于这个特性实现的。关于znode节点的监听，可以分为2种："></a>节点监听是 Zookeeper 的核心特性，Zookeeper 的很多功能都是基于这个特性实现的。关于znode节点的监听，可以分为2种：</h5><ul>
-<li>监听Znode节点的<strong>数据变化</strong></li>
-<li>监听Znode节点下子节点的<strong>增减变化</strong></li>
-</ul>
-</blockquote>
-<h3 id="统一配置管理（数据发布-订阅）"><a href="#统一配置管理（数据发布-订阅）" class="headerlink" title="统一配置管理（数据发布/订阅）"></a>统一配置管理（数据发布/订阅）</h3><blockquote>
-<p>​    配置的管理在分布式应用环境中很常见，例如同一个应用系统需要多台 PC Server 运行，但是它们运行的应用系统的某些配置项是相同的，如果要修改这些相同的配置项，那么就必须同时修改每台运行这个应用系统的 PC Server，这样非常麻烦而且容易出错。</p>
-<p>​    像这样的配置信息完全可以交给 Zookeeper 来管理，将配置信息保存在 Zookeeper 的某个目录节点中，然后将所有需要修改的应用机器监控配置信息的状态，一旦配置信息发生变化，每台应用机器就会收到 Zookeeper 的通知，然后从 Zookeeper 获取新的配置信息应用到系统中。</p>
-<p>​    <a href="https://blog.csdn.net/u011320740/article/details/78742625" target="_blank" rel="noopener">https://blog.csdn.net/u011320740/article/details/78742625</a></p>
-</blockquote>
-<p><img src="https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/image002.gif" alt=""></p>
-<h3 id="统一命名服务（负载均衡）"><a href="#统一命名服务（负载均衡）" class="headerlink" title="统一命名服务（负载均衡）"></a>统一命名服务（负载均衡）</h3><blockquote>
-<p>​    统一命名服务的理解其实跟<strong>域名</strong>一样，是我们为这某一部分的资源给它<strong>取一个名字</strong>，别人通过这个名字就可以拿到对应的资源。比如说，现在我有一个域名<code>www.java3y.com</code>，但我这个域名下有多台机器：</p>
-<ul>
-<li><p>192.168.1.1</p>
-</li>
-<li><p>192.168.1.2</p>
-</li>
-<li><p>192.168.1.3</p>
-</li>
-<li><p>192.168.1.4</p>
-<p>​</p>
-<p>别人访问<code>www.java3y.com</code>即可访问到我的机器，而不是通过IP去访问。在此基础上，加上一定的负载均衡算法，则可以</p>
-</li>
-</ul>
-<p>达到动态负载均衡的效果。</p>
-</blockquote>
-<h3 id="集群管理和Master选举"><a href="#集群管理和Master选举" class="headerlink" title="集群管理和Master选举"></a>集群管理和Master选举</h3><blockquote>
-<p>​    集群管理其实很容易实现，只要在ZooKeeper中创建<strong>临时节点</strong>即可。只要系统A挂了，那<code>/groupMember/A</code>这个节点就会删除，通过<strong>监听</strong><code>groupMember</code>下的子节点，系统B和C就能够感知到系统A已经挂了(新增也是同理)。</p>
-<p>​    除了能够感知节点的上下线变化，ZooKeeper还可以实现<strong>动态选举Master</strong>的功能(如果集群是主从架构模式下)。原理也很简单，如果想要实现动态选举Master的功能，Znode节点的类型是带<strong>顺序号的临时节点</strong>(<code>EPHEMERAL_SEQUENTIAL</code>)就好了。</p>
-<ul>
-<li>Zookeeper会每次选举最小编号的作为Master，如果Master挂了，自然对应的Znode节点就会删除。然后让<strong>新的最小编号作为Master</strong>，这样就可以实现动态选举的功能了。</li>
-</ul>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/2BGWl1qPxib1WCfFk2icxudIMHNPQMHIDJ4lnbuRg5lEDmjlSTmdarCs8Dq7Pjg213pAq7QlXxzc7dIklkGuAWYQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt=""></p>
-<h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><h4 id="排它锁"><a href="#排它锁" class="headerlink" title="排它锁"></a>排它锁</h4><blockquote>
-<p>​    通过 ZooKeeper 上的 Znode 可以表示一个锁，<code>/x_lock/lock</code>。</p>
-<ol>
-<li>获取锁 所有客户端都会通过调用 <code>create()</code> 接口尝试在 <code>/x_lock</code> 创建临时子节点 <code>/x_lock/lock</code>。最终只有一个客户端创建成功，那么该客户端就获取了锁。同时没有获取到锁的其他客户端，<strong>注册一个子节点变更</strong>的 Watcher 监听。</li>
-<li>释放锁 获取锁的客户端发生宕机或者正常完成业务逻辑后，就会把临时节点删除。临时子节点删除后，其他客户端又开始新的一轮获取锁的过程。</li>
-</ol>
-</blockquote>
-<h4 id="共享锁（读写锁）"><a href="#共享锁（读写锁）" class="headerlink" title="共享锁（读写锁）"></a>共享锁（读写锁）</h4><blockquote>
-<p>​    如果事务 T1 对数据对象 O1 加上了共享锁，那么当前事务 T1 只能对 O1 进行读取操作，其他事务也只能对这个数据对象加共享锁，直到数据对象上的所有共享锁都被释放。</p>
-<p>​    通过 ZooKeeper 上的 Znode 表示一个锁，<code>/s_lock/[HOSTNAME]-请求类型-序号</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;</span><br><span class="line">├── &#x2F;host1-R-000000001</span><br><span class="line">├── &#x2F;host2-R-000000002</span><br><span class="line">├── &#x2F;host3-W-000000003</span><br><span class="line">├── &#x2F;host4-R-000000004</span><br><span class="line">├── &#x2F;host5-R-000000005</span><br><span class="line">├── &#x2F;host6-R-000000006</span><br><span class="line">└── &#x2F;host7-W-000000007</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<ol>
-<li>获取锁 需要获得共享锁的客户端都会在 <code>s_lock</code> 这个节点下面创建一个<strong>临时顺序节点</strong>，如果当前是读请求，就创建类型为 R 的临时节点，如果是写请求，就创建类型为 W 的临时节点。</li>
-<li>判断读写顺序 共享锁下不同事务可以同时对同一个数据对象进行读取操作，而更新操作必须在当前没有任何事务进行读写操作的情况下进行。 <ul>
-<li>2.1 创建完节点后，获取 <code>s_lock</code> 的所有子节点，并对该节点注册子节点变更的 Watcher 监听</li>
-<li>2.2 然后确定自己的节点序号在所有的子节点中的顺序 </li>
-<li>2.3 对于读请求，如果没有比自己小的子节点，那么表明自己已经成功获取到了共享锁，同时开始执行读取逻辑，如果有比自己序号小的写请求，那么就需要进行等待 </li>
-<li>2.4 接收到 Watcher 通知后重复 2.1</li>
-</ul>
-</li>
-<li>释放锁 获取锁的客户端发生宕机或者正常完成业务逻辑后，就会把临时节点删除。临时子节点删除后，其他客户端又开始新的一轮获取锁的过程。</li>
-</ol>
-</blockquote>
-<h4 id="羊群效应"><a href="#羊群效应" class="headerlink" title="羊群效应"></a>羊群效应</h4><blockquote>
-<p>​    介绍的共享锁中，在判断读写顺序的时候会出现一个问题，假如 host4 在移除自己的节点的时候，后面 host5-7 都需要接收 Watcher 事件通知，但是实际上，只有 host5 接收到事件就可以了。因此以上的实现方式会产生大量的 Watcher 通知。这样会对 ZooKeeper 服务器造成了巨大的性能影响和网络冲击，这就是<strong>羊群效应</strong>。</p>
-<p>​    改进的一步在于，调用 <code>getChildren</code> 接口的时候获取到所有已经创建的子节点列表，<strong>但是这个时候不要注册任何的 Watcher</strong>。当无法获取共享锁的时候，调用 <code>exist()</code> 来对比自己小的那个节点注册 Wathcer。而对于读写请求，会有不同的定义:</p>
-<ol>
-<li>读请求: <strong>在比自己序号小的最后一个写请求节点注册 Watcher。</strong></li>
-<li>写请求: <strong>向比自己序号小的最后一个节点注册 Watcher。</strong></li>
-</ol>
-</blockquote>
-<h3 id="分布式队列"><a href="#分布式队列" class="headerlink" title="分布式队列"></a>分布式队列</h3><h4 id="FIFO"><a href="#FIFO" class="headerlink" title="FIFO"></a>FIFO</h4><blockquote>
-<p>​    使用 ZooKeeper 实现 FIFO 队列，<strong>入队操作</strong>就是在 <code>queue_fifo</code> 下创建自增序的子节点，并把数据（队列大小）放入节点内。<strong>出队操作</strong>就是先找到 <code>queue_fifo</code> 下序号最下的那个节点，取出数据，然后删除此节点。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;queue_fifo</span><br><span class="line">|</span><br><span class="line">├── &#x2F;host1-000000001</span><br><span class="line">├── &#x2F;host2-000000002</span><br><span class="line">├── &#x2F;host3-000000003</span><br><span class="line">└── &#x2F;host4-000000004</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<p>创建完节点后，根据以下步骤确定执行顺序:</p>
-<ol>
-<li>通过 <code>get_children()</code> 接口获取 <code>/queue_fifo</code> 节点下所有子节点</li>
-<li>通过自己的节点序号在所有子节点中的顺序</li>
-<li>如果不是最小的子节点，那么进入等待，同时<strong>向比自己序号小的最后一个子节点注册 Watcher 监听</strong></li>
-<li>接收到 Watcher 通知后重复 1</li>
-</ol>
-</blockquote>
-<h4 id="同步队列（Barrier）"><a href="#同步队列（Barrier）" class="headerlink" title="同步队列（Barrier）"></a>同步队列（Barrier）</h4><blockquote>
-<p>​    当有些操作需要并行执行，但后续操作又需要串行执行，此时必须等待所有并行执行的线程全部结束，才开始串行，于是就需要一个屏障，来控制所有线程同时开始，并等待所有线程全部结束。</p>
-</blockquote>
-<blockquote>
-<p>​    利用 ZooKeeper 的实现，开始时 <code>queue_barrier</code> 节点是一个已经存在的默认节点，并且将其节点的数据内容赋值为一个数字 n 来代表 Barrier 值，比如 n=10 代表只有当 <code>/queue_barrier</code> 节点下的子节点个数达到10才会打开 Barrier。之后所有客户端都会在 <code>queue_barrier</code> 节点下创建一个临时节点，如 <code>queue_barrier/host1</code>。</p>
-<p>​    <strong>如何控制所有线程同时开始？</strong> 所有的线程启动时在 ZooKeeper 节点 <code>/queue_barrier</code> 下插入顺序临时节点，然后检查 <code>/queue/barrier</code> 下所有 children 节点的数量是否为所有的线程数，如果不是，则等待，如果是，则开始执行。具体的步骤如下:</p>
-<ol>
-<li><code>getData()</code> 获取 <code>/queue_barrier</code> 节点的数据内容</li>
-<li><code>getChildren()</code> 获取 <code>/queue_barrier</code> 节点下的所有子节点，同时注册对子节点列表变更的 Watche 监听。</li>
-<li>统计子节点的个数</li>
-<li>如果子节点个数不足10，那么进入等待</li>
-<li>接收 Watcher 通知后，重复2</li>
-</ol>
-<p>​     <strong>如何等待所有线程结束？</strong> 所有线程在执行完毕后，都检查 <code>/queue/barrier</code> 下所有 children 节点数量是否为0，若不为0，则继续等待。</p>
-</blockquote>
-<blockquote>
-<p>  ​    <strong>用什么类型的节点？</strong> 根节点使用持久节点，子节点使用临时节点，根节点为什么要用持久节点？首先因为临时节点不能有子节点，所以根节点要用持久节点，并且在程序中要判断根节点是否存在。 子节点为什么要用临时节点？临时节点随着连接的断开而消失，在程序中，虽然会删除临时节点，但可能会出现程序在节点被删除之前就 crash了，如果是持久节点，节点不会被删除。</p>
-</blockquote>
-<h3 id="ZK集群"><a href="#ZK集群" class="headerlink" title="ZK集群"></a>ZK集群</h3><blockquote>
-<p>​    在集群的情况下，zk会选举出一个leader负责写操作，剩下的都可以负载读操作，这样就可以将<strong>读写分离</strong> ，保证的单一性，避免数据不一致的情况。ZooKeeper 集群中包含 <strong>Leader、Follower 以及 Observer</strong> 三个角色：</p>
-<ul>
-<li>Leader：负责进行投票的发起和决议，更新系统状态，Leader 是由选举产生;</li>
-<li>Follower： 用于接受客户端请求并向客户端返回结果，在选主过程中参与投票;</li>
-<li>Observer：可以接受客户端连接，接受读写请求，写请求转发给 Leader，但 Observer 不参加投票过程，只同步 Leader 的状态，Observer 的目的是为了扩展系统，提高读取速度。</li>
-</ul>
-</blockquote>
-<h3 id="ZK和Eurka作为高可用注册中心的区别"><a href="#ZK和Eurka作为高可用注册中心的区别" class="headerlink" title="ZK和Eurka作为高可用注册中心的区别"></a>ZK和Eurka作为高可用注册中心的区别</h3><blockquote>
-<p>​    zk基于CAP理论中的CP，Eurka基于AP，更适用高并发。zookepper集群超过一半的机器宕机就不能对外提供服务，而eurka只要有一台机器就可以对外提供服务</p>
-</blockquote>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><blockquote>
-<p>​    入门认识Zookeeper，看这篇文章，注意它提到的参考资料，也要看</p>
-<p>&lt;<a href="https://mp.weixin.qq.com/s/lVGbtyDI670jHB5XV9ElAQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/lVGbtyDI670jHB5XV9ElAQ</a></p>
-<p>​    Zookeeper的典型使用场景</p>
-<p><a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/index.html" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/index.html</a></p>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-MySQL索引"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/19/MySQL%E7%B4%A2%E5%BC%95/"
-    >MySQL索引</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/19/MySQL%E7%B4%A2%E5%BC%95/" class="article-date">
-  <time datetime="2020-06-19T02:45:59.032Z" itemprop="datePublished">2020-06-19</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="MySQL索引"><a href="#MySQL索引" class="headerlink" title="MySQL索引"></a>MySQL索引</h1><blockquote>
-<p>​    索引就是为了提高数据查询的效率，采用的一种数据结构，以文件形式存储在磁盘上，索引主要有：</p>
-<ul>
-<li>哈希索引：<strong>不适合做区间查询，适用于只有等值查询</strong>的场景</li>
-<li>有序数组：<strong>修改成本很高</strong>，只适用于<strong>静态存储引擎</strong>，即数据表一旦建立后不再会修改。</li>
-<li>搜索树：B+树，插入和修改相对稳定。B+树满足了：<strong>快速查找值，区间，顺序逆序查找</strong>。</li>
-</ul>
-</blockquote>
-<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><blockquote>
-<p>​    B+树是在平衡树的基础上，在最后的叶节点的数据之间，使用双向链表链接。之所以要使用双向链表，是为了满足<strong>区间查询和顺序查询</strong> 。相比B树有可能退化成线性数据结构，B+树更稳定。</p>
-<p>​    <a href="https://mp.weixin.qq.com/s/3RTTRABqCnX2tn7GFgMyOQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3RTTRABqCnX2tn7GFgMyOQ</a></p>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/OyweysCSeLU0bsNeCdMBCbnPbjJgXgrM52KMu0Ugiawqhj3jn5KcHnV8P88Z57J2hZu3QibMuyXolicq9ljgYhreQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt=""></p>
-<h3 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h3><blockquote>
-<p>​    根据叶子结点的内容，索引类型分为<strong>主键索引</strong>和<strong>非主键索引</strong> ，在InnoDB引擎中：</p>
-<ul>
-<li><p>主键索引的叶子结点存的是整条记录，主键索引也被称为<strong>聚簇索引</strong>（clustered index）</p>
-</li>
-<li><p>非主键索引的叶子结点存的是主键的值，非主键索引也被称为<strong>二级索引（secondary index）/普通索引/辅助索引</strong>。</p>
-<p><strong>非聚簇索引，可能存在回表的情况，即多查询一次数据库</strong></p>
-</li>
-</ul>
-</blockquote>
-<h3 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h3><blockquote>
-<p>​    联合索引是指对表上的多个列进行索引。涉及到order by排序时，联合索引的优先级可能比主键更高（explain功能）。</p>
-<p>联合索引的目的，其实是<strong>减少回表情况。</strong></p>
-</blockquote>
-<h3 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h3><blockquote>
-<p>​    针对联合索引（a，b，c），sql语句使用索引的顺序，最好也是a、b、c的顺序（Mysql高版本好像有优化）。同时不能在索引上进行操作。<strong>索引abc的位置可以是乱序，但是必须要有索引a。</strong></p>
-<p>​    <strong>不只是索引的全部定义，只要满足最左前缀，就可以利用索引来加速检索。这个最左前缀可以是联合索引的最左 N 个字段，也可以是字符串索引的最左 M 个字符。</strong></p>
-<p>​    从B+树的结构来看，联合索引（a,b,c）存储在节点上，子节点上是a、b、c列的数据。查询时，mySql其实是先从节点上<strong>优先定位索引a</strong>，确定到子节点的data域，再去定位其他索引。</p>
-</blockquote>
-<h3 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h3><blockquote>
-<p>​    <strong>覆盖索引的意义在于减少回表</strong>。索引k已经“覆盖了”我们的查询需求，故称为<strong>覆盖索引</strong>。</p>
-<p>​    查询count（*）时，某些时候数据库会优化使用覆盖索引（而不是主键索引），因为覆盖索引存储的数据比聚簇索引更少。</p>
-</blockquote>
-<h2 id="MySQL优化"><a href="#MySQL优化" class="headerlink" title="MySQL优化"></a>MySQL优化</h2><blockquote>
-<ul>
-<li>数据库表结构优化——冗余字段、类型和长度选择</li>
-<li>sql语句优化——查询时具体字段代替*、分页查询用between代替limit、不要对查询字段做计算</li>
-<li>合理建立索引</li>
-<li>慢查询——explain计划</li>
-</ul>
-</blockquote>
-<h3 id="合理建立索引"><a href="#合理建立索引" class="headerlink" title="合理建立索引"></a>合理建立索引</h3><blockquote>
-<p>​    首先，索引不能盲目地建 ，因为它是文件，需要维护。<strong>频繁更新的字段，不能作为索引。一般一张表不要超过5个。</strong></p>
-<ul>
-<li>主键自动建立唯一索引，且最好是自增类型或是整型</li>
-<li>频繁作为查询和排序的字段应该创建索引</li>
-<li>查询中与其他表关联的字段，外键关系建立索引</li>
-<li>单键/组合索引的选择问题   （在高并发下倾向创建组合索引）</li>
-<li>查询中排序的字段，排序字段若通过索引去访问将大大提高查询速度</li>
-<li>查询中统计或分组字段</li>
-</ul>
-</blockquote>
-<h3 id="Explain执行计划"><a href="#Explain执行计划" class="headerlink" title="Explain执行计划"></a>Explain执行计划</h3><blockquote>
-<p>​    两个重要的优化指标：type和extra。key、possiable_keys等</p>
-<ul>
-<li>type：这是重要的列，显示连接使用了何种类型。是较为重要的一个指标，结果值从好到坏依次是：system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL</li>
-</ul>
-<p>​         <strong>一般来说，得保证查询至少达到range级别，最好能达到ref。</strong></p>
-<ul>
-<li><p>Extra：关于MYSQL如何解析查询的额外信息。</p>
-<p>这里可以看到的坏的例子是<strong>Using temporary和Using filesort</strong>，意思MYSQL根本不能使用索引，结果是检索会很慢</p>
-<p><a href="https://www.cnblogs.com/yycc/p/7338894.html" target="_blank" rel="noopener">https://www.cnblogs.com/yycc/p/7338894.html</a></p>
-</li>
-</ul>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th><strong>id</strong></th>
-<th>SELECT识别符。这是SELECT的查询序列号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>select_type</strong></td>
-<td>SELECT类型,可以为以下任何一种:<strong>SIMPLE</strong>:简单SELECT(不使用UNION或子查询)<strong>PRIMARY</strong>:最外面的SELECT</td>
-</tr>
-<tr>
-<td><strong>table</strong></td>
-<td>输出的行所引用的表</td>
-</tr>
-<tr>
-<td><strong>type</strong></td>
-<td>联接类型。下面给出各种联接类型,按照从最佳类型到最坏类型进行排序:<strong>system</strong>:表仅有一行(=系统表)。这是const联接类型的一个特例。<strong>const</strong>:表最多有一个匹配行,它将在查询开始时被读取。因为仅有一行,在这行的列值可被优化器剩余部分认为是常数。const表很快,因为它们只读取一次!<strong>eq_ref</strong>:对于每个来自于前面的表的行组合,从该表中读取一行。这可能是最好的联接类型,除了const类型。<strong>ref</strong>:对于每个来自于前面的表的行组合,所有有匹配索引值的行将从这张表中读取。<strong>ref_or_null</strong>:该联接类型如同ref,但是添加了MySQL可以专门搜索包含NULL值的行。<strong>index_merge</strong>:该联接类型表示使用了索引合并优化方法。<strong>unique_subquery</strong>:该类型替换了下面形式的IN子查询的ref: value IN (SELECT primary_key FROM single_table WHERE some_expr) unique_subquery是一个索引查找函数,可以完全替换子查询,效率更高。<strong>index_subquery</strong>:该联接类型类似于unique_subquery。可以替换IN子查询,但只适合下列形式的子查询中的非唯一索引: value IN (SELECT key_column FROM single_table WHERE some_expr)<strong>range</strong>:只检索给定范围的行,使用一个索引来选择行。<strong>index</strong>:该联接类型与ALL相同,除了只有索引树被扫描。这通常比ALL快,因为索引文件通常比数据文件小。<strong>ALL</strong>:对于每个来自于先前的表的行组合,进行完整的表扫描。</td>
-</tr>
-<tr>
-<td><strong>possible_keys</strong></td>
-<td>指出MySQL能使用哪个索引在该表中找到行</td>
-</tr>
-<tr>
-<td><strong>key</strong></td>
-<td>显示MySQL实际决定使用的键(索引)。如果没有选择索引,键是NULL。</td>
-</tr>
-<tr>
-<td><strong>key_len</strong></td>
-<td>显示MySQL决定使用的键长度。如果键是NULL,则长度为NULL。</td>
-</tr>
-<tr>
-<td><strong>ref</strong></td>
-<td>显示使用哪个列或常数与key一起从表中选择行。</td>
-</tr>
-<tr>
-<td><strong>rows</strong></td>
-<td>显示MySQL认为它执行查询时必须检查的行数。多行之间的数据相乘可以估算要处理的行数。</td>
-</tr>
-<tr>
-<td><strong>filtered</strong></td>
-<td>显示了通过条件过滤出的行数的百分比估计值。</td>
-</tr>
-<tr>
-<td><strong>Extra</strong></td>
-<td>该列包含MySQL解决查询的详细信息<strong>Distinct</strong>:MySQL发现第1个匹配行后,停止为当前的行组合搜索更多的行。<strong>Not exists</strong>:MySQL能够对查询进行LEFT JOIN优化,发现1个匹配LEFT JOIN标准的行后,不再为前面的的行组合在该表内检查更多的行。<strong>range checked for each record (index map: #)</strong>:MySQL没有发现好的可以使用的索引,但发现如果来自前面的表的列值已知,可能部分索引可以使用。<strong>Using filesort</strong>:MySQL需要额外的一次传递,以找出如何按排序顺序检索行。<strong>Using index</strong>:从只使用索引树中的信息而不需要进一步搜索读取实际的行来检索表中的列信息。<strong>Using temporary</strong>:为了解决查询,MySQL需要创建一个临时表来容纳结果。<strong>Using where</strong>:WHERE 子句用于限制哪一个行匹配下一个表或发送到客户。<strong>Using sort_union(…), Using union(…), Using intersect(…)</strong>:这些函数说明如何为index_merge联接类型合并索引扫描。<strong>Using index for group-by</strong>:类似于访问表的Using index方式,Using index for group-by表示MySQL发现了一个索引,可以用来查 询GROUP BY或DISTINCT查询的所有列,而不要额外搜索硬盘访问实际的表。</td>
-</tr>
-</tbody></table>
-<h3 id="索引失效情况"><a href="#索引失效情况" class="headerlink" title="索引失效情况"></a>索引失效情况</h3><blockquote>
-<ul>
-<li>最好全值匹配</li>
-<li>符合最左前缀原则</li>
-<li>不要在索引列上做任何操作</li>
-<li>is null判断时，索引会失效</li>
-<li>like ‘%abc’这种情况，会导致全表扫描</li>
-</ul>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-注册中心—多级缓存设计"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/19/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E2%80%94%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/"
-    >注册中心—多级缓存设计</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/19/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E2%80%94%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/" class="article-date">
-  <time datetime="2020-06-19T02:45:54.225Z" itemprop="datePublished">2020-06-19</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>#微服务注册中心如何设计</p>
-<p>###读写锁</p>
-<blockquote>
-<p>​    <strong>ReentrantReadWriteLock</strong> ——读写锁，其内部封装了。读锁是共享锁，写锁是独占锁。</p>
-<p>​    如果有线程加了写锁，其他线程就不能加读锁了。如果有一个线程加了读锁，别的线程是可以随意同时加读锁的。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ReentrantReadWriteLock lock &#x3D; new ReentrantReadWriteLock();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;加写锁</span><br><span class="line">lock.writeLock().lock;</span><br><span class="line">lock.writeLock().unlock;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;加读锁</span><br><span class="line">lock.readLock().lock();</span><br><span class="line">lock.readLock().unlock();</span><br></pre></td></tr></table></figure>
-
-<h3 id="注册中心如何使用读写锁"><a href="#注册中心如何使用读写锁" class="headerlink" title="注册中心如何使用读写锁"></a>注册中心如何使用读写锁</h3><blockquote>
-<p>​    一个微服务注册中心，内存中有一个服务注册表的概念。因为不停地有微服务（多线程）来注册和获取服务实例的ip和端口，所以这个内存里的服务注册表数据，天然就是有读写并发问题的。</p>
-<p>​    这种情况下，我们不应该使用synchronized方法，因为这样会让所有读写线程全部串行化，导致并发性非常的低。我们分析可以知道，注册表这个类肯定是读多写少的，那么可以使用读写锁！</p>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/1J6IbIcPCLYY8uJ08bgYrMtkbnawYpbiczysPDjt6e5JI5hK467lZqeQ22qt53n9meHTPnDFXKngEdCutwFAOMg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/1J6IbIcPCLYY8uJ08bgYrMtkbnawYpbicZJqCjMqSCvDiblu0R5PlN5mnjQcbiciawepNMv3oiaiaRhZRtZFWcjgJ2yA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p>###多级缓存机制</p>
-<p>​    上图看似挺美好，但是也有问题，那就是如果一堆读线程（发现服务）在读注册表（占用读锁），导致写线程（注册服务）无法操作。能不能尽量在写数据的期间还保证可以继续读数据呢？答案是<strong>多级缓存机制</strong> 。</p>
-<blockquote>
-<ul>
-<li>在拉取注册表的时候：<ul>
-<li>首先从<strong>ReadOnlyCacheMap</strong>里查缓存的注册表。</li>
-<li>若没有，就找<strong>ReadWriteCacheMap</strong>里缓存的注册表。</li>
-<li>如果还没有，就从<strong>内存中获取实际的注册表数据。</strong></li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li><p>在注册表发生变更的时候：</p>
-<ul>
-<li><p>会在内存中更新变更的注册表数据，同时<strong>过期掉ReadWriteCacheMap</strong>。</p>
-</li>
-<li><p>此过程不会影响ReadOnlyCacheMap提供人家查询注册表。</p>
-</li>
-<li><p>一段时间内（默认30秒），各服务拉取注册表会直接读ReadOnlyCacheMap，这段时间其实各服务拉取的服务信息是旧的、部分服务失效的。</p>
-</li>
-<li><p>30秒过后，Eureka Server的后台线程发现ReadWriteCacheMap已经清空了，也会清空ReadOnlyCacheMap中的缓存</p>
-</li>
-<li><p>下次有服务拉取注册表，又会从内存中获取最新的数据了，同时填充各个缓存。</p>
-</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/1J6IbIcPCLbvlTGfketBG4ENjvReM6RGZUKhPzd0ZNk4uiaZtZekErqU8yvo3qwHCzVeqjqpI5ZC6VvfO1balQg/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>​    <strong>有一个疑问：ReadWriteCacheMap的作用是什么？</strong></p>
-<blockquote>
-<ul>
-<li>通过上面的分析可以看到，Eureka通过设置适当的请求频率（拉取注册表30秒间隔，发送心跳30秒间隔），可以保证一个大规模的系统每秒请求Eureka Server的次数在几百次。</li>
-<li>同时通过纯内存的注册表，保证了所有的请求都可以在内存处理，确保了极高的性能</li>
-<li>另外,多级缓存机制，确保了不会针对内存数据结构发生频繁的读写并发冲突操作，进一步提升性能。</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>​    <a href="https://mp.weixin.qq.com/s?__biz=MzU0OTk3ODQ3Ng==&amp;mid=2247483759&amp;idx=1&amp;sn=7e6575861a779711a5ef5f27b8e088e4&amp;chksm=fba6e96cccd1607a709c1437eb0b92df703b8d8eac466205798618480abf600b67f032782e88&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzU0OTk3ODQ3Ng==&amp;mid=2247483759&amp;idx=1&amp;sn=7e6575861a779711a5ef5f27b8e088e4&amp;chksm=fba6e96cccd1607a709c1437eb0b92df703b8d8eac466205798618480abf600b67f032782e88&amp;scene=21#wechat_redirect</a></p>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-微服务的高可用和线程池参数设计"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/19/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E5%92%8C%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%AE%BE%E8%AE%A1/"
-    >微服务的高可用和线程池参数设计</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/19/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E5%92%8C%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%E8%AE%BE%E8%AE%A1/" class="article-date">
-  <time datetime="2020-06-19T02:45:54.222Z" itemprop="datePublished">2020-06-19</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="微服务的高可用设计"><a href="#微服务的高可用设计" class="headerlink" title="微服务的高可用设计"></a>微服务的高可用设计</h1><blockquote>
-<p>微服务架构本身<strong>最最核心</strong>的保障高可用的措施，就是两点：</p>
-<ol>
-<li>一个是基于Hystrix做资源隔离以及熔断；</li>
-<li>另一个是做备用降级方案。</li>
-</ol>
-</blockquote>
-<h2 id="hystrix资源隔离"><a href="#hystrix资源隔离" class="headerlink" title="hystrix资源隔离"></a>hystrix资源隔离</h2><blockquote>
-<p>​    核心服务A调用了核心服务B和C，在核心服务B响应过慢时，会导致核心服务A的某个线程池全部卡死。</p>
-<p>​    但是此时因为你用了hystrix做了资源隔离，所以核心服务A是可以正常调用服务C的，那么就可以保证用户起码是可以使用APP的部分功能的，只不过跟服务B关联的页面刷不出来，功能无法使用罢了。</p>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/1J6IbIcPCLaj5CtOlDA4lkvmFvTakDqu4w7MhIBPCHNF4XJufHDhzO2yNS81VoXLQiaGgz9kGfz4gA6ysSgyo0A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/1J6IbIcPCLZ2hMEuU62v4hZmC8Sgs1V3SyKh5iaHSJGM30hdmfeCwicfPLbu6uNg7kqB0GZBH74aiaPf8EZUzJGicQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><blockquote>
-<ul>
-<li><strong>要保证一个hystrix线程池可以轻松处理每秒钟的请求</strong> ，一般是sql语句的优化。</li>
-</ul>
-<ul>
-<li><strong>同时还有合理的超时时间设置，避免请求太慢卡死线程。</strong> 线程池参数的设置。</li>
-<li><strong>请求超时后的重试机制。</strong></li>
-<li><strong>有重试机制，必须考虑接口的幂等性！！！</strong></li>
-</ul>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/1J6IbIcPCLaj5CtOlDA4lkvmFvTakDquTlcN8kNM6s5LncxepVicCIqAv0NLVibK8ib55txejwdcXlaXpwdlE1Gxw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/1J6IbIcPCLZ2hMEuU62v4hZmC8Sgs1V3bUIVzmCLWE4QOu91bD7y0tyibtbaqvnZn1UliaUzZINzUzcNFMSUJfzQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p>##线程池大小</p>
-<blockquote>
-<p>​    <strong>在生产环境中，我们到底应该如何设置服务中每个hystrix线程池的大小？</strong></p>
-<p>​    假设你的服务A，每秒钟会接收30个请求，同时会向服务B发起30个请求，然后每个请求的响应时长经验值大概在200ms，那么你的hystrix线程池需要多少个线程呢？</p>
-</blockquote>
-<p>$$<br>计算公式： 30（每秒请求数量） * 0.2（每个请求的处理秒数） + 4（给点缓冲buffer） = 10（线程数量）。<br>$$</p>
-<blockquote>
-<p>​    反推：<strong>为什么10个线程可以轻松抗住每秒30个请求？</strong></p>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/1J6IbIcPCLaj5CtOlDA4lkvmFvTakDqutUWZ8q1luZiasicorCUcp7gXoGO0vP3wC8ibFIZlL02AwWOmvvSL0Lib4w/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<h2 id="请求超时时间"><a href="#请求超时时间" class="headerlink" title="请求超时时间"></a>请求超时时间</h2><blockquote>
-<p>​    考虑高并发，线程全部运行的情况，尽量不会导致线程卡死</p>
-</blockquote>
-<p>$$<br>计算公式：  10  (线程数量)  / 0.3  (请求超时时间)  &gt;= 30   (系统高并发下，每秒请求数量)<br>$$</p>
-<blockquote>
-<p>​    考虑极端情况，如果服务B响应变慢，要500毫秒才响应，你一个线程每秒最多只能处理2个请求了，10个线程只能处理20个请求。而每秒是30个请求过来，结局会如何？</p>
-<p>​    大量的线程会全部卡死，来不及处理那么多请求，最后用户会刷不出来页面。</p>
-</blockquote>
-<h3 id="关于线程池参数设置"><a href="#关于线程池参数设置" class="headerlink" title="关于线程池参数设置"></a>关于线程池参数设置</h3><blockquote>
-<p><a href="https://www.toutiao.com/i6691803530602217988/" target="_blank" rel="noopener">https://www.toutiao.com/i6691803530602217988/</a></p>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-  </article>
   
 
+
+</div>
+<aside class='l_side'>
   
-  <nav class="page-nav">
+  
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
-  </nav>
-  
-</section>
-</div>
+    
 
-      <footer class="footer">
-  <div class="outer">
-    <ul>
-      <li>
-        Copyrights &copy;
-        2015-2020
-        <i class="ri-heart-fill heart_icon"></i> zj
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-        
-        
-        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
-        <span class="division">|</span>
-        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
-        
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-        
-        <span>
-  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
-  <span class="division">|</span>
-  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
-</span>
-        
-      </li>
-    </ul>
-    <ul>
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
       
-    </ul>
-    <ul>
-      <li>
-        <!-- cnzz统计 -->
+        <a class='avatar flat-box' href='/about/'>
+          <img no-lazy src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png'/>
+        </a>
+      
+    
+    
+      <div class='text'>
         
-        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
         
-      </li>
-    </ul>
-  </div>
-</footer>
-      <div class="float_btns">
-        <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
-</div>
-
+        
+          <p><span id="jinrishici-sentence"></span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
       </div>
-    </main>
-    <aside class="sidebar on">
-      <button class="navbar-toggle"></button>
-<nav class="navbar">
-  
-  <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="zj183"></a>
-  </div>
-  
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/2019/about">关于我</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-      <a class="nav-item-link nav-item-search"  title="搜索">
-        <i class="ri-search-line"></i>
-      </a>
-      
-      
-      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
-        <i class="ri-rss-line"></i>
-      </a>
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-    </aside>
-    <script>
-      if (window.matchMedia("(max-width: 768px)").matches) {
-        document.querySelector('.content').classList.remove('on');
-        document.querySelector('.sidebar').classList.remove('on');
-      }
-    </script>
-    <div id="mask"></div>
-
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
-  <div class="reward-box">
-    
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
     
     
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:me@xaoxuu.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/xaoxuu"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=63035382"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
     
   </div>
-</div>
+</section>
+
+  
+
+  
     
-<script src="/js/jquery-2.0.3.min.js"></script>
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
 
 
-<script src="/js/lazyload.min.js"></script>
+</aside>
 
-<!-- Subtitle -->
 
-<script>
-  try {
-    var typed = new Typed("#subtitle", {
-      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
-      startDelay: 0,
-      typeSpeed: 200,
-      loop: true,
-      backSpeed: 100,
-      showCursor: true
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作为主题，总访问量为
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          次
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
     });
-  } catch (err) {
-    console.log(err)
-  }
-</script>
+  </script>
 
-<!-- Tocbot -->
 
-<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
-<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
 
-<script src="/dist/main.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
 
-<!-- ImageViewer -->
 
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
 
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
 
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
 
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
 
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
-
-<script>
-    function viewer_init() {
-        let pswpElement = document.querySelectorAll('.pswp')[0];
-        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-        $imgArr.forEach(($em, i) => {
-            $em.onclick = () => {
-                // slider展开状态
-                // todo: 这样不好，后面改成状态
-                if (document.querySelector('.left-col.show')) return
-                let items = []
-                $imgArr.forEach(($em2, i2) => {
-                    let img = $em2.getAttribute('data-idx', i2)
-                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-                    let title = $em2.getAttribute('alt')
-                    // 获得原图尺寸
-                    const image = new Image()
-                    image.src = src
-                    items.push({
-                        src: src,
-                        w: image.width || $em2.width,
-                        h: image.height || $em2.height,
-                        title: title
-                    })
-                })
-                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-                    index: parseInt(i)
-                });
-                gallery.init()
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
             }
-        })
-    }
-    viewer_init()
-</script>
+          }
+          shuffle(imgs);
+        }
+        if ('.cover') {
+          $('.cover').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
 
-<!-- MathJax -->
-
-<!-- Katex -->
-
-<!-- busuanzi  -->
 
 
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
 
 
-<!-- ClickLove -->
-
-<!-- ClickBoom1 -->
-
-<!-- ClickBoom2 -->
-
-<!-- CodeCopy -->
 
 
-<link rel="stylesheet" href="/css/clipboard.css">
 
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
   function wait(callback, seconds) {
     var timelag = null;
@@ -1520,7 +896,7 @@
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       $(".article pre code").before(copyHtml);
@@ -1533,14 +909,14 @@
         let $btn = $(e.trigger);
         $btn.addClass('copied');
         let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-checkbox-circle-line');
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-check-circle');
         let $span = $($btn.find('span'));
         $span[0].innerText = 'COPIED';
         
         wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-checkbox-circle-line');
-          $icon.addClass('ri-file-copy-2-line');
+          $icon.removeClass('fa-check-circle');
+          $icon.addClass('fa-copy');
           $span[0].innerText = 'COPY';
         }, 2000);
       });
@@ -1549,14 +925,14 @@
         let $btn = $(e.trigger);
         $btn.addClass('copy-failed');
         let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-time-line');
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-times-circle');
         let $span = $($btn.find('span'));
         $span[0].innerText = 'COPY FAILED';
         
         wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-time-line');
-          $icon.addClass('ri-file-copy-2-line');
+          $icon.removeClass('fa-times-circle');
+          $icon.addClass('fa-copy');
           $span[0].innerText = 'COPY';
         }, 2000);
       });
@@ -1566,11 +942,56 @@
 </script>
 
 
-<!-- CanvasBackground -->
 
 
-    
-  </div>
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 标准 markdown 描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
 </body>
-
 </html>
