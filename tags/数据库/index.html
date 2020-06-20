@@ -18,7 +18,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>分类：SpringBoot - </title>
+    <title>标签：数据库 - </title>
   
   
 
@@ -70,7 +70,79 @@
 
 <body>
   
-  <div id="loading-bar-wrapper">
+  <div class="cover-wrapper">
+    
+      <cover class='cover  half'>
+        <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">明菜の笔记</p>
+    
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="/"
+                
+                
+                id="home">
+                <i class='fas fa-rss fa-fw'></i>首页
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/categories/"
+                
+                
+                id="categories">
+                <i class='fas fa-folder-open fa-fw'></i>分类
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/tags/"
+                
+                
+                id="tags">
+                <i class='fas fa-tags fa-fw'></i>标签
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/archives/"
+                
+                
+                id="archives">
+                <i class='fas fa-archive fa-fw'></i>归档
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      </cover>
+    
+    <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
 </div>
 <header class="l_header shadow blur">
@@ -259,9 +331,10 @@
 
 <script>setLoadingBarProgress(40);</script>
 
+  </div>
 
 
-  <div class="l_body nocover">
+  <div class="l_body">
     <div class='body-wrapper'>
       
 
@@ -275,8 +348,14 @@
       
         
           
-            <div class='post-wrapper'>
-              <article class="post white-box shadow reveal ">
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
   
 
 
@@ -288,8 +367,8 @@
         
           
   <h2 class="title">
-    <a href="/2020/06/19/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
-      Bean生命周期
+    <a href="/2019/08/12/MySQL%E7%B4%A2%E5%BC%95/">
+      MySQL索引
     </a>
   </h2>
 
@@ -303,7 +382,7 @@
               
 <div class='new-meta-item author'>
   <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
-    <img src="https://avatar.csdnimg.cn/C/F/7/1_jueduifeng.jpg">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
     <p>明菜</p>
   </a>
 </div>
@@ -312,14 +391,6 @@
           
             
               
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Bean/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>SpringBoot/Bean</p>
-    </a>
-  </div>
-
 
             
           
@@ -327,7 +398,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2020年6月19日</p>
+    <p>发布于：2019年8月12日</p>
   </a>
 </div>
 
@@ -340,13 +411,6 @@
           
             
               
-  <div class="new-meta-item top-post">
-    <a class='notlink'>
-      <i class="fas fa-angle-double-up fa-fw" aria-hidden="true"></i>
-      <p>近期更新</p>
-    </a>
-  </div>
-
 
             
           
@@ -362,15 +426,18 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-Bean生命周期阶段及接口"><a href="#1-Bean生命周期阶段及接口" class="headerlink" title="1.Bean生命周期阶段及接口"></a>1.Bean生命周期阶段及接口</h3><blockquote>
-<p>​    Spring Bean的生命周期有四个阶段：<strong>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</strong></p>
-<p>​    <strong>Bean级生命周期接口</strong>：(4个)：</p>
+        <p>​    索引就是为了提高数据查询的效率，采用的一种数据结构，以文件形式存储在磁盘上，索引主要有：</p>
+<blockquote>
+<ul>
+<li>哈希索引：<strong>不适合做区间查询，适用于只有等值查询</strong>的场景</li>
+<li>有序数组：<strong>修改成本很高</strong>，只适用于<strong>静态存储引擎</strong>，即数据表一旦建立后不再会修改。</li>
+</ul>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2020/06/19/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+          <a href="/2019/08/12/MySQL%E7%B4%A2%E5%BC%95/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -379,13 +446,7 @@
   </section>
 </article>
 
-            </div>
-          
-        
-      
-    
-    
-      
+          </div>
         
       
     
@@ -401,7 +462,6 @@
 
     
   
-
 </div>
 <aside class='l_side'>
   
@@ -414,7 +474,7 @@
     
       
         <a class='avatar flat-box' href='/about/'>
-          <img no-lazy src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2398570443,2150428803&fm=26&gp=0.jpg'/>
+          <img no-lazy src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg'/>
         </a>
       
     
@@ -423,7 +483,7 @@
         
         
         
-          <p><span id="jinrishici-sentence"></span></p>
+          <p><span id="jinrishici-sentence">一只鱼被闷死在自己的梦里</span></p>
           <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
         
       </div>
@@ -440,7 +500,7 @@
           
         
           
-            <a href="mailto:me@xaoxuu.com"
+            <a href="mailto:zjian183@163.com"
               class="social fas fa-envelope flat-btn"
               target="_blank"
               rel="external nofollow noopener noreferrer">
@@ -448,7 +508,7 @@
           
         
           
-            <a href="https://github.com/xaoxuu"
+            <a href="https://github.com/18360732385"
               class="social fab fa-github flat-btn"
               target="_blank"
               rel="external nofollow noopener noreferrer">
@@ -456,7 +516,7 @@
           
         
           
-            <a href="https://music.163.com/#/user/home?id=63035382"
+            <a href="https://music.163.com/#/user/home?id=54320974"
               class="social fas fa-headphones-alt flat-btn"
               target="_blank"
               rel="external nofollow noopener noreferrer">
@@ -473,40 +533,28 @@
   
     
     
+
   
 
-  <section class="widget category shadow desktop">
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Bean/" href="/categories/Bean/"
-            id="categoriesBean"
-            ><div class='name'>Bean</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringBoot/" href="/categories/SpringBoot/"
-            id="categoriesSpringBoot"
-            ><div class='name'>SpringBoot</div><div class='badge'>(1)</div></a></li>
-        
-      </ul>
+      <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/MySql/" style="font-size: 14px; color: #999">MySql</a> <a href="/tags/Zookeeper/" style="font-size: 14px; color: #999">Zookeeper</a> <a href="/tags/kafka/" style="font-size: 14px; color: #999">kafka</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 24px; color: #555">中间件</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
 
   
 
@@ -557,7 +605,7 @@
             
           
             
-              <a href="mailto:me@xaoxuu.com"
+              <a href="mailto:zjian183@163.com"
                 class="social fas fa-envelope flat-btn"
                 target="_blank"
                 rel="external nofollow noopener noreferrer">
@@ -565,7 +613,7 @@
             
           
             
-              <a href="https://github.com/xaoxuu"
+              <a href="https://github.com/18360732385"
                 class="social fab fa-github flat-btn"
                 target="_blank"
                 rel="external nofollow noopener noreferrer">
@@ -573,7 +621,7 @@
             
           
             
-              <a href="https://music.163.com/#/user/home?id=63035382"
+              <a href="https://music.163.com/#/user/home?id=54320974"
                 class="social fas fa-headphones-alt flat-btn"
                 target="_blank"
                 rel="external nofollow noopener noreferrer">
@@ -669,7 +717,7 @@
 
     <script type="text/javascript">
       $(function(){
-        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg"];
         if ('true' == 'true') {
           function shuffle(arr){
             /*From countercurrent-time*/

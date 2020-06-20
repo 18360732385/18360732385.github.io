@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -18,8 +16,14 @@
 
   <!-- 页面元数据 -->
   
-    <title>归档 - </title>
+    <title>Kafka消息队列 - </title>
   
+    <meta name="keywords" content="中间件,kafka">
+  
+  
+    <meta name="description" content="1.Kafka消息模型
+​    早期的消息队列使用队列（Queue）作为消息载体，Kafka使用的是发布/订阅（Pub/Sub）模型，使用主题（Topic）作为消息的载体。
+">
   
 
   <!-- feed -->
@@ -72,7 +76,7 @@
   
   <div class="cover-wrapper">
     
-      <cover class='cover  half'>
+      <cover class='cover post half'>
         <div class='cover-body'>
   <div class='a'>
     
@@ -339,77 +343,268 @@
       
 
 <div class='l_main'>
-	
-	  <article id="archive-page" class="post article white-box reveal shadow">
-	    <section class="archive">
-	      
-	          <div class="archive-item archive-year mark">
-	            <h2>2019</h2>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2019/08/13/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/">
-	              <time>08-13</time>
-	              <span class="title">
-	                
-	                  ZooKeeper入门认知
-	                
-	                
-									
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2019/08/12/MySQL%E7%B4%A2%E5%BC%95/">
-	              <time>08-12</time>
-	              <span class="title">
-	                
-	                  MySQL索引
-	                
-	                
-									
-									
-								  	&nbsp;<i class="fas fa-fire red" aria-hidden="true"></i>
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2019/07/10/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
-	              <time>07-10</time>
-	              <span class="title">
-	                
-	                  Bean生命周期
-	                
-	                
-									
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2019/07/05/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
-	              <time>07-05</time>
-	              <span class="title">
-	                
-	                  Kafka消息队列
-	                
-	                
-									
-									
-								  	&nbsp;<i class="fas fa-star green" aria-hidden="true"></i>
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	    </section>
-	  </article>
-	
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+        <a title='Kafka消息队列' href='/2019/07/05/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/'><img class='thumbnail' src='https://img.vim-cn.com/17/0c7b02722686d1527a1df807dae0794d995860.png'></a>
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2019/07/05/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+      Kafka消息队列
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2019年7月5日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <h3 id="1-Kafka消息模型"><a href="#1-Kafka消息模型" class="headerlink" title="1.Kafka消息模型"></a>1.Kafka消息模型</h3><blockquote>
+<p>​    早期的消息队列使用队列（Queue）作为消息载体，Kafka使用的是发布/订阅（Pub/Sub）模型，使用主题（Topic）作为消息的载体。</p>
+</blockquote>
+<a id="more"></a>
+
+
+
+<h3 id="2-Broker、Topic、Partition的概念"><a href="#2-Broker、Topic、Partition的概念" class="headerlink" title="2.Broker、Topic、Partition的概念"></a>2.Broker、Topic、Partition的概念</h3><blockquote>
+<p>​    <strong>broker：代理，可以看做一个独立的kafka实例，多个broker组成一个kafka cluster</strong></p>
+<p>​    <strong>topic：生产者将消息发送给指定的topic，消费者通过订阅该topic来消费消息</strong></p>
+<p>​    <strong>partition：分区，属于topic的一部分，消息实际上存储在partition中。一个topic可以有多个partition，并且同一个topic下的partition可以分布在不同的broker上。即一个topic可以存在在多个broker上。</strong></p>
+</blockquote>
+<h3 id="3-消费组"><a href="#3-消费组" class="headerlink" title="3.消费组"></a>3.消费组</h3><blockquote>
+<p>​    每个Consumer Group可以包含多个消费实例，即可以启动多个消息队列Kafka版 Consumer，并把参数<code>group.id</code>设置成相同的值。属于同一个Consumer Group的消费实例会负载消费订阅的Topic。</p>
+<p>​    举例：Consumer Group A订阅了Topic A，并开启三个消费实例C1、C2、C3，<strong>则发送到Topic A的每条消息最终只会传给C1、C2、C3的某一个。</strong>Kafka默认会均匀地把消息传给各个消息实例，以做到消费负载均衡。</p>
+<p>​    Kafka负载消费的内部原理是，把订阅的Topic的分区，平均分配给各个消费实例。<strong>因此，消费实例的个数不要大于分区的数量，否则会有实例分配不到任何分区而处于空跑状态。</strong>这个负载均衡发生的时间，除了第一次启动上线之外，后续消费实例发生重启、增加、减少等变更时，都会触发一次负载均衡。</p>
+</blockquote>
+<h3 id="4-分区的多副本机制"><a href="#4-分区的多副本机制" class="headerlink" title="4.分区的多副本机制"></a>4.分区的多副本机制</h3><blockquote>
+<p>​    Kafka 为分区（Partition）引入了多副本（Replica）机制。分区（Partition）中的多个副本之间会有一个叫做 leader 的家伙，其他副本称为 follower。我们发送的消息会被发送到 leader 副本，然后 follower 副本才能从 leader 副本中拉取消息进行同步。</p>
+<p>​    <strong>生产者和消费者只与 leader 副本交互</strong>。你可以理解为其他副本只是 leader 副本的拷贝，<strong>它们的存在只是为了保证消息存储的安全性</strong>。当 leader 副本发生故障时会从 follower 中选举出一个 leader,但是 follower 中如果有和 leader 同步程度达不到要求的参加不了 leader 的竞选。</p>
+</blockquote>
+<h3 id="5-Kafka如何保证消息的消费顺序"><a href="#5-Kafka如何保证消息的消费顺序" class="headerlink" title="5.Kafka如何保证消息的消费顺序"></a>5.Kafka如何保证消息的消费顺序</h3><blockquote>
+<p>​    kafka只能保证在同一个分区下的消息的顺序，因为消息加入分区中时都是尾加法，同时分配一个偏移量（offest），offest保证了分区内消息的顺序。</p>
+<p>​    保证所有分区下的消息都具有顺序有2种方法：</p>
+<ul>
+<li>1个topic对应一个partition（浪费了kafka的特性）    </li>
+<li>发送消息时指定同一个partition</li>
+</ul>
+</blockquote>
+<h3 id="6-Kafka如何保证消息不丢失"><a href="#6-Kafka如何保证消息不丢失" class="headerlink" title="6.Kafka如何保证消息不丢失"></a>6.Kafka如何保证消息不丢失</h3><blockquote>
+<p><strong>生产者消息丢失：</strong></p>
+<p>​    生产者send消息时是异步操作，我们可以把它变成同步操作，<strong>更推荐使用回调函数</strong>，同时会有重试机制</p>
+<p><strong>消费者消息丢失：</strong></p>
+<p>​    消费者拉取partition消息时，kafka利用offest+1确定当前消费的消息位置。当消费者将要消费消息时宕机，消息实际未消费，可offest自动提交。</p>
+<p>​    解决方法是，关闭自动移交offest，改为手动提交。此时则会出现统一消息多次消费，所以要保证消费的业务幂等性。</p>
+<p><strong>Kafka自己丢失了消息:</strong></p>
+<p>​    leader宕机时，选举后新的leader缺少了一部分消息。可以设置acks=all</p>
+</blockquote>
+<h3 id="7-关于Kafka实践注意事项"><a href="#7-关于Kafka实践注意事项" class="headerlink" title="7.关于Kafka实践注意事项"></a>7.关于Kafka实践注意事项</h3><blockquote>
+<p>​    参数设置和最佳实践：</p>
+<p>​    <a href="https://help.aliyun.com/document_detail/68166.html?spm=a2c4g.11186623.6.612.2f0064abDtYOPD" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/68166.html?spm=a2c4g.11186623.6.612.2f0064abDtYOPD</a></p>
+<p>​    <a href="https://blog.csdn.net/qq_35641192/article/details/80956244" target="_blank" rel="noopener">https://blog.csdn.net/qq_35641192/article/details/80956244</a></p>
+</blockquote>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>本文永久链接是：<a href=https://18360732385.github.io/2019/07/05/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/>https://18360732385.github.io/2019/07/05/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>中间件</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/kafka/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>kafka</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2019/07/10/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Bean生命周期</p>
+                <p class='content'>1.Bean生命周期阶段及接口
+​    Spring Bean的生命周期有四个阶段：实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁
+​    Bean级生命周期接口：(4个...</p>
+              </a>
+            
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Kafka消息队列',
+      tools: true
+    }
+  </script>
+
+
 </div>
 <aside class='l_side'>
   
@@ -479,32 +674,26 @@
   
 
   
-    
-    
-
-  
 
   
     
     
-  
 
-  <section class="widget tagcloud shadow desktop mobile">
+
+  <section class="widget toc-wrapper shadow desktop mobile">
     
   <header>
     
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/MySql/" style="font-size: 14px; color: #999">MySql</a> <a href="/tags/Zookeeper/" style="font-size: 14px; color: #999">Zookeeper</a> <a href="/tags/kafka/" style="font-size: 14px; color: #999">kafka</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 24px; color: #555">中间件</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Kafka消息模型"><span class="toc-text">1.Kafka消息模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Broker、Topic、Partition的概念"><span class="toc-text">2.Broker、Topic、Partition的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-消费组"><span class="toc-text">3.消费组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-分区的多副本机制"><span class="toc-text">4.分区的多副本机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Kafka如何保证消息的消费顺序"><span class="toc-text">5.Kafka如何保证消息的消费顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Kafka如何保证消息不丢失"><span class="toc-text">6.Kafka如何保证消息不丢失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-关于Kafka实践注意事项"><span class="toc-text">7.关于Kafka实践注意事项</span></a></li></ol>
     </div>
   </section>
 
-
-  
 
   
 
@@ -603,14 +792,6 @@
   </footer>
 
 <script>setLoadingBarProgress(80);</script>
-
-
-
-
-	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-	
-
-	
 
 
       <script>setLoadingBarProgress(60);</script>
@@ -725,6 +906,60 @@
 
 
 
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'false',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
 
 
 

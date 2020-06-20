@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="index,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -20,10 +16,17 @@
 
   <!-- 页面元数据 -->
   
-    <title></title>
+    <title>MySQL索引 - </title>
   
-    <meta name="keywords" content="zj183">
+    <meta name="keywords" content="MySql,数据库">
   
+  
+    <meta name="description" content="​    索引就是为了提高数据查询的效率，采用的一种数据结构，以文件形式存储在磁盘上，索引主要有：
+
+
+哈希索引：不适合做区间查询，适用于只有等值查询的场景
+有序数组：修改成本很高，只适用于静态存储引擎，即数据表一旦建立后不再会修改。
+">
   
 
   <!-- feed -->
@@ -76,7 +79,7 @@
   
   <div class="cover-wrapper">
     
-      <cover class='cover  full'>
+      <cover class='cover post half'>
         <div class='cover-body'>
   <div class='a'>
     
@@ -144,7 +147,6 @@
   </div>
 </div>
 
-        <div class="scroll-down"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
       </cover>
     
     <div id="loading-bar-wrapper">
@@ -345,21 +347,10 @@
 
 <div class='l_main'>
   
-  <section class="post-list ">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-            
-              <div class='post-wrapper'>
-                <article class="post white-box shadow reveal ">
+
   
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -369,208 +360,11 @@
       <div class="meta" id="header-meta">
         
           
-  <h2 class="title">
-    <a href="/2019/07/10/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
-      Bean生命周期
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
-    <p>明菜</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年7月10日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item top-post">
-    <a class='notlink'>
-      <i class="fas fa-angle-double-up fa-fw" aria-hidden="true"></i>
-      <p>热门</p>
-    </a>
-  </div>
-
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-Bean生命周期阶段及接口"><a href="#1-Bean生命周期阶段及接口" class="headerlink" title="1.Bean生命周期阶段及接口"></a>1.Bean生命周期阶段及接口</h3><blockquote>
-<p>​    Spring Bean的生命周期有四个阶段：<strong>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</strong></p>
-<p>​    <strong>Bean级生命周期接口</strong>：(4个)：</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2019/07/10/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-              </div>
-            
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2019/08/13/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/">
-      ZooKeeper入门认知
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
-    <p>明菜</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年8月13日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h3><blockquote>
-<p>​    Zookeeper 从设计模式角度来看，是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper 就将负责通知已经在 Zookeeper 上注册的那些</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2019/08/13/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
+  <h1 class="title">
     <a href="/2019/08/12/MySQL%E7%B4%A2%E5%BC%95/">
       MySQL索引
     </a>
-  </h2>
+  </h1>
 
 
         
@@ -609,11 +403,6 @@
 
             
           
-            
-              
-
-            
-          
         </div>
         
           <hr>
@@ -623,138 +412,290 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    索引就是为了提高数据查询的效率，采用的一种数据结构，以文件形式存储在磁盘上，索引主要有：</p>
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <p>​    索引就是为了提高数据查询的效率，采用的一种数据结构，以文件形式存储在磁盘上，索引主要有：</p>
 <blockquote>
 <ul>
 <li>哈希索引：<strong>不适合做区间查询，适用于只有等值查询</strong>的场景</li>
 <li>有序数组：<strong>修改成本很高</strong>，只适用于<strong>静态存储引擎</strong>，即数据表一旦建立后不再会修改。</li>
 </ul>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2019/08/12/MySQL%E7%B4%A2%E5%BC%95/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
+<a id="more"></a>
 
-          </div>
-        
-      
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-        <a title='Kafka消息队列' href='/2019/07/05/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/'><img class='thumbnail' src='https://img.vim-cn.com/17/0c7b02722686d1527a1df807dae0794d995860.png'></a>
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2019/07/05/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
-      Kafka消息队列
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
-    <p>明菜</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年7月5日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-Kafka消息模型"><a href="#1-Kafka消息模型" class="headerlink" title="1.Kafka消息模型"></a>1.Kafka消息模型</h3><blockquote>
-<p>​    早期的消息队列使用队列（Queue）作为消息载体，Kafka使用的是发布/订阅（Pub/Sub）模型，使用主题（Topic）作为消息的载体。</p>
+<ul>
+<li>搜索树：B+树，插入和修改相对稳定。B+树满足了：<strong>快速查找值，区间，顺序逆序查找</strong>。</li>
+</ul>
 </blockquote>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2019/07/05/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
+<h3 id="1-B-树"><a href="#1-B-树" class="headerlink" title="1.B+树"></a>1.B+树</h3><blockquote>
+<p>​    B+树是在平衡树的基础上，在最后的叶节点的数据之间，使用双向链表链接。之所以要使用双向链表，是为了满足<strong>区间查询和顺序查询</strong> 。相比B树有可能退化成线性数据结构，B+树更稳定。</p>
+<p>​    <a href="https://mp.weixin.qq.com/s/3RTTRABqCnX2tn7GFgMyOQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3RTTRABqCnX2tn7GFgMyOQ</a></p>
+</blockquote>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/OyweysCSeLU0bsNeCdMBCbnPbjJgXgrM52KMu0Ugiawqhj3jn5KcHnV8P88Z57J2hZu3QibMuyXolicq9ljgYhreQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt=""></p>
+<h3 id="2-索引类型"><a href="#2-索引类型" class="headerlink" title="2.索引类型"></a>2.索引类型</h3><blockquote>
+<p>​    根据叶子结点的内容，索引类型分为<strong>主键索引</strong>和<strong>非主键索引</strong> ，在InnoDB引擎中：</p>
+<ul>
+<li><p>主键索引的叶子结点存的是整条记录，主键索引也被称为<strong>聚簇索引</strong>（clustered index）</p>
+</li>
+<li><p>非主键索引的叶子结点存的是主键的值，非主键索引也被称为<strong>二级索引（secondary index）/普通索引/辅助索引</strong>。</p>
+<p><strong>非聚簇索引，可能存在回表的情况，即多查询一次数据库</strong></p>
+</li>
+</ul>
+</blockquote>
+<h3 id="3-联合索引"><a href="#3-联合索引" class="headerlink" title="3.联合索引"></a>3.联合索引</h3><blockquote>
+<p>​    联合索引是指对表上的多个列进行索引。涉及到order by排序时，联合索引的优先级可能比主键更高（explain功能）。</p>
+<p>联合索引的目的，其实是<strong>减少回表情况。</strong></p>
+</blockquote>
+<h3 id="4-最左前缀原则"><a href="#4-最左前缀原则" class="headerlink" title="4.最左前缀原则"></a>4.最左前缀原则</h3><blockquote>
+<p>​    针对联合索引（a，b，c），sql语句使用索引的顺序，最好也是a、b、c的顺序（Mysql高版本好像有优化）。同时不能在索引上进行操作。<strong>索引abc的位置可以是乱序，但是必须要有索引a。</strong></p>
+<p>​    <strong>不只是索引的全部定义，只要满足最左前缀，就可以利用索引来加速检索。这个最左前缀可以是联合索引的最左 N 个字段，也可以是字符串索引的最左 M 个字符。</strong></p>
+<p>​    从B+树的结构来看，联合索引（a,b,c）存储在节点上，子节点上是a、b、c列的数据。查询时，mySql其实是先从节点上<strong>优先定位索引a</strong>，确定到子节点的data域，再去定位其他索引。</p>
+</blockquote>
+<h3 id="5-覆盖索引"><a href="#5-覆盖索引" class="headerlink" title="5.覆盖索引"></a>5.覆盖索引</h3><blockquote>
+<p>​    <strong>覆盖索引的意义在于减少回表</strong>。索引k已经“覆盖了”我们的查询需求，故称为<strong>覆盖索引</strong>。</p>
+<p>​    查询count（*）时，某些时候数据库会优化使用覆盖索引（而不是主键索引），因为覆盖索引存储的数据比聚簇索引更少。</p>
+</blockquote>
+<h3 id="6-MySQL优化"><a href="#6-MySQL优化" class="headerlink" title="6.MySQL优化"></a>6.MySQL优化</h3><blockquote>
+<ul>
+<li>数据库表结构优化——冗余字段、类型和长度选择</li>
+<li>sql语句优化——查询时具体字段代替*、分页查询用between代替limit、不要对查询字段做计算</li>
+<li>合理建立索引</li>
+<li>慢查询——explain计划</li>
+</ul>
+</blockquote>
+<h3 id="7-合理建立索引"><a href="#7-合理建立索引" class="headerlink" title="7.合理建立索引"></a>7.合理建立索引</h3><blockquote>
+<p>​    首先，索引不能盲目地建 ，因为它是文件，需要维护。<strong>频繁更新的字段，不能作为索引。一般一张表不要超过5个。</strong></p>
+<ul>
+<li>主键自动建立唯一索引，且最好是自增类型或是整型</li>
+<li>频繁作为查询和排序的字段应该创建索引</li>
+<li>查询中与其他表关联的字段，外键关系建立索引</li>
+<li>单键/组合索引的选择问题   （在高并发下倾向创建组合索引）</li>
+<li>查询中排序的字段，排序字段若通过索引去访问将大大提高查询速度</li>
+<li>查询中统计或分组字段</li>
+</ul>
+</blockquote>
+<h3 id="8-Explain执行计划"><a href="#8-Explain执行计划" class="headerlink" title="8.Explain执行计划"></a>8.Explain执行计划</h3><blockquote>
+<p>​    两个重要的优化指标：type和extra。key、possiable_keys等</p>
+<ul>
+<li>type：这是重要的列，显示连接使用了何种类型。是较为重要的一个指标，结果值从好到坏依次是：system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL</li>
+</ul>
+<p>​         <strong>一般来说，得保证查询至少达到range级别，最好能达到ref。</strong></p>
+<ul>
+<li><p>Extra：关于MYSQL如何解析查询的额外信息。</p>
+<p>这里可以看到的坏的例子是<strong>Using temporary和Using filesort</strong>，意思MYSQL根本不能使用索引，结果是检索会很慢</p>
+<p><a href="https://www.cnblogs.com/yycc/p/7338894.html" target="_blank" rel="noopener">https://www.cnblogs.com/yycc/p/7338894.html</a></p>
+</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>id</strong></th>
+<th>SELECT识别符。这是SELECT的查询序列号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>select_type</strong></td>
+<td>SELECT类型,可以为以下任何一种:<strong>SIMPLE</strong>:简单SELECT(不使用UNION或子查询)<strong>PRIMARY</strong>:最外面的SELECT</td>
+</tr>
+<tr>
+<td><strong>table</strong></td>
+<td>输出的行所引用的表</td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>联接类型。下面给出各种联接类型,按照从最佳类型到最坏类型进行排序:<strong>system</strong>:表仅有一行(=系统表)。这是const联接类型的一个特例。<strong>const</strong>:表最多有一个匹配行,它将在查询开始时被读取。因为仅有一行,在这行的列值可被优化器剩余部分认为是常数。const表很快,因为它们只读取一次!<strong>eq_ref</strong>:对于每个来自于前面的表的行组合,从该表中读取一行。这可能是最好的联接类型,除了const类型。<strong>ref</strong>:对于每个来自于前面的表的行组合,所有有匹配索引值的行将从这张表中读取。<strong>ref_or_null</strong>:该联接类型如同ref,但是添加了MySQL可以专门搜索包含NULL值的行。<strong>index_merge</strong>:该联接类型表示使用了索引合并优化方法。<strong>unique_subquery</strong>:该类型替换了下面形式的IN子查询的ref: value IN (SELECT primary_key FROM single_table WHERE some_expr) unique_subquery是一个索引查找函数,可以完全替换子查询,效率更高。<strong>index_subquery</strong>:该联接类型类似于unique_subquery。可以替换IN子查询,但只适合下列形式的子查询中的非唯一索引: value IN (SELECT key_column FROM single_table WHERE some_expr)<strong>range</strong>:只检索给定范围的行,使用一个索引来选择行。<strong>index</strong>:该联接类型与ALL相同,除了只有索引树被扫描。这通常比ALL快,因为索引文件通常比数据文件小。<strong>ALL</strong>:对于每个来自于先前的表的行组合,进行完整的表扫描。</td>
+</tr>
+<tr>
+<td><strong>possible_keys</strong></td>
+<td>指出MySQL能使用哪个索引在该表中找到行</td>
+</tr>
+<tr>
+<td><strong>key</strong></td>
+<td>显示MySQL实际决定使用的键(索引)。如果没有选择索引,键是NULL。</td>
+</tr>
+<tr>
+<td><strong>key_len</strong></td>
+<td>显示MySQL决定使用的键长度。如果键是NULL,则长度为NULL。</td>
+</tr>
+<tr>
+<td><strong>ref</strong></td>
+<td>显示使用哪个列或常数与key一起从表中选择行。</td>
+</tr>
+<tr>
+<td><strong>rows</strong></td>
+<td>显示MySQL认为它执行查询时必须检查的行数。多行之间的数据相乘可以估算要处理的行数。</td>
+</tr>
+<tr>
+<td><strong>filtered</strong></td>
+<td>显示了通过条件过滤出的行数的百分比估计值。</td>
+</tr>
+<tr>
+<td><strong>Extra</strong></td>
+<td>该列包含MySQL解决查询的详细信息<strong>Distinct</strong>:MySQL发现第1个匹配行后,停止为当前的行组合搜索更多的行。<strong>Not exists</strong>:MySQL能够对查询进行LEFT JOIN优化,发现1个匹配LEFT JOIN标准的行后,不再为前面的的行组合在该表内检查更多的行。<strong>range checked for each record (index map: #)</strong>:MySQL没有发现好的可以使用的索引,但发现如果来自前面的表的列值已知,可能部分索引可以使用。<strong>Using filesort</strong>:MySQL需要额外的一次传递,以找出如何按排序顺序检索行。<strong>Using index</strong>:从只使用索引树中的信息而不需要进一步搜索读取实际的行来检索表中的列信息。<strong>Using temporary</strong>:为了解决查询,MySQL需要创建一个临时表来容纳结果。<strong>Using where</strong>:WHERE 子句用于限制哪一个行匹配下一个表或发送到客户。<strong>Using sort_union(…), Using union(…), Using intersect(…)</strong>:这些函数说明如何为index_merge联接类型合并索引扫描。<strong>Using index for group-by</strong>:类似于访问表的Using index方式,Using index for group-by表示MySQL发现了一个索引,可以用来查 询GROUP BY或DISTINCT查询的所有列,而不要额外搜索硬盘访问实际的表。</td>
+</tr>
+</tbody></table>
+<h3 id="9-索引失效情况"><a href="#9-索引失效情况" class="headerlink" title="9.索引失效情况"></a>9.索引失效情况</h3><blockquote>
+<ul>
+<li>最好全值匹配</li>
+<li>符合最左前缀原则</li>
+<li>不要在索引列上做任何操作</li>
+<li>is null判断时，索引会失效</li>
+<li>like ‘%abc’这种情况，会导致全表扫描</li>
+</ul>
+</blockquote>
 
-          </div>
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>本文永久链接是：<a href=https://18360732385.github.io/2019/08/12/MySQL%E7%B4%A2%E5%BC%95/>https://18360732385.github.io/2019/08/12/MySQL%E7%B4%A2%E5%BC%95/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
         
       
-    
-  </section>
+        
+          
   
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/MySql/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>MySql</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>数据库</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2019/08/13/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>ZooKeeper入门认知</p>
+                <p class='content'>1.定义
+​    Zookeeper 从设计模式角度来看，是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zo...</p>
+              </a>
+            
+            
+              <a class='next' href='/2019/07/10/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/'>
+                <p class='title'>Bean生命周期<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>1.Bean生命周期阶段及接口
+​    Spring Bean的生命周期有四个阶段：实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁
+​    Bean级生命周期接口：(4个...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
 
   
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'MySQL索引',
+      tools: true
+    }
+  </script>
 
 
 </div>
@@ -826,32 +767,26 @@
   
 
   
-    
-    
-
-  
 
   
     
     
-  
 
-  <section class="widget tagcloud shadow desktop mobile">
+
+  <section class="widget toc-wrapper shadow desktop mobile">
     
   <header>
     
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/MySql/" style="font-size: 14px; color: #999">MySql</a> <a href="/tags/Zookeeper/" style="font-size: 14px; color: #999">Zookeeper</a> <a href="/tags/kafka/" style="font-size: 14px; color: #999">kafka</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 24px; color: #555">中间件</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-B-树"><span class="toc-text">1.B+树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-索引类型"><span class="toc-text">2.索引类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-联合索引"><span class="toc-text">3.联合索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-最左前缀原则"><span class="toc-text">4.最左前缀原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-覆盖索引"><span class="toc-text">5.覆盖索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-MySQL优化"><span class="toc-text">6.MySQL优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-合理建立索引"><span class="toc-text">7.合理建立索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Explain执行计划"><span class="toc-text">8.Explain执行计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-索引失效情况"><span class="toc-text">9.索引失效情况</span></a></li></ol>
     </div>
   </section>
 
-
-  
 
   
 
@@ -1064,6 +999,60 @@
 
 
 
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'false',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
 
 
 
