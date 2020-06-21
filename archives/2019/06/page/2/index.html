@@ -391,8 +391,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
-      Redis持久化
+    <a href="/2019/06/06/Redis%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/">
+      Redis缓存设计问题
     </a>
   </h2>
 
@@ -459,13 +459,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>​    Redis持久化分为RDB持久化和AOF持久化：<strong>前者将当前数据快照保存到硬盘，后者则是将每次执行的写命令保存到硬盘（类似于MySQL的binlog）。</strong></p>
+<p>​    Redis是单线程（伪，IO多路复用），线程安全。</p>
+<p>​    设计一个缓存系统，不得不要考虑的问题就是：<strong>缓存穿透、缓存击穿与失效时的雪崩效应</strong>。</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
+          <a href="/2019/06/06/Redis%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
