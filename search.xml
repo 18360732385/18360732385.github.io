@@ -344,31 +344,6 @@
     
     
     <entry>
-      <title>分布式系ID方案</title>
-      <link href="/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BBID%E6%96%B9%E6%A1%88/"/>
-      <url>/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BBID%E6%96%B9%E6%A1%88/</url>
-      
-        <content type="html"><![CDATA[<h3 id="1—UUID"><a href="#1—UUID" class="headerlink" title="1—UUID"></a>1—UUID</h3><blockquote><p>​    <strong>优点：</strong></p><ul><li><p>代码实现简单</p><a id="more"></a></li><li><p>本机生成，没有性能问题</p></li><li><p>因为是全球唯一的ID，所以迁移数据容易</p><p>​<strong>缺点：</strong></p></li><li><p>每次生成的ID是无序的，无法保证趋势递增</p></li><li><p>UUID的字符串存储，查询效率慢</p></li><li><p>存储空间大</p></li><li><p>ID本事无业务含义，不可读</p></li></ul></blockquote><blockquote><p>​    <strong>应用场景：</strong></p><ul><li>类似生成token令牌的场景</li><li>不适用一些要求有趋势递增的ID场景</li></ul></blockquote><p>###2—获取系统当前时间</p><blockquote><p>​    高并发下，获取系统当前时间可能会存在重复情况，但是我们可以考虑<strong>时间跟很多其他的业务字段拼接起来，作为一个全局唯一id</strong> 。</p><p>​    你可以将别的业务字段值跟当前时间拼接起来，组成一个全局唯一的编号，比如说订单编号：</p><p>​                    <strong>时间戳 + 用户id + 业务含义编码</strong>。</p><p>​    这个方案就是说你每次要获取一个全局唯一id，都往这张表里插一条记录，然后获取一个数据库自增的一个id。然后这个全局唯一id就可以插入订单的分库分表中。</p></blockquote><blockquote><p>​    但这种方案中的拼接字段需要好好思考，并且不适用针对单一对象的高并发情况。例如双十一中某件商品秒杀，一秒内卖出1万件商品（1毫秒就是10件），如果你使用的是 <strong>时间戳 + 商品id + 业务编码</strong> ，那么就会存在10个重复的订单id。</p></blockquote><h3 id="3—mysql多实例主键自增"><a href="#3—mysql多实例主键自增" class="headerlink" title="3—mysql多实例主键自增"></a>3—mysql多实例主键自增</h3><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote><p>​    这个方案就是解决mysql的单点问题，<strong>在auto_increment基本上面，设置step步长</strong> 。</p><p>​    <strong>优点：解决了单点问题</strong></p><p>​    <strong>缺点：一旦把步长定好后，就无法扩容；而且单个数据库的压力大，</strong>数据库自身性能无法满足高并发</p></blockquote><p><img src="http://p1.pstatp.com/large/pgc-image/a80b93ea7dbc4f4e9413b040765fc868" alt="ä½ æ³äºè§£ä¸çº¿å¤§åçåå¸å¼å¯ä¸IDçææ¹æ¡åï¼"></p><h3 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h3><blockquote><p>​    这个方案对数据库的压力很大，是因为<strong>每次生成id都会去请求数据库</strong> ，那我们可不可以<strong>不用每次都去数据库取</strong> ？</p><p>​    我们的思路是把<strong>每次去数据库取一个id</strong> 设计成 <strong>每次取一个id区间段</strong> 。当然这个方案里有很多需要解决的问题，具体可以看这篇文章。</p><p>​    <a href="https://www.toutiao.com/i6682672464708764174/?group_id=6682672464708764174" target="_blank" rel="noopener">https://www.toutiao.com/i6682672464708764174/?group_id=6682672464708764174</a></p></blockquote><p>###4—Redis生成</p><h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote><p>​    利用redis的incr原子性操作自增，一般算法为：<strong>年份 + 当天距当年第多少天 + 天数 + 小时 + redis自增</strong></p><p>​    <strong>优点：</strong> 有序递增，可读性强</p><p>​    <strong>缺点：</strong></p><ul><li>占用带宽，每次要向redis进行请求</li><li>对redis依赖过高，万一挂了，id生成服务就挂了，必须做集群</li><li>由于redis自增，所以可以猜到下一个id是多少，安全性需要考虑</li></ul></blockquote><h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><blockquote><p>​    需求：同时10万个请求获取ID</p><ul><li>并发执行完耗时：9s左右</li><li>单任务平均耗时：74ms</li><li>单线程最小耗时：不到1ms</li><li>单线程最大耗时：4.1s</li></ul></blockquote><h3 id="5—snowflake算法"><a href="#5—snowflake算法" class="headerlink" title="5—snowflake算法"></a>5—snowflake算法</h3><blockquote><p>​    雪花算法的核心思想就是：使用一个64 bit的long型的数字作为全局唯一id，这64个bit中，首位的第1个bit是不用的，然后用其中的41 bit作为毫秒数，用10 bit作为工作机器id，12 bit作为序列号。</p></blockquote><p><img src="http://p3.pstatp.com/large/pgc-image/c7cc4ea5a0b842319d278aa2adcf1036" alt="åäº«ä¸çº¿äºèç½å¤§ååå¸å¼å¯ä¸IDè®¾è®¡ ä¹ snowflakeæ¹æ¡"></p><blockquote><ul><li><p><strong>1位标识符：</strong>始终是0，表示正数（1表示负数），无意义。</p></li><li><p><strong>41位时间戳：</strong>41位时间截不是存储当前时间的时间截，而是<strong>存储时间截的差值（当前时间截 - 开始时间截 )得到的值</strong>，这里的的开始时间截，一般是我们的id生成器开始使用的时间，由我们程序来指定的</p></li><li><p><strong>10位机器标识码：</strong>可以<strong>部署在1024（2 ^ 10 - 1）个节点</strong>，如果机器<strong>分机房（IDC）部署</strong>，这10位可以分成两部分</p><p>​                         <strong>前5位机房ID + 后5位机器ID</strong> </p></li><li><p><strong>12位序列：</strong>毫秒内的计数，就是某个机房某台机器上这一毫秒内同时生成的id的序号。12位的计数顺序号支持每个节点每毫秒(同一机器，同一时间截)产生4096（2 ^ 12 - 1）个ID序号。</p></li></ul></blockquote><h3 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote><p>​    <strong>优点：</strong></p><ul><li>此方案每秒能够产生409.6万个ID，性能快</li><li>时间戳在高位，自增序列在低位，整个ID是趋势递增的，按照时间有序递增</li><li>灵活度高，可以根据业务需求，调整bit位的划分，满足不同的需求</li></ul></blockquote><blockquote><p>​    <strong>缺点：</strong></p><ul><li><p>依赖机器的时钟，如果服务器时钟回拨，会导致重复ID生成</p><p>在分布式场景中，<strong>服务器时钟回拨会经常遇到，一般存在10ms之间的回拨</strong> 。<strong>雪花算法就是建立在毫秒级别的生成方案</strong>，一旦回拨，就很有可能存在重复ID。</p></li></ul></blockquote><h3 id="优化思路-1"><a href="#优化思路-1" class="headerlink" title="优化思路"></a>优化思路</h3><blockquote><p>​    利用zookeeper注册节点，定时比较各个ID生成服务器的时钟，避免服务器时钟回拨问题。</p><p>​    百度开源的分布式ID生成器<strong>UidGenerator</strong>，基于雪花算法，同时解决了服务器时钟回拨问题，可以参考一下：</p><p>​    <a href="https://mp.weixin.qq.com/s/o-bpv_C3t5B_GKcwF_KZ5w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/o-bpv_C3t5B_GKcwF_KZ5w</a></p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> 分布式 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ID生成 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>分布式系统开发设计</title>
       <link href="/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1/"/>
       <url>/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1/</url>
@@ -386,6 +361,31 @@
         <tags>
             
             <tag> 分布式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分布式系ID方案</title>
+      <link href="/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BBID%E6%96%B9%E6%A1%88/"/>
+      <url>/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BBID%E6%96%B9%E6%A1%88/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1—UUID"><a href="#1—UUID" class="headerlink" title="1—UUID"></a>1—UUID</h3><blockquote><p>​    <strong>优点：</strong></p><ul><li><p>代码实现简单</p><a id="more"></a></li><li><p>本机生成，没有性能问题</p></li><li><p>因为是全球唯一的ID，所以迁移数据容易</p><p>​<strong>缺点：</strong></p></li><li><p>每次生成的ID是无序的，无法保证趋势递增</p></li><li><p>UUID的字符串存储，查询效率慢</p></li><li><p>存储空间大</p></li><li><p>ID本事无业务含义，不可读</p></li></ul></blockquote><blockquote><p>​    <strong>应用场景：</strong></p><ul><li>类似生成token令牌的场景</li><li>不适用一些要求有趋势递增的ID场景</li></ul></blockquote><p>###2—获取系统当前时间</p><blockquote><p>​    高并发下，获取系统当前时间可能会存在重复情况，但是我们可以考虑<strong>时间跟很多其他的业务字段拼接起来，作为一个全局唯一id</strong> 。</p><p>​    你可以将别的业务字段值跟当前时间拼接起来，组成一个全局唯一的编号，比如说订单编号：</p><p>​                    <strong>时间戳 + 用户id + 业务含义编码</strong>。</p><p>​    这个方案就是说你每次要获取一个全局唯一id，都往这张表里插一条记录，然后获取一个数据库自增的一个id。然后这个全局唯一id就可以插入订单的分库分表中。</p></blockquote><blockquote><p>​    但这种方案中的拼接字段需要好好思考，并且不适用针对单一对象的高并发情况。例如双十一中某件商品秒杀，一秒内卖出1万件商品（1毫秒就是10件），如果你使用的是 <strong>时间戳 + 商品id + 业务编码</strong> ，那么就会存在10个重复的订单id。</p></blockquote><h3 id="3—mysql多实例主键自增"><a href="#3—mysql多实例主键自增" class="headerlink" title="3—mysql多实例主键自增"></a>3—mysql多实例主键自增</h3><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote><p>​    这个方案就是解决mysql的单点问题，<strong>在auto_increment基本上面，设置step步长</strong> 。</p><p>​    <strong>优点：解决了单点问题</strong></p><p>​    <strong>缺点：一旦把步长定好后，就无法扩容；而且单个数据库的压力大，</strong>数据库自身性能无法满足高并发</p></blockquote><p><img src="http://p1.pstatp.com/large/pgc-image/a80b93ea7dbc4f4e9413b040765fc868" alt="ä½ æ³äºè§£ä¸çº¿å¤§åçåå¸å¼å¯ä¸IDçææ¹æ¡åï¼"></p><h3 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h3><blockquote><p>​    这个方案对数据库的压力很大，是因为<strong>每次生成id都会去请求数据库</strong> ，那我们可不可以<strong>不用每次都去数据库取</strong> ？</p><p>​    我们的思路是把<strong>每次去数据库取一个id</strong> 设计成 <strong>每次取一个id区间段</strong> 。当然这个方案里有很多需要解决的问题，具体可以看这篇文章。</p><p>​    <a href="https://www.toutiao.com/i6682672464708764174/?group_id=6682672464708764174" target="_blank" rel="noopener">https://www.toutiao.com/i6682672464708764174/?group_id=6682672464708764174</a></p></blockquote><p>###4—Redis生成</p><h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote><p>​    利用redis的incr原子性操作自增，一般算法为：<strong>年份 + 当天距当年第多少天 + 天数 + 小时 + redis自增</strong></p><p>​    <strong>优点：</strong> 有序递增，可读性强</p><p>​    <strong>缺点：</strong></p><ul><li>占用带宽，每次要向redis进行请求</li><li>对redis依赖过高，万一挂了，id生成服务就挂了，必须做集群</li><li>由于redis自增，所以可以猜到下一个id是多少，安全性需要考虑</li></ul></blockquote><h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><blockquote><p>​    需求：同时10万个请求获取ID</p><ul><li>并发执行完耗时：9s左右</li><li>单任务平均耗时：74ms</li><li>单线程最小耗时：不到1ms</li><li>单线程最大耗时：4.1s</li></ul></blockquote><h3 id="5—snowflake算法"><a href="#5—snowflake算法" class="headerlink" title="5—snowflake算法"></a>5—snowflake算法</h3><blockquote><p>​    雪花算法的核心思想就是：使用一个64 bit的long型的数字作为全局唯一id，这64个bit中，首位的第1个bit是不用的，然后用其中的41 bit作为毫秒数，用10 bit作为工作机器id，12 bit作为序列号。</p></blockquote><p><img src="http://p3.pstatp.com/large/pgc-image/c7cc4ea5a0b842319d278aa2adcf1036" alt="åäº«ä¸çº¿äºèç½å¤§ååå¸å¼å¯ä¸IDè®¾è®¡ ä¹ snowflakeæ¹æ¡"></p><blockquote><ul><li><p><strong>1位标识符：</strong>始终是0，表示正数（1表示负数），无意义。</p></li><li><p><strong>41位时间戳：</strong>41位时间截不是存储当前时间的时间截，而是<strong>存储时间截的差值（当前时间截 - 开始时间截 )得到的值</strong>，这里的的开始时间截，一般是我们的id生成器开始使用的时间，由我们程序来指定的</p></li><li><p><strong>10位机器标识码：</strong>可以<strong>部署在1024（2 ^ 10 - 1）个节点</strong>，如果机器<strong>分机房（IDC）部署</strong>，这10位可以分成两部分</p><p>​                         <strong>前5位机房ID + 后5位机器ID</strong> </p></li><li><p><strong>12位序列：</strong>毫秒内的计数，就是某个机房某台机器上这一毫秒内同时生成的id的序号。12位的计数顺序号支持每个节点每毫秒(同一机器，同一时间截)产生4096（2 ^ 12 - 1）个ID序号。</p></li></ul></blockquote><h3 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote><p>​    <strong>优点：</strong></p><ul><li>此方案每秒能够产生409.6万个ID，性能快</li><li>时间戳在高位，自增序列在低位，整个ID是趋势递增的，按照时间有序递增</li><li>灵活度高，可以根据业务需求，调整bit位的划分，满足不同的需求</li></ul></blockquote><blockquote><p>​    <strong>缺点：</strong></p><ul><li><p>依赖机器的时钟，如果服务器时钟回拨，会导致重复ID生成</p><p>在分布式场景中，<strong>服务器时钟回拨会经常遇到，一般存在10ms之间的回拨</strong> 。<strong>雪花算法就是建立在毫秒级别的生成方案</strong>，一旦回拨，就很有可能存在重复ID。</p></li></ul></blockquote><h3 id="优化思路-1"><a href="#优化思路-1" class="headerlink" title="优化思路"></a>优化思路</h3><blockquote><p>​    利用zookeeper注册节点，定时比较各个ID生成服务器的时钟，避免服务器时钟回拨问题。</p><p>​    百度开源的分布式ID生成器<strong>UidGenerator</strong>，基于雪花算法，同时解决了服务器时钟回拨问题，可以参考一下：</p><p>​    <a href="https://mp.weixin.qq.com/s/o-bpv_C3t5B_GKcwF_KZ5w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/o-bpv_C3t5B_GKcwF_KZ5w</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 分布式 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ID生成 </tag>
             
         </tags>
       
@@ -1299,6 +1299,31 @@
     
     
     <entry>
+      <title>Redis持久化</title>
+      <link href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/"/>
+      <url>/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>​    Redis持久化分为RDB持久化和AOF持久化：<strong>前者将当前数据快照保存到硬盘，后者则是将每次执行的写命令保存到硬盘（类似于MySQL的binlog）。</strong></p><a id="more"></a><p>​    由于AOF持久化的实时性更好，即当进程意外退出时丢失的数据更少，因此AOF是目前主流的持久化方式，不过RDB持久化仍然有其用武之地。</p></blockquote><h3 id="RDB快照"><a href="#RDB快照" class="headerlink" title="RDB快照"></a>RDB快照</h3><h4 id="1-触发命令"><a href="#1-触发命令" class="headerlink" title="1.触发命令"></a>1.触发命令</h4><blockquote><p>​    当Redis重新启动时，可以读取快照文件恢复数据。RDB持久化可以分为手动触发和自动触发两种。</p><p>​    save命令和bgsave命令都可以生成RDB文件：</p><ul><li><p>save命令会阻塞Redis服务器进程，直到RDB文件创建完毕。这段期间，服务器不能处理任何命令请求。</p></li><li><p><strong>bgsave命令</strong>会创建一个子进程，由子进程来负责创建RDB文件，父进程(即Redis主进程)则继续处理请求。<strong>bgsave命令执行过程中，只有fork子进程时会阻塞服务器。</strong></p><p>​</p><p>除了配置自动触发save m n 命令以外，还有一些其他情况会触发bgsave：</p></li><li><p>在主从复制场景下，如果从节点执行全量复制操作，则主节点会执行bgsave命令，并将rdb文件发送给从节点</p></li><li><p>执行shutdown命令时，自动执行rdb持久化</p></li></ul></blockquote><h4 id="2-执行流程"><a href="#2-执行流程" class="headerlink" title="2.执行流程"></a>2.执行流程</h4><p><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180605085813461-389677620.png" alt=""></p><blockquote><p>​    图片中的5个步骤所进行的操作如下：</p><ol><li>Redis父进程首先判断：当前是否在执行save，或bgsave/bgrewriteaof（AOF重写）的子进程，如果在执行则bgsave命令直接返回。bgsave/bgrewriteaof 的子进程不能同时执行，主要是基于性能方面的考虑：两个并发的子进程同时执行大量的磁盘写操作，可能引起严重的性能问题。</li><li><strong>父进程执行fork操作创建子进程，这个过程中父进程是阻塞的，Redis不能执行来自客户端的任何命令</strong></li><li>父进程fork后，bgsave命令返回”Background saving started”信息并不再阻塞父进程，并可以响应其他命令</li><li>子进程创建RDB文件，根据父进程内存快照生成临时快照文件，完成后对原有文件进行原子替换</li><li>子进程发送信号给父进程表示完成，父进程更新统计信息</li></ol></blockquote><h3 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h3><h4 id="1-执行流程"><a href="#1-执行流程" class="headerlink" title="1.执行流程"></a>1.执行流程</h4><blockquote><p>​    由于需要记录Redis的每条写命令，因此AOF不需要触发。AOF的执行流程包括：</p><ul><li>命令追加(append)：将Redis的写命令追加到缓冲区aof_buf；</li><li>文件写入(write)和文件同步(sync)：根据不同的同步策略将aof_buf中的内容同步到硬盘；</li><li>文件重写(rewrite)：定期重写AOF文件，达到压缩的目的。</li></ul></blockquote><h4 id="2-文件重写"><a href="#2-文件重写" class="headerlink" title="2.文件重写"></a>2.文件重写</h4><blockquote><p>​    <strong>AOF重写是把Redis进程内的数据转化为写命令，同步到新的AOF文件。不会对旧AOF文件进行任何读取、写入操作!</strong></p><p>​    文件重写的触发，分为手动触发和自动触发：</p><p>​    手动触发时，直接调用<strong>bgrewriteaof</strong>命令，该命令的执行与bgsave有些类似：都是fork子进程进行具体的工作，且都只有在fork时阻塞。</p></blockquote><h4 id="3-文件重写流程"><a href="#3-文件重写流程" class="headerlink" title="3.文件重写流程"></a>3.文件重写流程</h4><p><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180605092001589-1724580361.png" alt=""></p><blockquote><p>​    文件重写的流程如下：</p><ol><li><p>Redis父进程首先判断当前是否存在正在执行 bgsave/bgrewriteaof的子进程，如果存在则bgrewriteaof命令直接返回，如果存在bgsave命令则等bgsave执行完成后再执行。前面曾介绍过，这个主要是基于性能方面的考虑。</p></li><li><p><strong>父进程执行fork操作创建子进程，这个过程中父进程是阻塞的。</strong></p></li><li><p>3.1) 父进程fork后，bgrewriteaof命令返回”Background append only file rewrite started”信息并不再阻塞父进程，并可以响应其他命令。<strong>Redis的所有写命令依然写入AOF缓冲区，并根据appendfsync策略同步到硬盘，保证原有AOF机制的正确。</strong></p><p>3.2) 由于fork操作使用写时复制技术，子进程只能共享fork操作时的内存数据。<strong>由于父进程依然在响应命令，因此Redis使用AOF重写缓冲区(图中的aof_rewrite_buf)保存这部分数据，防止新AOF文件生成期间丢失这部分数据。也就是说，bgrewriteaof执行期间，Redis的写命令同时追加到aof_buf和aof_rewirte_buf两个缓冲区。</strong></p></li><li><p>子进程根据内存快照，按照命令合并规则写入到新的AOF文件。</p></li><li><p>5.1) 子进程写完新的AOF文件后，向父进程发信号，父进程更新统计信息，具体可以通过info persistence查看。</p><p>5.2) <strong>父进程把AOF重写缓冲区的数据写入到新的AOF文件，这样就保证了新AOF文件所保存的数据库状态和服务器当前状态一致。</strong></p><p>5.3) 使用新的AOF文件替换老文件，完成AOF重写。</p><p>​</p></li></ol></blockquote><blockquote><p>​    关于文件重写的流程，有两点需要特别注意：</p><ul><li>重写由父进程fork子进程进行；</li><li>重写期间Redis执行的写命令，需要追加到新的AOF文件中，为此Redis引入了aof_rewrite_buf缓存。</li></ul></blockquote><h3 id="混合持久化"><a href="#混合持久化" class="headerlink" title="混合持久化"></a>混合持久化</h3><blockquote><p>​    重启 Redis 时，我们很少使用 RDB来恢复内存状态，因为会丢失大量数据。我们通常使用 AOF 日志重放，但是重放 AOF 日志性能相对 RDB来说要慢很多，这样在 Redis 实例很大的情况下，启动需要花费很长的时间。</p><p>​    <strong>Redis 4.0</strong> 为了解决这个问题，带来了一个新的持久化选项——<strong>混合持久化</strong>。将 RDB文件的内容和增量的 AOF 日志文件存在一起。这里的 AOF 日志不再是全量的日志，而是 <strong>自持久化开始到持久化结束</strong> 的这段时间发生的增量 AOF 日志，通常这部分 AOF 日志很小。</p><p>​    于是在 Redis 重启的时候，可以先加载 <code>rdb</code> 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，重启效率因此大幅得到提升。</p></blockquote><p><img src="https://upload-images.jianshu.io/upload_images/7896890-2f7887f84eaa34d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Redis缓存设计问题</title>
       <link href="/2019/06/06/Redis%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/"/>
       <url>/2019/06/06/Redis%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/</url>
@@ -1318,31 +1343,6 @@
             <tag> Redis </tag>
             
             <tag> 缓存 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Redis持久化</title>
-      <link href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/"/>
-      <url>/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p>​    Redis持久化分为RDB持久化和AOF持久化：<strong>前者将当前数据快照保存到硬盘，后者则是将每次执行的写命令保存到硬盘（类似于MySQL的binlog）。</strong></p><a id="more"></a><p>​    由于AOF持久化的实时性更好，即当进程意外退出时丢失的数据更少，因此AOF是目前主流的持久化方式，不过RDB持久化仍然有其用武之地。</p></blockquote><h3 id="RDB快照"><a href="#RDB快照" class="headerlink" title="RDB快照"></a>RDB快照</h3><h4 id="1-触发命令"><a href="#1-触发命令" class="headerlink" title="1.触发命令"></a>1.触发命令</h4><blockquote><p>​    当Redis重新启动时，可以读取快照文件恢复数据。RDB持久化可以分为手动触发和自动触发两种。</p><p>​    save命令和bgsave命令都可以生成RDB文件：</p><ul><li><p>save命令会阻塞Redis服务器进程，直到RDB文件创建完毕。这段期间，服务器不能处理任何命令请求。</p></li><li><p><strong>bgsave命令</strong>会创建一个子进程，由子进程来负责创建RDB文件，父进程(即Redis主进程)则继续处理请求。<strong>bgsave命令执行过程中，只有fork子进程时会阻塞服务器。</strong></p><p>​</p><p>除了配置自动触发save m n 命令以外，还有一些其他情况会触发bgsave：</p></li><li><p>在主从复制场景下，如果从节点执行全量复制操作，则主节点会执行bgsave命令，并将rdb文件发送给从节点</p></li><li><p>执行shutdown命令时，自动执行rdb持久化</p></li></ul></blockquote><h4 id="2-执行流程"><a href="#2-执行流程" class="headerlink" title="2.执行流程"></a>2.执行流程</h4><p><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180605085813461-389677620.png" alt=""></p><blockquote><p>​    图片中的5个步骤所进行的操作如下：</p><ol><li>Redis父进程首先判断：当前是否在执行save，或bgsave/bgrewriteaof（AOF重写）的子进程，如果在执行则bgsave命令直接返回。bgsave/bgrewriteaof 的子进程不能同时执行，主要是基于性能方面的考虑：两个并发的子进程同时执行大量的磁盘写操作，可能引起严重的性能问题。</li><li><strong>父进程执行fork操作创建子进程，这个过程中父进程是阻塞的，Redis不能执行来自客户端的任何命令</strong></li><li>父进程fork后，bgsave命令返回”Background saving started”信息并不再阻塞父进程，并可以响应其他命令</li><li>子进程创建RDB文件，根据父进程内存快照生成临时快照文件，完成后对原有文件进行原子替换</li><li>子进程发送信号给父进程表示完成，父进程更新统计信息</li></ol></blockquote><h3 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h3><h4 id="1-执行流程"><a href="#1-执行流程" class="headerlink" title="1.执行流程"></a>1.执行流程</h4><blockquote><p>​    由于需要记录Redis的每条写命令，因此AOF不需要触发。AOF的执行流程包括：</p><ul><li>命令追加(append)：将Redis的写命令追加到缓冲区aof_buf；</li><li>文件写入(write)和文件同步(sync)：根据不同的同步策略将aof_buf中的内容同步到硬盘；</li><li>文件重写(rewrite)：定期重写AOF文件，达到压缩的目的。</li></ul></blockquote><h4 id="2-文件重写"><a href="#2-文件重写" class="headerlink" title="2.文件重写"></a>2.文件重写</h4><blockquote><p>​    <strong>AOF重写是把Redis进程内的数据转化为写命令，同步到新的AOF文件。不会对旧AOF文件进行任何读取、写入操作!</strong></p><p>​    文件重写的触发，分为手动触发和自动触发：</p><p>​    手动触发时，直接调用<strong>bgrewriteaof</strong>命令，该命令的执行与bgsave有些类似：都是fork子进程进行具体的工作，且都只有在fork时阻塞。</p></blockquote><h4 id="3-文件重写流程"><a href="#3-文件重写流程" class="headerlink" title="3.文件重写流程"></a>3.文件重写流程</h4><p><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180605092001589-1724580361.png" alt=""></p><blockquote><p>​    文件重写的流程如下：</p><ol><li><p>Redis父进程首先判断当前是否存在正在执行 bgsave/bgrewriteaof的子进程，如果存在则bgrewriteaof命令直接返回，如果存在bgsave命令则等bgsave执行完成后再执行。前面曾介绍过，这个主要是基于性能方面的考虑。</p></li><li><p><strong>父进程执行fork操作创建子进程，这个过程中父进程是阻塞的。</strong></p></li><li><p>3.1) 父进程fork后，bgrewriteaof命令返回”Background append only file rewrite started”信息并不再阻塞父进程，并可以响应其他命令。<strong>Redis的所有写命令依然写入AOF缓冲区，并根据appendfsync策略同步到硬盘，保证原有AOF机制的正确。</strong></p><p>3.2) 由于fork操作使用写时复制技术，子进程只能共享fork操作时的内存数据。<strong>由于父进程依然在响应命令，因此Redis使用AOF重写缓冲区(图中的aof_rewrite_buf)保存这部分数据，防止新AOF文件生成期间丢失这部分数据。也就是说，bgrewriteaof执行期间，Redis的写命令同时追加到aof_buf和aof_rewirte_buf两个缓冲区。</strong></p></li><li><p>子进程根据内存快照，按照命令合并规则写入到新的AOF文件。</p></li><li><p>5.1) 子进程写完新的AOF文件后，向父进程发信号，父进程更新统计信息，具体可以通过info persistence查看。</p><p>5.2) <strong>父进程把AOF重写缓冲区的数据写入到新的AOF文件，这样就保证了新AOF文件所保存的数据库状态和服务器当前状态一致。</strong></p><p>5.3) 使用新的AOF文件替换老文件，完成AOF重写。</p><p>​</p></li></ol></blockquote><blockquote><p>​    关于文件重写的流程，有两点需要特别注意：</p><ul><li>重写由父进程fork子进程进行；</li><li>重写期间Redis执行的写命令，需要追加到新的AOF文件中，为此Redis引入了aof_rewrite_buf缓存。</li></ul></blockquote><h3 id="混合持久化"><a href="#混合持久化" class="headerlink" title="混合持久化"></a>混合持久化</h3><blockquote><p>​    重启 Redis 时，我们很少使用 RDB来恢复内存状态，因为会丢失大量数据。我们通常使用 AOF 日志重放，但是重放 AOF 日志性能相对 RDB来说要慢很多，这样在 Redis 实例很大的情况下，启动需要花费很长的时间。</p><p>​    <strong>Redis 4.0</strong> 为了解决这个问题，带来了一个新的持久化选项——<strong>混合持久化</strong>。将 RDB文件的内容和增量的 AOF 日志文件存在一起。这里的 AOF 日志不再是全量的日志，而是 <strong>自持久化开始到持久化结束</strong> 的这段时间发生的增量 AOF 日志，通常这部分 AOF 日志很小。</p><p>​    于是在 Redis 重启的时候，可以先加载 <code>rdb</code> 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，重启效率因此大幅得到提升。</p></blockquote><p><img src="https://upload-images.jianshu.io/upload_images/7896890-2f7887f84eaa34d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Redis </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
             
         </tags>
       
