@@ -392,8 +392,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/09/23/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%A6%82%E5%BF%B5/">
-      分布式锁和分布式事务概念
+    <a href="/2019/08/20/IO%E6%A8%A1%E5%BC%8F/">
+      IO模式
     </a>
   </h2>
 
@@ -417,12 +417,7 @@
             
               
   
-  <div class='new-meta-item category'>
-    <a href='/categories/%E5%88%86%E5%B8%83%E5%BC%8F/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>分布式</p>
-    </a>
-  </div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/IO%E6%A8%A1%E5%BC%8F/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>IO模式</p></a></div>
 
 
             
@@ -431,7 +426,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年9月23日</p>
+    <p>发布于：2019年8月20日</p>
   </a>
 </div>
 
@@ -459,14 +454,13 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><blockquote>
-<p>​    单进程的系统中，存在多线程同时操作一个公共变量，此时需要加锁对变量进行同步操作，保证多线程的操作线性执行消除并发修改。<strong>解决的是单机中的多线程并发问题。</strong></p>
+        <h3 id="什么是IO访问"><a href="#什么是IO访问" class="headerlink" title="什么是IO访问"></a>什么是IO访问</h3><p>​    对于一次IO访问（以read举例），数据会先被拷贝到操作系统内核的缓冲区中，然后才会从操作系统内核的缓冲区拷贝到应用程序的内存地址空间。所以说，当一个read操作发生时，它会经历两个阶段：</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/09/23/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%A6%82%E5%BF%B5/">
+          <a href="/2019/08/20/IO%E6%A8%A1%E5%BC%8F/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -492,8 +486,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BBID%E6%96%B9%E6%A1%88/">
-      分布式系ID方案
+    <a href="/2019/08/18/List%E5%8E%BB%E9%87%8D%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/">
+      List去重的几种方法
     </a>
   </h2>
 
@@ -517,12 +511,7 @@
             
               
   
-  <div class='new-meta-item category'>
-    <a href='/categories/%E5%88%86%E5%B8%83%E5%BC%8F/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>分布式</p>
-    </a>
-  </div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Java基础</p></a></div>
 
 
             
@@ -531,7 +520,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年9月22日</p>
+    <p>发布于：2019年8月18日</p>
   </a>
 </div>
 
@@ -559,16 +548,13 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1—UUID"><a href="#1—UUID" class="headerlink" title="1—UUID"></a>1—UUID</h3><blockquote>
-<p>​    <strong>优点：</strong></p>
-<ul>
-<li><p>代码实现简单</p>
+        <h3 id="使用HashSet-TreetSet"><a href="#使用HashSet-TreetSet" class="headerlink" title="使用HashSet/TreetSet"></a>使用HashSet/TreetSet</h3>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BBID%E6%96%B9%E6%A1%88/">
+          <a href="/2019/08/18/List%E5%8E%BB%E9%87%8D%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -594,8 +580,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1/">
-      分布式系统开发设计
+    <a href="/2019/08/18/%E6%89%8B%E5%86%99%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">
+      手写双向链表
     </a>
   </h2>
 
@@ -619,12 +605,7 @@
             
               
   
-  <div class='new-meta-item category'>
-    <a href='/categories/%E5%88%86%E5%B8%83%E5%BC%8F/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>分布式</p>
-    </a>
-  </div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>算法</p></a></div>
 
 
             
@@ -633,7 +614,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年9月22日</p>
+    <p>发布于：2019年8月18日</p>
   </a>
 </div>
 
@@ -661,15 +642,396 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###（1）分布式服务框架</p>
+        <h3 id="如何手写一个双向链表"><a href="#如何手写一个双向链表" class="headerlink" title="如何手写一个双向链表"></a>如何手写一个双向链表</h3>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2019/08/18/%E6%89%8B%E5%86%99%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2019/08/16/Linux%E4%B8%8B%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%E5%91%BD%E4%BB%A4/">
+      Linux下查看日志命令
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B7%A5%E5%85%B7/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>工具</p></a></div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2019年8月16日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实时监控日志"><a href="#实时监控日志" class="headerlink" title="实时监控日志"></a>实时监控日志</h3>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2019/08/16/Linux%E4%B8%8B%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%E5%91%BD%E4%BB%A4/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2019/08/15/IDEA%E6%8F%92%E4%BB%B6%E5%92%8C%E6%A8%A1%E6%9D%BF/">
+      IDEA插件和模板
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Idea/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Idea</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B7%A5%E5%85%B7/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>工具</p></a></div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2019年8月15日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="Alibaba-Java-Code-Guidelines"><a href="#Alibaba-Java-Code-Guidelines" class="headerlink" title="Alibaba Java Code Guidelines"></a>Alibaba Java Code Guidelines</h3><blockquote>
+<p>​    阿里巴巴 Java 代码规范，安装后切换中文提示，关闭自动扫描代码</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2019/08/15/IDEA%E6%8F%92%E4%BB%B6%E5%92%8C%E6%A8%A1%E6%9D%BF/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2019/08/13/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/">
+      ZooKeeper入门认知
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>中间件</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Zookeeper/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Zookeeper</p></a></div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2019年8月13日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h3><blockquote>
+<p>​    Zookeeper 从设计模式角度来看，是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper 就将负责通知已经在 Zookeeper 上注册的那些</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2019/08/13/ZooKeeper%E5%85%A5%E9%97%A8%E8%AE%A4%E7%9F%A5/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2019/08/12/MySQL%E7%B4%A2%E5%BC%95/">
+      MySQL索引
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/MySql/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>MySql</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>数据库</p></a></div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2019年8月12日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    索引就是为了提高数据查询的效率，采用的一种数据结构，以文件形式存储在磁盘上，索引主要有：</p>
 <blockquote>
-<p>​    你如果要让不同的子系统或者服务之间互相通信，首先必须有一套分布式服务框架。也就是各个服务可以互相感知到对方在哪里，可以发送请求过去，可以通过HTTP或者RPC的方式。</p>
+<ul>
+<li>哈希索引：<strong>不适合做区间查询，适用于只有等值查询</strong>的场景</li>
+<li>有序数组：<strong>修改成本很高</strong>，只适用于<strong>静态存储引擎</strong>，即数据表一旦建立后不再会修改。</li>
+</ul>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1/">
+          <a href="/2019/08/12/MySQL%E7%B4%A2%E5%BC%95/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -695,8 +1057,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/09/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E5%92%8C%E9%9B%86%E7%BE%A4%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9/">
-      微服务、分布式和集群的异同点
+    <a href="/2019/08/05/fastJson%E7%94%A8%E6%B3%95/">
+      fastJson用法
     </a>
   </h2>
 
@@ -720,12 +1082,7 @@
             
               
   
-  <div class='new-meta-item category'>
-    <a href='/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>分布式/微服务</p>
-    </a>
-  </div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B7%A5%E5%85%B7/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>工具</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/FastJson/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>FastJson</p></a></div>
 
 
             
@@ -734,7 +1091,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年9月22日</p>
+    <p>发布于：2019年8月5日</p>
   </a>
 </div>
 
@@ -762,115 +1119,13 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><blockquote>
-<p>​    <strong>集群是一种系统部署方式。</strong></p>
-<p>​    集群是指将多台服务器集中在一起，每台服务器都是一个<strong>完整的单体应用</strong> ，实现了相同的业务，做相同的事情。这也保</p>
+        <h3 id="测试类Student"><a href="#测试类Student" class="headerlink" title="测试类Student"></a>测试类Student</h3>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/09/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E5%92%8C%E9%9B%86%E7%BE%A4%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2019/09/21/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/">
-      分布式事务方案
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
-    <p>明菜</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/%E5%88%86%E5%B8%83%E5%BC%8F/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>分布式</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年9月21日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="两阶段提交（2PC）"><a href="#两阶段提交（2PC）" class="headerlink" title="两阶段提交（2PC）"></a>两阶段提交（2PC）</h3><blockquote>
-<p>​    2PC通过引入协调者（Coordinator）来协调参与者的行为，并最终决定这些参与者是否要真正执行事务。两阶段是准备阶段和提交阶段。</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2019/09/21/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/">
+          <a href="/2019/08/05/fastJson%E7%94%A8%E6%B3%95/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -896,7 +1151,7 @@
           </a>
         
         <p class="current">
-          4 / 10
+          4 / 9
         </p>
         
           <a class="next" rel="next" href="/page/5/">
@@ -1008,6 +1263,11 @@
             title="/categories/Java%E5%B9%B6%E5%8F%91/" href="/categories/Java%E5%B9%B6%E5%8F%91/"
             id="categoriesJavaE5B9B6E58F91"
             ><div class='name'>Java并发</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/MyBatis/" href="/categories/MyBatis/"
+            id="categoriesMyBatis"
+            ><div class='name'>MyBatis</div><div class='badge'>(16)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Redis/" href="/categories/Redis/"
