@@ -391,8 +391,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B04.resultMap%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
-      Mybatis实战笔记4.resultMap的简单使用
+    <a href="/2019/06/15/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B011.%E6%AF%94%E8%BE%83%E5%85%A8%E7%9A%84%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%EF%BC%88%E8%AE%A2%E5%8D%95%E7%AE%A1%E7%90%86%E5%91%98%E6%9F%A5%E7%9C%8B%5B%E4%BB%8A%E5%A4%A9%5D%E6%89%80%E6%9C%89%E8%AE%A2%E5%8D%95,%20%E5%8F%8A%E5%85%B6%E8%AF%A6%E7%BB%86%E6%83%85%E5%86%B5%20-%20%E6%89%93%E5%8C%85%E5%BF%AB%E9%80%92%EF%BC%89/">
+      Mybatis实战笔记11.比较全的多表查询（订单管理员查看[今天]所有订单, 及其详细情况 - 打包快递）
     </a>
   </h2>
 
@@ -422,7 +422,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年6月6日</p>
+    <p>发布于：2019年6月15日</p>
   </a>
 </div>
 
@@ -456,7 +456,7 @@
     
       
         <div class="button readmore">
-          <a href="/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B04.resultMap%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
+          <a href="/2019/06/15/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B011.%E6%AF%94%E8%BE%83%E5%85%A8%E7%9A%84%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%EF%BC%88%E8%AE%A2%E5%8D%95%E7%AE%A1%E7%90%86%E5%91%98%E6%9F%A5%E7%9C%8B%5B%E4%BB%8A%E5%A4%A9%5D%E6%89%80%E6%9C%89%E8%AE%A2%E5%8D%95,%20%E5%8F%8A%E5%85%B6%E8%AF%A6%E7%BB%86%E6%83%85%E5%86%B5%20-%20%E6%89%93%E5%8C%85%E5%BF%AB%E9%80%92%EF%BC%89/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -482,8 +482,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/06/Redis%E5%88%86%E6%AE%B5%E9%94%81%E4%BC%98%E5%8C%96/">
-      Redis分段锁优化
+    <a href="/2019/06/14/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B010.%E6%87%92%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%EF%BC%88%E6%BC%94%E5%8F%98%EF%BC%9A%E7%AE%A1%E7%90%86%E5%91%98%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%E5%8F%8A%E5%85%B6%E8%AE%A2%E5%8D%95%EF%BC%89/">
+      Mybatis实战笔记10.懒加载机制（演变：管理员查询用户及其订单）
     </a>
   </h2>
 
@@ -506,9 +506,6 @@
           
             
               
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>分布式</p></a></div>
-
 
             
           
@@ -516,7 +513,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年6月6日</p>
+    <p>发布于：2019年6月14日</p>
   </a>
 </div>
 
@@ -544,15 +541,13 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    作为分布式锁，多应用在多服务器针对某一公共资源的竞争问题上，例如电商业务中的库存超卖、秒杀场景中。</p>
-<blockquote>
-<p>​    库存超卖问题是有很多种技术解决方案的，比如<strong>悲观锁，分布式锁，乐观锁，队列串行化，Redis原子操作</strong>等等。</p>
+        <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/06/Redis%E5%88%86%E6%AE%B5%E9%94%81%E4%BC%98%E5%8C%96/">
+          <a href="/2019/06/14/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B010.%E6%87%92%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%EF%BC%88%E6%BC%94%E5%8F%98%EF%BC%9A%E7%AE%A1%E7%90%86%E5%91%98%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%E5%8F%8A%E5%85%B6%E8%AE%A2%E5%8D%95%EF%BC%89/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -578,8 +573,281 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/06/Redis%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/">
-      Redis缓存设计问题
+    <a href="/2019/06/13/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B09.%E5%BC%80%E5%90%AF%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%EF%BC%9Acache/">
+      Mybatis实战笔记9.开启二级缓存：cache
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2019年6月13日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2019/06/13/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B09.%E5%BC%80%E5%90%AF%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%EF%BC%9Acache/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2019/06/11/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B08.%E8%87%AA%E5%A2%9E%E9%95%BF%E4%B8%BB%E9%94%AE%E8%BF%94%E5%9B%9E/">
+      Mybatis实战笔记8.自增长主键返回
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2019年6月11日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2019/06/11/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B08.%E8%87%AA%E5%A2%9E%E9%95%BF%E4%B8%BB%E9%94%AE%E8%BF%94%E5%9B%9E/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2019/06/10/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B07.%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/">
+      Mybatis实战笔记7.模糊查询
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2019年6月10日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2019/06/10/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B07.%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2019/06/10/%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/">
+      可靠消息最终一致性方案
     </a>
   </h2>
 
@@ -603,7 +871,7 @@
             
               
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BC%93%E5%AD%98/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>缓存</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>事务</p></a></div>
 
 
             
@@ -612,7 +880,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年6月6日</p>
+    <p>发布于：2019年6月10日</p>
   </a>
 </div>
 
@@ -641,14 +909,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>​    Redis是单线程（伪，IO多路复用），线程安全。</p>
-<p>​    设计一个缓存系统，不得不要考虑的问题就是：<strong>缓存穿透、缓存击穿与失效时的雪崩效应</strong>。</p>
+<p>​    针对基于MQ的异步调用，如何保证各个服务间的分布式事务呢？使多个服务的业务逻辑，要么一起成功，要么一起失败。</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/06/Redis%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/">
+          <a href="/2019/06/10/%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -674,103 +941,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
-      Redis持久化
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
-    <p>明菜</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年6月6日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>​    Redis持久化分为RDB持久化和AOF持久化：<strong>前者将当前数据快照保存到硬盘，后者则是将每次执行的写命令保存到硬盘（类似于MySQL的binlog）。</strong></p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2019/06/05/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B02.%E7%AE%80%E5%8D%95%E7%9A%84parameterType%E5%92%8CresultType%E4%BB%8B%E7%BB%8D/">
-      Mybatis实战笔记2.简单的parameterType和resultType介绍
+    <a href="/2019/06/09/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B06.resultMap%E7%9A%84%E7%BB%A7%E6%89%BF%E5%92%8Ccollection%E7%9A%84%E4%BD%BF%E7%94%A8/">
+      Mybatis实战笔记6.resultMap的继承和collection的使用
     </a>
   </h2>
 
@@ -800,7 +972,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年6月5日</p>
+    <p>发布于：2019年6月9日</p>
   </a>
 </div>
 
@@ -834,7 +1006,7 @@
     
       
         <div class="button readmore">
-          <a href="/2019/06/05/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B02.%E7%AE%80%E5%8D%95%E7%9A%84parameterType%E5%92%8CresultType%E4%BB%8B%E7%BB%8D/">
+          <a href="/2019/06/09/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B06.resultMap%E7%9A%84%E7%BB%A7%E6%89%BF%E5%92%8Ccollection%E7%9A%84%E4%BD%BF%E7%94%A8/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -860,8 +1032,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/04/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B01.SqlMapConfig.xml%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/">
-      Mybatis实战笔记1.SqlMapConfig.xml文件配置
+    <a href="/2019/06/07/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B05.%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E3%80%81%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%EF%BC%88resultMap%EF%BC%89/">
+      Mybatis实战笔记5.多表查询、关联查询（resultMap）
     </a>
   </h2>
 
@@ -891,7 +1063,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年6月4日</p>
+    <p>发布于：2019年6月7日</p>
   </a>
 </div>
 
@@ -925,196 +1097,7 @@
     
       
         <div class="button readmore">
-          <a href="/2019/06/04/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B01.SqlMapConfig.xml%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/">
-      JVM内存区
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
-    <p>明菜</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JVM/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>JVM</p></a></div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年6月2日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="运行时内存模型"><a href="#运行时内存模型" class="headerlink" title="运行时内存模型"></a>运行时内存模型</h3><p>​    内存模型在java1.6和1.8时有一些区别</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2019/06/02/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
-      JVM垃圾回收
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
-    <p>明菜</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JVM/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>JVM</p></a></div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2019年6月2日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="堆的基本结构"><a href="#堆的基本结构" class="headerlink" title="堆的基本结构"></a>堆的基本结构</h3><blockquote>
-<p>​    堆分为新生代和老年代，新生代有eden、s0和s1区域，老年代有tentired区域。<strong>官方新生代比例内部比例8:1:1，新生代与老年代比例推荐3:5。</strong></p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2019/06/02/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
+          <a href="/2019/06/07/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B05.%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E3%80%81%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%EF%BC%88resultMap%EF%BC%89/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -1140,7 +1123,7 @@
           </a>
         
         <p class="current">
-          7 / 8
+          7 / 10
         </p>
         
           <a class="next" rel="next" href="/archives/2019/page/8/">
@@ -1260,6 +1243,11 @@
             ><div class='name'>MyBatis</div><div class='badge'>(16)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/MySql%E8%BF%9B%E9%98%B6/" href="/categories/MySql%E8%BF%9B%E9%98%B6/"
+            id="categoriesMySqlE8BF9BE998B6"
+            ><div class='name'>MySql进阶</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/Redis/" href="/categories/Redis/"
             id="categoriesRedis"
             ><div class='name'>Redis</div><div class='badge'>(5)</div></a></li>
@@ -1301,7 +1289,7 @@
 
 
     <div class='content'>
-      <a href="/tags/AOP/" style="font-size: 14px; color: #999">AOP</a> <a href="/tags/AQS/" style="font-size: 16px; color: #8b8b8b">AQS</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/CAS/" style="font-size: 14px; color: #999">CAS</a> <a href="/tags/Docker/" style="font-size: 16px; color: #8b8b8b">Docker</a> <a href="/tags/Eruka/" style="font-size: 14px; color: #999">Eruka</a> <a href="/tags/FastJson/" style="font-size: 14px; color: #999">FastJson</a> <a href="/tags/GC/" style="font-size: 14px; color: #999">GC</a> <a href="/tags/HashMap/" style="font-size: 14px; color: #999">HashMap</a> <a href="/tags/ID%E7%94%9F%E6%88%90/" style="font-size: 14px; color: #999">ID生成</a> <a href="/tags/IO%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">IO模式</a> <a href="/tags/Idea/" style="font-size: 14px; color: #999">Idea</a> <a href="/tags/JVM/" style="font-size: 16px; color: #8b8b8b">JVM</a> <a href="/tags/Java8%E6%96%B0%E7%89%B9%E6%80%A7/" style="font-size: 14px; color: #999">Java8新特性</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/MySql/" style="font-size: 16px; color: #8b8b8b">MySql</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Redis/" style="font-size: 22px; color: #636363">Redis</a> <a href="/tags/Zookeeper/" style="font-size: 14px; color: #999">Zookeeper</a> <a href="/tags/kafka/" style="font-size: 14px; color: #999">kafka</a> <a href="/tags/synchronized/" style="font-size: 14px; color: #999">synchronized</a> <a href="/tags/volatile/" style="font-size: 14px; color: #999">volatile</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 18px; color: #7e7e7e">中间件</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 18px; color: #7e7e7e">事务</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 20px; color: #707070">分布式</a> <a href="/tags/%E5%8A%A0%E8%A7%A3%E5%AF%86/" style="font-size: 16px; color: #8b8b8b">加解密</a> <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">单例模式</a> <a href="/tags/%E5%9B%BD%E5%AF%86/" style="font-size: 14px; color: #999">国密</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 18px; color: #7e7e7e">工具</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 24px; color: #555">并发</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 16px; color: #8b8b8b">微服务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 14px; color: #999">消息队列</a> <a href="/tags/%E7%A7%92%E6%9D%80/" style="font-size: 14px; color: #999">秒杀</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18px; color: #7e7e7e">算法</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">线程</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E8%BF%87%E6%BB%A4%E5%99%A8/" style="font-size: 14px; color: #999">过滤器</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a>
+      <a href="/tags/AOP/" style="font-size: 14px; color: #999">AOP</a> <a href="/tags/AQS/" style="font-size: 16px; color: #8b8b8b">AQS</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/CAS/" style="font-size: 14px; color: #999">CAS</a> <a href="/tags/Docker/" style="font-size: 16px; color: #8b8b8b">Docker</a> <a href="/tags/Eruka/" style="font-size: 14px; color: #999">Eruka</a> <a href="/tags/FastJson/" style="font-size: 14px; color: #999">FastJson</a> <a href="/tags/GC/" style="font-size: 14px; color: #999">GC</a> <a href="/tags/HashMap/" style="font-size: 14px; color: #999">HashMap</a> <a href="/tags/ID%E7%94%9F%E6%88%90/" style="font-size: 14px; color: #999">ID生成</a> <a href="/tags/IO%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">IO模式</a> <a href="/tags/Idea/" style="font-size: 14px; color: #999">Idea</a> <a href="/tags/JVM/" style="font-size: 16px; color: #8b8b8b">JVM</a> <a href="/tags/Java8%E6%96%B0%E7%89%B9%E6%80%A7/" style="font-size: 14px; color: #999">Java8新特性</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/MySql/" style="font-size: 16px; color: #8b8b8b">MySql</a> <a href="/tags/MySql%E8%BF%9B%E9%98%B6/" style="font-size: 20px; color: #707070">MySql进阶</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Redis/" style="font-size: 22px; color: #636363">Redis</a> <a href="/tags/Zookeeper/" style="font-size: 14px; color: #999">Zookeeper</a> <a href="/tags/kafka/" style="font-size: 14px; color: #999">kafka</a> <a href="/tags/synchronized/" style="font-size: 14px; color: #999">synchronized</a> <a href="/tags/volatile/" style="font-size: 14px; color: #999">volatile</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 18px; color: #7e7e7e">中间件</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 18px; color: #7e7e7e">事务</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 20px; color: #707070">分布式</a> <a href="/tags/%E5%8A%A0%E8%A7%A3%E5%AF%86/" style="font-size: 16px; color: #8b8b8b">加解密</a> <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">单例模式</a> <a href="/tags/%E5%9B%BD%E5%AF%86/" style="font-size: 14px; color: #999">国密</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 18px; color: #7e7e7e">工具</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 24px; color: #555">并发</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 16px; color: #8b8b8b">微服务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 14px; color: #999">消息队列</a> <a href="/tags/%E7%A7%92%E6%9D%80/" style="font-size: 14px; color: #999">秒杀</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18px; color: #7e7e7e">算法</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">线程</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E8%BF%87%E6%BB%A4%E5%99%A8/" style="font-size: 14px; color: #999">过滤器</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a>
     </div>
   </section>
 
