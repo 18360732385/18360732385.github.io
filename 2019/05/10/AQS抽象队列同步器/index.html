@@ -18,7 +18,7 @@
   
     <title>AQS抽象队列同步器 - </title>
   
-    <meta name="keywords" content="并发,AQS">
+    <meta name="keywords" content="AQS,并发">
   
   
     <meta name="description" content="
@@ -603,26 +603,6 @@
     
     
 
-<section class="widget copyright  desktop mobile">
-  <div class='content'>
-    
-      <blockquote>
-        
-          
-            <p>本文永久链接是：<a href=https://18360732385.github.io/2019/05/10/AQS%E6%8A%BD%E8%B1%A1%E9%98%9F%E5%88%97%E5%90%8C%E6%AD%A5%E5%99%A8/>https://18360732385.github.io/2019/05/10/AQS%E6%8A%BD%E8%B1%A1%E9%98%9F%E5%88%97%E5%90%8C%E6%AD%A5%E5%99%A8/</a></p>
-          
-        
-      </blockquote>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-
 <section class="widget qrcode  desktop mobile">
   
 
@@ -658,7 +638,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/AQS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>AQS</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/AQS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>AQS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div>
 
 
         
@@ -710,6 +690,16 @@
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
           
         </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a><img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/wechat.png"></a>
+          <div class='target'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAAF4CAAAAAB79r16AAAFFElEQVR42u3bSZIbMQwEwP7/p8d3O8YiCkVZ40jeJPVCJnmpAPR8Gf9kPAjAgzfAgzfAgzcK8E84fr//jxd8c/3xBC+9dzqf794be4EHDx48ePDgwYMHX4RPJ5JCvFrQ9Pv2Rl3bOPDgwYMHDx48ePDgL8CnC0iD0/S66UbeCmjxvMCDBw8ePHjw4MGD/wD46YLTgkgKlx6ANPiBBw8ePHjw4MGDB/+T4G8VINKCx7sKKuDBgwcPHjx48ODBfwL8raDRanBqNRhNA9bHdZKBBw8ePHjw4MGDBx+MtDDyv3yOvcCDBw8ePHjw4MGDL8C3Go62Qed04ul9KVR7gAcPHjx48ODBgwffgJ+CtYFuBZXWBm/fH1egwIMHDx48ePDgwYP/C3wKkzY4TYNOO9BN17UtDL1MruDBgwcPHjx48ODBB/DThaeB6xRouyHTYJZuaHxQwYMHDx48ePDgwYO/AH8aqG7dnz4vBW8XWNYNTeDBgwcPHjx48ODBB/C3P6eBZ7oBtw7E+gCBBw8ePHjw4MGDB1+ATwsW08LGrYaibaFmWwAZXwcePHjw4MGDBw8efAG+9cDp2DYoTQsUrQ1bF4jAgwcPHjx48ODBgy/AbxfUCkbTDWsXVNKCx3ie4MGDBw8ePHjw4MEX4KeBaRuwWgWX1sa04V9uOHjw4MGDBw8ePHjwF+FPJ5huYLvgsD0ot+YzDlDgwYMHDx48ePDgwRfhpwHl1gK212+D3enzvnUADx48ePDgwYMHD74Af2sB043YNjTdaphqzxM8ePDgwYMHDx48+BvwaaGhBf2Ux+mBShu7poUW8ODBgwcPHjx48OCb8NsCxzaAtQss0/m2D8pxIQQ8ePDgwYMHDx48+CJ8C7DdaJS+r1Wo2RZKwIMHDx48ePDgwYNvwm8nuA1crQamFDIFHa8XPHjw4MGDBw8ePPgC/O3GoW0A2jZSpYWLaw1U4MGDBw8ePHjw4MFfhE8bjVKg9LrbAa4d6MCDBw8ePHjw4MGDb8BPX5AGl+OJHX6/LWy0DsLYDzx48ODBgwcPHjz4C/CnL5rCtQJY+/k10NMDAx48ePDgwYMHDx58AX7b2DMNTGnwmQadaUFnGuzi+8CDBw8ePHjw4MGDL8Bvg9T0vhbAFHy64afw4/mDBw8ePHjw4MGDB1+EP33QFObW72nhpRUU04IKePDgwYMHDx48ePBN+HRhz3C0Cibb4NYqvNQKIeDBgwcPHjx48ODBBw1N0xe1g9F247eBanpf+j148ODBgwcPHjx48M+FPxinG3L6exqIto1O7XnFjVHgwYMHDx48ePDgwV+EPwVIg0daiGhv0BQuDYbgwYMHDx48ePDgwd+ATxt10kDTDkhvg1seIPDgwYMHDx48ePDgG/CtgkEKlzZUpUGuPe+xH3jw4MGDBw8ePHjwBfjtOIVrFzS2QSw9eOkGggcPHjx48ODBgwffhH/CMYVPr2t93s5/e0DAgwcPHjx48ODBg78B3w5M71rQFHJamEkDYlyBAg8ePHjw4MGDBw8+gJ9OZNv49Or+VqB73jTiAAUePHjw4MGDBw8e/Bvhtw1M08LG6f3b56cNUuDBgwcPHjx48ODB/0T4VhCbFkbSYPYVjnRDwIMHDx48ePDgwYO/AZ82NG0LGtsCyu2N3TZwgQcPHjx48ODBgwd/A367wC14O3il8zydR1oYAg8ePHjw4MGDBw++AW+8d4AHD94AD94AD95YjF9EdKW3R/ctdwAAAABJRU5ErkJggg==">
+          </div>
+        </div>
       
     
   </div>
@@ -864,7 +854,7 @@
     
   
 
-  <section class="widget related_posts shadow desktop mobile">
+  <section class="widget related_posts shadow desktop">
     
   <header>
     

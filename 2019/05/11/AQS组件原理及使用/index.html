@@ -18,7 +18,7 @@
   
     <title>AQS组件原理及使用 - </title>
   
-    <meta name="keywords" content="并发,AQS">
+    <meta name="keywords" content="AQS,并发">
   
   
     <meta name="description" content="Semaphore信号量
@@ -640,26 +640,6 @@
     
     
 
-<section class="widget copyright  desktop mobile">
-  <div class='content'>
-    
-      <blockquote>
-        
-          
-            <p>本文永久链接是：<a href=https://18360732385.github.io/2019/05/11/AQS%E7%BB%84%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/>https://18360732385.github.io/2019/05/11/AQS%E7%BB%84%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/</a></p>
-          
-        
-      </blockquote>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-
 <section class="widget qrcode  desktop mobile">
   
 
@@ -695,7 +675,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/AQS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>AQS</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/AQS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>AQS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div>
 
 
         
@@ -747,6 +727,16 @@
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
           
         </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a><img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/wechat.png"></a>
+          <div class='target'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAAF4CAAAAAB79r16AAAFMElEQVR42u3dQW4bQQwEQP3/08kDAkNks1e2kZqbYWl2pziXBmn49cf6lvVCAB68BR68BR68VYB/heufDb/4/Xaf8QG+eM70e9P32J7n3f7gwYMHDx48ePDgwTfh0wNvIaYHme6zBZ+ee/r+6+eCBw8ePHjw4MGDB/8A/BbiGpC2Aa0V3K4Fj73AgwcPHjx48ODBg/8F8OkBWsFsGriu7wMePHjw4MGDBw8e/G+E3wakdvBpXwjw4MGDBw8ePHjw4H8TfDoYlDZCrgNE1+C2dTh7gQcPHjx48ODBgwdfhL8Glf/t59gLPHjw4MGDBw8ePPgC/HWlgWobjFqNlm0DYxuY3nqBBw8ePHjw4MGDB1+A//QgUNqgSAeZrpAtH/DgwYMHDx48ePDgn4RPA9QVdNqIuA4abZ87DXDjCwgePHjw4MGDBw8efAE+bTBcC9QeJJoWuhXYthcKPHjw4MGDBw8ePPgm/DWgtAaVtkGl1fhoNUjG5wAPHjx48ODBgwcPvgB/DRhp4LoOJKXBrv259cUEDx48ePDgwYMHD/4B+HSQZ9wIODZW0sbH9YK0GkXgwYMHDx48ePDgwTfhpwe7Bpk0OLUOPn2v7TnHhQQPHjx48ODBgwcPvgC/3bDdKJkGr3Yh06B4bgCBBw8ePHjw4MGDB1+ET4PEp0C2DYvpRfl4Iwg8ePDgwYMHDx48+AL8tgDtBsL0QC2AaeHSYPf2AoAHDx48ePDgwYMHX4TfFmIL1ipM3IAoB6h0gQcPHjx48ODBgwffgE8bGtcGxHc3Wq5BaNvAAQ8ePHjw4MGDBw++CX9taKSBY1vIpwJXO/DFA03gwYMHDx48ePDgwR/+ke51ACkNXGngSQeapsGvVSDw4MGDBw8ePHjw4J+EvzY6Wgd+6vlpgLs2fsCDBw8ePHjw4MGDb8KfN1o2LtIBpacHrlrPf/s88ODBgwcPHjx48OAL8NdBok8FqtaAVXuQaj1YBR48ePDgwYMHDx58AX4KM904Xa/S2g46reGugQ08ePDgwYMHDx48+Afg242HLcRTBby+Z3phxgEKPHjw4MGDBw8ePPgC/DaQ1IPG8H22DYw0YG3fOw5Q4MGDBw8ePHjw4MEf/jBhe4AUID3wNvC09tue/22AAg8ePHjw4MGDBw++CJ8erFWo9CJcv7ct4LYA4MGDBw8ePHjw4ME34NPGxDWgbAvQDjKtQab1e4MHDx48ePDgwYMHX4BPGxDpug4ypZ+77p9eQPDgwYMHDx48ePDgn4S/NjjSYLNtoKQNiE9dmLfvCx48ePDgwYMHDx58AT590Hcd4NrY2Ba0fUHBgwcPHjx48ODBg38S/mmINPikDZK0wNdBp3WAAg8ePHjw4MGDBw8++MOE60DRdp80+KTQTzVkxgUFDx48ePDgwYMHD74Anw4KbYFahbsOPqWNm+uFAg8ePHjw4MGDBw++CX9d6aDPttBpYyQNaNN91xcDPHjw4MGDBw8ePPgCfLuh8dTn0p/TAlwHocbJFTx48ODBgwcPHjz4A3wamK6DT58qTNpQeTxAgQcPHjx48ODBgwdfgG8HiHPgKA02tSHTwoEHDx48ePDgwYMH/5Pgp0HqOmB0fe70XNPPr78HHjx48ODBgwcPHvwPgr8OGD3V4Ni+Vyugfbk/ePDgwYMHDx48ePAPwG9B0qCyDUDTBsY24FwbJ1Mf8ODBgwcPHjx48OCfgG8NDm0DxbawaUDbvk/reeDBgwcPHjx48ODBPwFvfXaBBw/eAg/eAg/eOqy/bVqqbD3iI8gAAAAASUVORK5CYII=">
+          </div>
+        </div>
       
     
   </div>
@@ -903,7 +893,7 @@
     
   
 
-  <section class="widget related_posts shadow desktop mobile">
+  <section class="widget related_posts shadow desktop">
     
   <header>
     
