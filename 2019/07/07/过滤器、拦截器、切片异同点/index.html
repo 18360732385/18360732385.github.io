@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#2.6.6'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+    <title>过滤器、拦截器、切片异同点 - </title>
+  
+    <meta name="keywords" content="热门,过滤器">
+  
+  
+    <meta name="description" content="过滤器filter自定义过滤器">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+  
+  <div class="cover-wrapper">
+    
+      <cover class='cover post half'>
+        <div class='cover-body'>
+  <div class='a'>
+    
+      <img class='logo' src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/256/google_logo.png'/>
+    
+    
+      <p class="title">明菜の笔记</p>
+    
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="/"
+                
+                
+                id="home">
+                <i class='fas fa-rss fa-fw'></i>首页
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/categories/"
+                
+                
+                id="categories">
+                <i class='fas fa-folder-open fa-fw'></i>分类
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/tags/"
+                
+                
+                id="tags">
+                <i class='fas fa-tags fa-fw'></i>标签
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/archives/"
+                
+                
+                id="archives">
+                <i class='fas fa-archive fa-fw'></i>归档
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      </cover>
+    
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            明菜の笔记
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+            
+            
+              
+                <li>
+                  <a class="flat-box">
+                    <i class='fas fa-compact-disc fa-fw music'></i>背景音乐
+                  </a>
+                  <ul class="list-v">
+                    <li>
+                      <div class="aplayer-container">
+                        
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+                      </div>
+                    </li>
+                  </ul>
+                <li>
+              
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+              
+            
+              
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2019/07/07/%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8%E3%80%81%E5%88%87%E7%89%87%E5%BC%82%E5%90%8C%E7%82%B9/">
+      过滤器、拦截器、切片异同点
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>2019年7月7日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <h3 id="过滤器filter"><a href="#过滤器filter" class="headerlink" title="过滤器filter"></a>过滤器filter</h3><h4 id="自定义过滤器"><a href="#自定义过滤器" class="headerlink" title="自定义过滤器"></a>自定义过滤器</h4><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;直接使用@Compnent注解，表示filter在所有的的url都生效；也可以在配置文件中配置</span><br><span class="line">&#x2F;&#x2F;@Compnent</span><br><span class="line">public class MyFilter implements Filter &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void init(FilterConfig filterConfig) throws ServletException &#123;</span><br><span class="line">        System.out.println(&quot;my filter init&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException &#123;</span><br><span class="line">        System.out.println(&quot;my filter start&quot;);</span><br><span class="line">        long start &#x3D; new Date().getTime();</span><br><span class="line">        filterChain.doFilter(servletRequest, servletResponse);</span><br><span class="line">        System.out.println(&quot;my filter 耗时:&quot; + (new Date().getTime() - start));</span><br><span class="line">        System.out.println(&quot;my filter finish&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() &#123;</span><br><span class="line">        System.out.println(&quot;my filter destroy&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置文件WebConfig"><a href="#配置文件WebConfig" class="headerlink" title="配置文件WebConfig"></a>配置文件WebConfig</h4><blockquote>
+<p>​    使用WebConfig配置过滤器的好处是：<strong>统一配置，方便管理</strong>。另一种是@WebFilter注解配置，它的好处是<strong>简单</strong>，一行注解解决问题。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class WebConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public FilterRegistrationBean timeFilter() &#123;</span><br><span class="line">    	&#x2F;&#x2F;设置过滤器执行顺序，数字越小，执行越早。这里设置Integer.MIN_VALUE，则最先执行</span><br><span class="line">        FilterRegistrationBean filterRegistrationBean &#x3D; new FilterRegistrationBean();</span><br><span class="line">        filterRegistrationBean.setOrder(Integer.MIN_VALUE); </span><br><span class="line">        </span><br><span class="line">        MyFilter myFilter &#x3D; new MyFilter();</span><br><span class="line">        filterRegistrationBean.setFilter(myFilter);</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F; 设置MyFile在指定url起作用，可以添加多个</span><br><span class="line">        List&lt;String&gt; urlList &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        urlList.add(&quot;&#x2F;*&quot;);</span><br><span class="line">        </span><br><span class="line">        filterRegistrationBean.setUrlPatterns(urlList);</span><br><span class="line">        return filterRegistrationBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="拦截器interceptor"><a href="#拦截器interceptor" class="headerlink" title="拦截器interceptor"></a>拦截器interceptor</h3><h4 id="自定义拦截器"><a href="#自定义拦截器" class="headerlink" title="自定义拦截器"></a>自定义拦截器</h4><blockquote>
+<p>​    实现接口HandlerInterceptor，有3个方法：preHandle、postHandle、afterCompletion</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class MyInterceptor implements HandlerInterceptor &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;preHandle&quot;);</span><br><span class="line">        request.setAttribute(&quot;startTime&quot;, new Date().getTime());</span><br><span class="line">        System.out.println(((HandlerMethod) handler).getBean().getClass().getName());  &#x2F;&#x2F; 获取处理请求的类名称</span><br><span class="line">        System.out.println(((HandlerMethod) handler).getMethod().getName());  &#x2F;&#x2F; 获取处理请求的方法名</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView) throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;postHandle&quot;);</span><br><span class="line">        long startTime &#x3D; (long) request.getAttribute(&quot;startTime&quot;);</span><br><span class="line">        System.out.println(&quot;my interceptor 耗时：&quot; + (new Date().getTime() - startTime));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object o, Exception e) throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;afterCompletion&quot;);</span><br><span class="line">        long startTime &#x3D; (long) request.getAttribute(&quot;startTime&quot;);</span><br><span class="line">        System.out.println(&quot;my interceptor 耗时：&quot; + (new Date().getTime() - startTime));</span><br><span class="line">        System.out.println(&quot;ex is &quot; + e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><blockquote>
+<p>配置文件继承web适配器</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class WebConfig implements WebMvcConfigurer &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private MyInterceptor myInterceptor;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 重写WebMvcConfigurerAdapter类的addInterceptors方法，添加自己的拦截器及拦截路径</span><br><span class="line">    &#x2F;&#x2F;加入多个拦截器，则加入顺序决定拦截器生效顺序</span><br><span class="line">    @Override</span><br><span class="line">    public void addInterceptors(InterceptorRegistry registry) &#123;</span><br><span class="line">        registry.addInterceptor(myInterceptor)</span><br><span class="line">        	    .addPathPatterns(&quot;&#x2F;**&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="切片aspect"><a href="#切片aspect" class="headerlink" title="切片aspect"></a>切片aspect</h3><h4 id="引入maven依赖"><a href="#引入maven依赖" class="headerlink" title="引入maven依赖"></a>引入maven依赖</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;spring-boot-starter-aop&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义切面"><a href="#自定义切面" class="headerlink" title="自定义切面"></a>自定义切面</h4><blockquote>
+<p>切面可以作为log日志打印</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">@Component</span><br><span class="line">public class MyAspect &#123;</span><br><span class="line"></span><br><span class="line">    @Around(&quot;execution(* com.sinosoft.controller.UserController.*(..))&quot;)</span><br><span class="line">    public Object handleControllerMethod(ProceedingJoinPoint pjp) throws Throwable &#123;</span><br><span class="line">        System.out.println(&quot;my aspect start&quot;);</span><br><span class="line">        Object[] args &#x3D; pjp.getArgs();  &#x2F;&#x2F; 获取到方法参数的值</span><br><span class="line">        for (Object arg : args) &#123;</span><br><span class="line">            System.out.println(&quot;arg is &quot; + arg);</span><br><span class="line">        &#125;</span><br><span class="line">        long startTime &#x3D; new Date().getTime();</span><br><span class="line">        Object object &#x3D; pjp.proceed();</span><br><span class="line">        System.out.println(&quot;my aspect 耗时：&quot; + (new Date().getTime() - startTime));</span><br><span class="line">        System.out.println(&quot;my aspect end&quot;);</span><br><span class="line">        return object;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###顺序</p>
+<p>####结果打印</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">my filter start    <span class="comment">//过滤器</span></span><br><span class="line">  </span><br><span class="line">preHandle     <span class="comment">//拦截器preHandle</span></span><br><span class="line">com.sinosoft.controller.UserController$$EnhancerBySpringCGLIB$$<span class="number">89062</span>ea2     </span><br><span class="line">getInfo     <span class="comment">//拦截器获取即将访问的controller的路径</span></span><br><span class="line"></span><br><span class="line">my aspect start          <span class="comment">//切片启动</span></span><br><span class="line">arg is “自己输入的参数”     <span class="comment">//切片可以拿到方法使用的参数值（可能不是请求参数，因为过滤器可能做了加解密）</span></span><br><span class="line"></span><br><span class="line">进入controller服务   <span class="comment">// controller的业务逻辑</span></span><br><span class="line"></span><br><span class="line">my aspect 耗时：<span class="number">2</span>     </span><br><span class="line">my aspect end        <span class="comment">//切片结束</span></span><br><span class="line"></span><br><span class="line">postHandle          <span class="comment">//拦截器postHandle</span></span><br><span class="line">my interceptor 耗时：<span class="number">41</span>   <span class="comment">//拦截器postHandle结束</span></span><br><span class="line"></span><br><span class="line">afterCompletion    <span class="comment">//拦截器结束</span></span><br><span class="line">my interceptor 耗时：<span class="number">41</span>   </span><br><span class="line">ex is <span class="keyword">null</span>          <span class="comment">//无异常</span></span><br><span class="line">  </span><br><span class="line">my filter 耗时:<span class="number">55</span></span><br><span class="line">my filter finish     <span class="comment">//过滤器结束</span></span><br></pre></td></tr></table></figure>
+
+<p>####顺序图片</p>
+<blockquote>
+<p>Filter—&gt;Interceptor—&gt;ControllerAdvice—&gt;Aspect—&gt;Controller</p>
+<p>ControllerAdvice类一般做controller层的异常处理，Controller层处理完成后，按原路返回：</p>
+<p>Controller—&gt;Aspect—&gt;ControllerAdvice—&gt;Interceptor—&gt;Filter</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/7237969-6d33a809e1d78071.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/313/format/webp" alt=""></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>1、过滤器能够拿到原始的http请求和响应的信息，但是拿不到真正处理请求的方法的信息；</p>
+<p>2、拦截器既能拿到原始的http请求和响应的信息，也能拿到真正处理请求的方法的信息，但是拿不到方法被调用的时候，那个被调用方法的参数的值；</p>
+<p>3、切片可以拿到方法被调用的时候，方法参数传进来的值，但是拿不到原始的http请求和响应的对象。</p>
+</blockquote>
+<p><img src="http://p1.pstatp.com/large/pgc-image/e8f97e5a29a54882a3189bc5a21e8015" alt=""></p>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-07-07T00:00:00+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>2019年7月7日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%83%AD%E9%97%A8/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>热门</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E8%BF%87%E6%BB%A4%E5%99%A8/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>过滤器</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://18360732385.github.io/2019/07/07/%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8%E3%80%81%E5%88%87%E7%89%87%E5%BC%82%E5%90%8C%E7%82%B9/&title=过滤器、拦截器、切片异同点 - null&summary=过滤器filter自定义过滤器"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://18360732385.github.io/2019/07/07/%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8%E3%80%81%E5%88%87%E7%89%87%E5%BC%82%E5%90%8C%E7%82%B9/&title=过滤器、拦截器、切片异同点 - null&summary=过滤器filter自定义过滤器"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://18360732385.github.io/2019/07/07/%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8%E3%80%81%E5%88%87%E7%89%87%E5%BC%82%E5%90%8C%E7%82%B9/&title=过滤器、拦截器、切片异同点 - null&summary=过滤器filter自定义过滤器"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a><img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/wechat.png"></a>
+          <div class='target'>
+            <img src="data:image/png;base64,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">
+          </div>
+        </div>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2019/07/08/MySql%E8%BF%9B%E9%98%B63.%E5%87%BD%E6%95%B0/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>MySql进阶3.函数</p>
+                <p class='content'>函数
+
+1234567创建：CREATE FUNCTION 函数名(形参列表)      #形参定义 ：变量名 变量类型    RETURNS 类型  # 声明该函数的返回值类型   函数体  ...</p>
+              </a>
+            
+            
+              <a class='next' href='/2019/07/05/Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/'>
+                <p class='title'>Kafka消息队列<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>1.Kafka消息模型
+​    早期的消息队列使用队列（Queue）作为消息载体，Kafka使用的是发布/订阅（Pub/Sub）模型，使用主题（Topic）作为消息的载体。
+
+
+
+
+
+2.Br...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '过滤器、拦截器、切片异同点',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box' href='/about/'>
+          <img no-lazy src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>明菜の笔记</h2>
+        
+        
+        
+          <p><span id="jinrishici-sentence">一只鱼被闷死在自己的梦里</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zjian183@163.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/18360732385"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=54320974"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="/friends/"
+              class="social fas fa-link flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget related_posts shadow desktop">
+    
+  <header>
+    
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span class='name'>相关文章</span>
+    
+  </header>
+
+
+    <div class="content">
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\11\AQS组件原理及使用\" title="AQS组件原理及使用" rel="bookmark">AQS组件原理及使用</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\07\10\Bean生命周期\" title="Bean生命周期" rel="bookmark">Bean生命周期</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\06\01\GC调优\" title="GC调优" rel="bookmark">GC调优</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\06\02\JVM垃圾回收\" title="JVM垃圾回收" rel="bookmark">JVM垃圾回收</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\10\AQS抽象队列同步器\" title="AQS抽象队列同步器" rel="bookmark">AQS抽象队列同步器</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\12\CAS自旋\" title="CAS自旋" rel="bookmark">CAS自旋</a></h3></div></li></ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+
+
+  
+
+<section class="widget list group shadow desktop mobile">
+  
+  <header>
+    
+      <a href='/tags/热门/'><i class="fas fa-flag fa-fw fa-fw" aria-hidden="true"></i><span class='name'>热门文章</span></a>
+    
+  </header>
+
+
+  <div class='content'>
+    <ul class="list entry navigation">
+      
+        <li><a class="flat-box" title="/2019/07/10/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" href="/2019/07/10/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"
+          
+          
+          id="20190710BeanE7949FE591BDE591A8E69C9F"
+          >
+          <div class='name'>
+            
+            Bean生命周期
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="/2019/05/11/AQS%E7%BB%84%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/" href="/2019/05/11/AQS%E7%BB%84%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+          
+          
+          id="20190511AQSE7BB84E4BBB6E58E9FE79086E58F8AE4BDBFE794A8"
+          >
+          <div class='name'>
+            
+            AQS组件原理及使用
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="/2019/06/01/GC%E8%B0%83%E4%BC%98/" href="/2019/06/01/GC%E8%B0%83%E4%BC%98/"
+          
+          
+          id="20190601GCE8B083E4BC98"
+          >
+          <div class='name'>
+            
+            GC调优
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="/2019/06/02/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" href="/2019/06/02/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"
+          
+          
+          id="20190602JVME59E83E59CBEE59B9EE694B6"
+          >
+          <div class='name'>
+            
+            JVM垃圾回收
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="/2019/07/07/%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8%E3%80%81%E5%88%87%E7%89%87%E5%BC%82%E5%90%8C%E7%82%B9/" href="/2019/07/07/%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8%E3%80%81%E5%88%87%E7%89%87%E5%BC%82%E5%90%8C%E7%82%B9/"
+          
+          
+          id="20190707E8BF87E6BBA4E599A8E38081E68BA6E688AAE599A8E38081E58887E78987E5BC82E5908CE782B9"
+          >
+          <div class='name'>
+            
+            过滤器、拦截器、切片异同点
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+
+
+  
+
+  
+    
+    
+
+
+  <section class="widget toc-wrapper shadow desktop mobile">
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#过滤器filter"><span class="toc-text">过滤器filter</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义过滤器"><span class="toc-text">自定义过滤器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置文件WebConfig"><span class="toc-text">配置文件WebConfig</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拦截器interceptor"><span class="toc-text">拦截器interceptor</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义拦截器"><span class="toc-text">自定义拦截器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置文件"><span class="toc-text">配置文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切片aspect"><span class="toc-text">切片aspect</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引入maven依赖"><span class="toc-text">引入maven依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义切面"><span class="toc-text">自定义切面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="mailto:zjian183@163.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/18360732385"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=54320974"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="/friends/"
+                class="social fas fa-link flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作为主题，总访问量为
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          次
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
+    });
+  </script>
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg", "https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/BBC19066-E176-47C2-9D22-48C81EE5DF6B.jpeg", "https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg", "https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/00E0F0ED-9F1C-407A-9AA6-545649D919F4.jpeg", "https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/67239FBB-E15D-4F4F-8EE8-0F1C9F3C4E7C.jpeg", "https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B951AE18-D431-417F-B3FE-A382403FF21B.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('') {
+          $('').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'false',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-check-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-check-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-times-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-times-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 标准 markdown 描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
