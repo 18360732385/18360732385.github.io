@@ -78,10 +78,8 @@
         <div class='cover-body'>
   <div class='a'>
     
-      <img class='logo' src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/256/google_logo.png'/>
+      <img class='logo' src='https://s1.ax1x.com/2020/06/23/NNeBVO.png'/>
     
-    
-      <p class="title">明菜の笔记</p>
     
     
   </div>
@@ -473,8 +471,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
-      Redis持久化
+    <a href="/2019/06/06/Redis%E5%88%86%E6%AE%B5%E9%94%81%E4%BC%98%E5%8C%96/">
+      Redis分段锁优化
     </a>
   </h2>
 
@@ -498,7 +496,7 @@
             
               
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>分布式</p></a></div>
 
 
             
@@ -535,14 +533,15 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>​    Redis持久化分为RDB持久化和AOF持久化：<strong>前者将当前数据快照保存到硬盘，后者则是将每次执行的写命令保存到硬盘（类似于MySQL的binlog）。</strong></p>
+        <p>​    作为分布式锁，多应用在多服务器针对某一公共资源的竞争问题上，例如电商业务中的库存超卖、秒杀场景中。</p>
+<blockquote>
+<p>​    库存超卖问题是有很多种技术解决方案的，比如<strong>悲观锁，分布式锁，乐观锁，队列串行化，Redis原子操作</strong>等等。</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
+          <a href="/2019/06/06/Redis%E5%88%86%E6%AE%B5%E9%94%81%E4%BC%98%E5%8C%96/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -750,100 +749,6 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/">
-      JVM内存区
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
-    <p>明菜</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JVM/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>JVM</p></a></div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年6月2日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="运行时内存模型"><a href="#运行时内存模型" class="headerlink" title="运行时内存模型"></a>运行时内存模型</h3><p>​    内存模型在java1.6和1.8时有一些区别</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
     <a href="/2019/06/02/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
       JVM垃圾回收
     </a>
@@ -914,6 +819,100 @@
       
         <div class="button readmore">
           <a href="/2019/06/02/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/">
+      JVM内存区
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JVM/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>JVM</p></a></div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>2019年6月2日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="运行时内存模型"><a href="#运行时内存模型" class="headerlink" title="运行时内存模型"></a>运行时内存模型</h3><p>​    内存模型在java1.6和1.8时有一些区别</p>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -1153,7 +1152,7 @@
             
               
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CAS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>CAS</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CAS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>CAS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div>
 
 
             

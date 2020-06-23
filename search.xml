@@ -344,31 +344,6 @@
     
     
     <entry>
-      <title>分布式系统开发设计</title>
-      <link href="/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1/"/>
-      <url>/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1/</url>
-      
-        <content type="html"><![CDATA[<p>###（1）分布式服务框架</p><blockquote><p>​    你如果要让不同的子系统或者服务之间互相通信，首先必须有一套分布式服务框架。也就是各个服务可以互相感知到对方在哪里，可以发送请求过去，可以通过HTTP或者RPC的方式。</p><a id="more"></a><p>​    在这里，最常见的技术就是dubbo以及spring cloud，当然大厂一般都是自己有服务框架。</p><p>​    关于微服务的技术点，看这里：<a href="https://blog.csdn.net/lissic_blog/article/details/81216508" target="_blank" rel="noopener">https://blog.csdn.net/lissic_blog/article/details/81216508</a></p></blockquote><h3 id="（2）分布式事务"><a href="#（2）分布式事务" class="headerlink" title="（2）分布式事务"></a>（2）分布式事务</h3><blockquote><p>​    一旦你的系统拆分为了多个子系统之后，那么一个贯穿全局的分布式事务应该怎么来实现？这个你需要了解TCC、最终一致性、2PC等分布式事务的实现方案和开源技术。</p></blockquote><h3 id="（3）分布式锁"><a href="#（3）分布式锁" class="headerlink" title="（3）分布式锁"></a>（3）分布式锁</h3><blockquote><p>​    不同的系统之间如果需要在全局加锁获取某个资源的锁定，此时应该怎么来做？毕竟大家不是在一个JVM里了，不可能用synchronized来在多个子系统之间实现锁吧，是不是？</p></blockquote><h3 id="（4）分布式缓存"><a href="#（4）分布式缓存" class="headerlink" title="（4）分布式缓存"></a>（4）分布式缓存</h3><blockquote><p>​    如果你原来就是个单块系统，那么你其实是可以在单个JVM里进行本地缓存就可以了，比如搞一个HashMap来缓存一些数据。但是现在你有很多个子系统，他们如果要共享一个会话，你应该怎么办？是不是需要引入Redis等缓存系统？</p></blockquote><h3 id="（5）分布式消息系统"><a href="#（5）分布式消息系统" class="headerlink" title="（5）分布式消息系统"></a>（5）分布式消息系统</h3><blockquote><p>​    在单块系统内，就一个JVM进程内部，你可以用类似LinkedList之类的数据结构作为一个本地内存里的队列。但是多个子系统之间要进行消息队列的传递呢？那是不是要引入类似RabbitMQ之类的分布式消息中间件？</p></blockquote><h3 id="（6）分布式搜索系统"><a href="#（6）分布式搜索系统" class="headerlink" title="（6）分布式搜索系统"></a>（6）分布式搜索系统</h3><blockquote><p>​    如果在单块系统内，你可以比如在本地就基于Lucene来开发一个全文检索模块，但是如果是分布式系统下的很多子系统，你还能直接基于Lucene吗？</p><p>​    明显不行，你需要在系统里引入一个外部的分布式搜索系统，比如Elasticsearch。</p></blockquote><h3 id="（7）其他很多的技术"><a href="#（7）其他很多的技术" class="headerlink" title="（7）其他很多的技术"></a>（7）其他很多的技术</h3><blockquote><p>​    比如说分布式配置中心、分布式日志中心、分布式监控告警中心、分布式会话，等等，都是分布式系统场景下你需要使用和了解的一些技术。</p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> 分布式 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 分布式 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>分布式系ID方案</title>
       <link href="/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BBID%E6%96%B9%E6%A1%88/"/>
       <url>/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BBID%E6%96%B9%E6%A1%88/</url>
@@ -386,6 +361,31 @@
         <tags>
             
             <tag> ID生成 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分布式系统开发设计</title>
+      <link href="/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1/"/>
+      <url>/2019/09/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1/</url>
+      
+        <content type="html"><![CDATA[<p>###（1）分布式服务框架</p><blockquote><p>​    你如果要让不同的子系统或者服务之间互相通信，首先必须有一套分布式服务框架。也就是各个服务可以互相感知到对方在哪里，可以发送请求过去，可以通过HTTP或者RPC的方式。</p><a id="more"></a><p>​    在这里，最常见的技术就是dubbo以及spring cloud，当然大厂一般都是自己有服务框架。</p><p>​    关于微服务的技术点，看这里：<a href="https://blog.csdn.net/lissic_blog/article/details/81216508" target="_blank" rel="noopener">https://blog.csdn.net/lissic_blog/article/details/81216508</a></p></blockquote><h3 id="（2）分布式事务"><a href="#（2）分布式事务" class="headerlink" title="（2）分布式事务"></a>（2）分布式事务</h3><blockquote><p>​    一旦你的系统拆分为了多个子系统之后，那么一个贯穿全局的分布式事务应该怎么来实现？这个你需要了解TCC、最终一致性、2PC等分布式事务的实现方案和开源技术。</p></blockquote><h3 id="（3）分布式锁"><a href="#（3）分布式锁" class="headerlink" title="（3）分布式锁"></a>（3）分布式锁</h3><blockquote><p>​    不同的系统之间如果需要在全局加锁获取某个资源的锁定，此时应该怎么来做？毕竟大家不是在一个JVM里了，不可能用synchronized来在多个子系统之间实现锁吧，是不是？</p></blockquote><h3 id="（4）分布式缓存"><a href="#（4）分布式缓存" class="headerlink" title="（4）分布式缓存"></a>（4）分布式缓存</h3><blockquote><p>​    如果你原来就是个单块系统，那么你其实是可以在单个JVM里进行本地缓存就可以了，比如搞一个HashMap来缓存一些数据。但是现在你有很多个子系统，他们如果要共享一个会话，你应该怎么办？是不是需要引入Redis等缓存系统？</p></blockquote><h3 id="（5）分布式消息系统"><a href="#（5）分布式消息系统" class="headerlink" title="（5）分布式消息系统"></a>（5）分布式消息系统</h3><blockquote><p>​    在单块系统内，就一个JVM进程内部，你可以用类似LinkedList之类的数据结构作为一个本地内存里的队列。但是多个子系统之间要进行消息队列的传递呢？那是不是要引入类似RabbitMQ之类的分布式消息中间件？</p></blockquote><h3 id="（6）分布式搜索系统"><a href="#（6）分布式搜索系统" class="headerlink" title="（6）分布式搜索系统"></a>（6）分布式搜索系统</h3><blockquote><p>​    如果在单块系统内，你可以比如在本地就基于Lucene来开发一个全文检索模块，但是如果是分布式系统下的很多子系统，你还能直接基于Lucene吗？</p><p>​    明显不行，你需要在系统里引入一个外部的分布式搜索系统，比如Elasticsearch。</p></blockquote><h3 id="（7）其他很多的技术"><a href="#（7）其他很多的技术" class="headerlink" title="（7）其他很多的技术"></a>（7）其他很多的技术</h3><blockquote><p>​    比如说分布式配置中心、分布式日志中心、分布式监控告警中心、分布式会话，等等，都是分布式系统场景下你需要使用和了解的一些技术。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 分布式 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 分布式 </tag>
             
         </tags>
       
@@ -1238,6 +1238,25 @@
     
     
     <entry>
+      <title>Mybatis实战笔记3.当传参传入多个参数时（4种方法）</title>
+      <link href="/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B03.%E5%BD%93%E4%BC%A0%E5%8F%82%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E6%97%B6%EF%BC%884%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%89/"/>
+      <url>/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B03.%E5%BD%93%E4%BC%A0%E5%8F%82%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E6%97%B6%EF%BC%884%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.在接口中使用@Param注解</span><br><span class="line">public User login(@Param(&quot;userCode&quot;) String userCode, </span><br><span class="line">  @Param(&quot;password&quot;) String password);</span><br><span class="line">  </span><br><span class="line">2.同时在sql语句中使用注解内重定义名</span><br><span class="line">&lt;!-- mapper动态代理  - 传入多个参数数据 - 不可使用parameterType </span><br><span class="line">集合mybatis参数注解实现--&gt;</span><br><span class="line">&lt;select id&#x3D;&quot;login&quot; resultType&#x3D;&quot;user&quot;&gt;</span><br><span class="line">select userId,userCode,name</span><br><span class="line">from tuser</span><br><span class="line">where userCode&#x3D; #&#123;userCode&#125; and password&#x3D; #&#123;password&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Java Bean传参法     #&#123;&#125;里面的名称对应的是User类里面的成员属性。</span><br><span class="line">&lt;!-- select查询 - 返回值  </span><br><span class="line"> sql语句 - 注入参数数据</span><br><span class="line"> 1: #&#123;bean对象属性&#125;（无需写bean对象名）</span><br><span class="line">--&gt;</span><br><span class="line"></span><br><span class="line">&lt;select id&#x3D;&quot;loginUser&quot; parameterType&#x3D;&quot;User&quot; resultType&#x3D;&quot;user&quot;&gt; </span><br><span class="line">select userId, userCode, name </span><br><span class="line">from tuser </span><br><span class="line">where userCode &#x3D; #&#123;userCode&#125; and password &#x3D; #&#123;password&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">map传参法</span><br><span class="line"></span><br><span class="line">public User selectUser(Map&lt;String, Object&gt; params);</span><br><span class="line"></span><br><span class="line">&lt;select id&#x3D;&quot;selectUser&quot; parameterType&#x3D;&quot;java.util.Map&quot; resultMap&#x3D;&quot;UserResultMap&quot;&gt;</span><br><span class="line">    select * from user</span><br><span class="line">    where user_name &#x3D; #&#123;userName&#125; and dept_id &#x3D; #&#123;deptId&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br><span class="line"></span><br><span class="line">#&#123;&#125;里面的名称对应的是Map里面的key名称。</span><br><span class="line">这种方法适合传递多个参数，且参数易变能灵活传递的情况。</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">顺序传参   where user_name &#x3D; #&#123;0&#125; and dept_id &#x3D; #&#123;1&#125;    （不推荐）</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> MyBatis </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mybatis实战笔记4.resultMap的简单使用</title>
       <link href="/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B04.resultMap%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"/>
       <url>/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B04.resultMap%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
@@ -1257,19 +1276,25 @@
     
     
     <entry>
-      <title>Mybatis实战笔记3.当传参传入多个参数时（4种方法）</title>
-      <link href="/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B03.%E5%BD%93%E4%BC%A0%E5%8F%82%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E6%97%B6%EF%BC%884%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%89/"/>
-      <url>/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B03.%E5%BD%93%E4%BC%A0%E5%8F%82%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E6%97%B6%EF%BC%884%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%89/</url>
+      <title>Redis持久化</title>
+      <link href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/"/>
+      <url>/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/</url>
       
-        <content type="html"><![CDATA[<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.在接口中使用@Param注解</span><br><span class="line">public User login(@Param(&quot;userCode&quot;) String userCode, </span><br><span class="line">  @Param(&quot;password&quot;) String password);</span><br><span class="line">  </span><br><span class="line">2.同时在sql语句中使用注解内重定义名</span><br><span class="line">&lt;!-- mapper动态代理  - 传入多个参数数据 - 不可使用parameterType </span><br><span class="line">集合mybatis参数注解实现--&gt;</span><br><span class="line">&lt;select id&#x3D;&quot;login&quot; resultType&#x3D;&quot;user&quot;&gt;</span><br><span class="line">select userId,userCode,name</span><br><span class="line">from tuser</span><br><span class="line">where userCode&#x3D; #&#123;userCode&#125; and password&#x3D; #&#123;password&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Java Bean传参法     #&#123;&#125;里面的名称对应的是User类里面的成员属性。</span><br><span class="line">&lt;!-- select查询 - 返回值  </span><br><span class="line"> sql语句 - 注入参数数据</span><br><span class="line"> 1: #&#123;bean对象属性&#125;（无需写bean对象名）</span><br><span class="line">--&gt;</span><br><span class="line"></span><br><span class="line">&lt;select id&#x3D;&quot;loginUser&quot; parameterType&#x3D;&quot;User&quot; resultType&#x3D;&quot;user&quot;&gt; </span><br><span class="line">select userId, userCode, name </span><br><span class="line">from tuser </span><br><span class="line">where userCode &#x3D; #&#123;userCode&#125; and password &#x3D; #&#123;password&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">map传参法</span><br><span class="line"></span><br><span class="line">public User selectUser(Map&lt;String, Object&gt; params);</span><br><span class="line"></span><br><span class="line">&lt;select id&#x3D;&quot;selectUser&quot; parameterType&#x3D;&quot;java.util.Map&quot; resultMap&#x3D;&quot;UserResultMap&quot;&gt;</span><br><span class="line">    select * from user</span><br><span class="line">    where user_name &#x3D; #&#123;userName&#125; and dept_id &#x3D; #&#123;deptId&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br><span class="line"></span><br><span class="line">#&#123;&#125;里面的名称对应的是Map里面的key名称。</span><br><span class="line">这种方法适合传递多个参数，且参数易变能灵活传递的情况。</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">顺序传参   where user_name &#x3D; #&#123;0&#125; and dept_id &#x3D; #&#123;1&#125;    （不推荐）</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>​    Redis持久化分为RDB持久化和AOF持久化：<strong>前者将当前数据快照保存到硬盘，后者则是将每次执行的写命令保存到硬盘（类似于MySQL的binlog）。</strong></p><a id="more"></a><p>​    由于AOF持久化的实时性更好，即当进程意外退出时丢失的数据更少，因此AOF是目前主流的持久化方式，不过RDB持久化仍然有其用武之地。</p></blockquote><h3 id="RDB快照"><a href="#RDB快照" class="headerlink" title="RDB快照"></a>RDB快照</h3><h4 id="1-触发命令"><a href="#1-触发命令" class="headerlink" title="1.触发命令"></a>1.触发命令</h4><blockquote><p>​    当Redis重新启动时，可以读取快照文件恢复数据。RDB持久化可以分为手动触发和自动触发两种。</p><p>​    save命令和bgsave命令都可以生成RDB文件：</p><ul><li><p>save命令会阻塞Redis服务器进程，直到RDB文件创建完毕。这段期间，服务器不能处理任何命令请求。</p></li><li><p><strong>bgsave命令</strong>会创建一个子进程，由子进程来负责创建RDB文件，父进程(即Redis主进程)则继续处理请求。<strong>bgsave命令执行过程中，只有fork子进程时会阻塞服务器。</strong></p><p>​</p><p>除了配置自动触发save m n 命令以外，还有一些其他情况会触发bgsave：</p></li><li><p>在主从复制场景下，如果从节点执行全量复制操作，则主节点会执行bgsave命令，并将rdb文件发送给从节点</p></li><li><p>执行shutdown命令时，自动执行rdb持久化</p></li></ul></blockquote><h4 id="2-执行流程"><a href="#2-执行流程" class="headerlink" title="2.执行流程"></a>2.执行流程</h4><p><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180605085813461-389677620.png" alt=""></p><blockquote><p>​    图片中的5个步骤所进行的操作如下：</p><ol><li>Redis父进程首先判断：当前是否在执行save，或bgsave/bgrewriteaof（AOF重写）的子进程，如果在执行则bgsave命令直接返回。bgsave/bgrewriteaof 的子进程不能同时执行，主要是基于性能方面的考虑：两个并发的子进程同时执行大量的磁盘写操作，可能引起严重的性能问题。</li><li><strong>父进程执行fork操作创建子进程，这个过程中父进程是阻塞的，Redis不能执行来自客户端的任何命令</strong></li><li>父进程fork后，bgsave命令返回”Background saving started”信息并不再阻塞父进程，并可以响应其他命令</li><li>子进程创建RDB文件，根据父进程内存快照生成临时快照文件，完成后对原有文件进行原子替换</li><li>子进程发送信号给父进程表示完成，父进程更新统计信息</li></ol></blockquote><h3 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h3><h4 id="1-执行流程"><a href="#1-执行流程" class="headerlink" title="1.执行流程"></a>1.执行流程</h4><blockquote><p>​    由于需要记录Redis的每条写命令，因此AOF不需要触发。AOF的执行流程包括：</p><ul><li>命令追加(append)：将Redis的写命令追加到缓冲区aof_buf；</li><li>文件写入(write)和文件同步(sync)：根据不同的同步策略将aof_buf中的内容同步到硬盘；</li><li>文件重写(rewrite)：定期重写AOF文件，达到压缩的目的。</li></ul></blockquote><h4 id="2-文件重写"><a href="#2-文件重写" class="headerlink" title="2.文件重写"></a>2.文件重写</h4><blockquote><p>​    <strong>AOF重写是把Redis进程内的数据转化为写命令，同步到新的AOF文件。不会对旧AOF文件进行任何读取、写入操作!</strong></p><p>​    文件重写的触发，分为手动触发和自动触发：</p><p>​    手动触发时，直接调用<strong>bgrewriteaof</strong>命令，该命令的执行与bgsave有些类似：都是fork子进程进行具体的工作，且都只有在fork时阻塞。</p></blockquote><h4 id="3-文件重写流程"><a href="#3-文件重写流程" class="headerlink" title="3.文件重写流程"></a>3.文件重写流程</h4><p><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180605092001589-1724580361.png" alt=""></p><blockquote><p>​    文件重写的流程如下：</p><ol><li><p>Redis父进程首先判断当前是否存在正在执行 bgsave/bgrewriteaof的子进程，如果存在则bgrewriteaof命令直接返回，如果存在bgsave命令则等bgsave执行完成后再执行。前面曾介绍过，这个主要是基于性能方面的考虑。</p></li><li><p><strong>父进程执行fork操作创建子进程，这个过程中父进程是阻塞的。</strong></p></li><li><p>3.1) 父进程fork后，bgrewriteaof命令返回”Background append only file rewrite started”信息并不再阻塞父进程，并可以响应其他命令。<strong>Redis的所有写命令依然写入AOF缓冲区，并根据appendfsync策略同步到硬盘，保证原有AOF机制的正确。</strong></p><p>3.2) 由于fork操作使用写时复制技术，子进程只能共享fork操作时的内存数据。<strong>由于父进程依然在响应命令，因此Redis使用AOF重写缓冲区(图中的aof_rewrite_buf)保存这部分数据，防止新AOF文件生成期间丢失这部分数据。也就是说，bgrewriteaof执行期间，Redis的写命令同时追加到aof_buf和aof_rewirte_buf两个缓冲区。</strong></p></li><li><p>子进程根据内存快照，按照命令合并规则写入到新的AOF文件。</p></li><li><p>5.1) 子进程写完新的AOF文件后，向父进程发信号，父进程更新统计信息，具体可以通过info persistence查看。</p><p>5.2) <strong>父进程把AOF重写缓冲区的数据写入到新的AOF文件，这样就保证了新AOF文件所保存的数据库状态和服务器当前状态一致。</strong></p><p>5.3) 使用新的AOF文件替换老文件，完成AOF重写。</p><p>​</p></li></ol></blockquote><blockquote><p>​    关于文件重写的流程，有两点需要特别注意：</p><ul><li>重写由父进程fork子进程进行；</li><li>重写期间Redis执行的写命令，需要追加到新的AOF文件中，为此Redis引入了aof_rewrite_buf缓存。</li></ul></blockquote><h3 id="混合持久化"><a href="#混合持久化" class="headerlink" title="混合持久化"></a>混合持久化</h3><blockquote><p>​    重启 Redis 时，我们很少使用 RDB来恢复内存状态，因为会丢失大量数据。我们通常使用 AOF 日志重放，但是重放 AOF 日志性能相对 RDB来说要慢很多，这样在 Redis 实例很大的情况下，启动需要花费很长的时间。</p><p>​    <strong>Redis 4.0</strong> 为了解决这个问题，带来了一个新的持久化选项——<strong>混合持久化</strong>。将 RDB文件的内容和增量的 AOF 日志文件存在一起。这里的 AOF 日志不再是全量的日志，而是 <strong>自持久化开始到持久化结束</strong> 的这段时间发生的增量 AOF 日志，通常这部分 AOF 日志很小。</p><p>​    于是在 Redis 重启的时候，可以先加载 <code>rdb</code> 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，重启效率因此大幅得到提升。</p></blockquote><p><img src="https://upload-images.jianshu.io/upload_images/7896890-2f7887f84eaa34d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>]]></content>
       
       
       <categories>
           
-          <category> MyBatis </category>
+          <category> Redis </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
       
     </entry>
     
@@ -1330,31 +1355,6 @@
     
     
     <entry>
-      <title>Redis持久化</title>
-      <link href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/"/>
-      <url>/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p>​    Redis持久化分为RDB持久化和AOF持久化：<strong>前者将当前数据快照保存到硬盘，后者则是将每次执行的写命令保存到硬盘（类似于MySQL的binlog）。</strong></p><a id="more"></a><p>​    由于AOF持久化的实时性更好，即当进程意外退出时丢失的数据更少，因此AOF是目前主流的持久化方式，不过RDB持久化仍然有其用武之地。</p></blockquote><h3 id="RDB快照"><a href="#RDB快照" class="headerlink" title="RDB快照"></a>RDB快照</h3><h4 id="1-触发命令"><a href="#1-触发命令" class="headerlink" title="1.触发命令"></a>1.触发命令</h4><blockquote><p>​    当Redis重新启动时，可以读取快照文件恢复数据。RDB持久化可以分为手动触发和自动触发两种。</p><p>​    save命令和bgsave命令都可以生成RDB文件：</p><ul><li><p>save命令会阻塞Redis服务器进程，直到RDB文件创建完毕。这段期间，服务器不能处理任何命令请求。</p></li><li><p><strong>bgsave命令</strong>会创建一个子进程，由子进程来负责创建RDB文件，父进程(即Redis主进程)则继续处理请求。<strong>bgsave命令执行过程中，只有fork子进程时会阻塞服务器。</strong></p><p>​</p><p>除了配置自动触发save m n 命令以外，还有一些其他情况会触发bgsave：</p></li><li><p>在主从复制场景下，如果从节点执行全量复制操作，则主节点会执行bgsave命令，并将rdb文件发送给从节点</p></li><li><p>执行shutdown命令时，自动执行rdb持久化</p></li></ul></blockquote><h4 id="2-执行流程"><a href="#2-执行流程" class="headerlink" title="2.执行流程"></a>2.执行流程</h4><p><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180605085813461-389677620.png" alt=""></p><blockquote><p>​    图片中的5个步骤所进行的操作如下：</p><ol><li>Redis父进程首先判断：当前是否在执行save，或bgsave/bgrewriteaof（AOF重写）的子进程，如果在执行则bgsave命令直接返回。bgsave/bgrewriteaof 的子进程不能同时执行，主要是基于性能方面的考虑：两个并发的子进程同时执行大量的磁盘写操作，可能引起严重的性能问题。</li><li><strong>父进程执行fork操作创建子进程，这个过程中父进程是阻塞的，Redis不能执行来自客户端的任何命令</strong></li><li>父进程fork后，bgsave命令返回”Background saving started”信息并不再阻塞父进程，并可以响应其他命令</li><li>子进程创建RDB文件，根据父进程内存快照生成临时快照文件，完成后对原有文件进行原子替换</li><li>子进程发送信号给父进程表示完成，父进程更新统计信息</li></ol></blockquote><h3 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h3><h4 id="1-执行流程"><a href="#1-执行流程" class="headerlink" title="1.执行流程"></a>1.执行流程</h4><blockquote><p>​    由于需要记录Redis的每条写命令，因此AOF不需要触发。AOF的执行流程包括：</p><ul><li>命令追加(append)：将Redis的写命令追加到缓冲区aof_buf；</li><li>文件写入(write)和文件同步(sync)：根据不同的同步策略将aof_buf中的内容同步到硬盘；</li><li>文件重写(rewrite)：定期重写AOF文件，达到压缩的目的。</li></ul></blockquote><h4 id="2-文件重写"><a href="#2-文件重写" class="headerlink" title="2.文件重写"></a>2.文件重写</h4><blockquote><p>​    <strong>AOF重写是把Redis进程内的数据转化为写命令，同步到新的AOF文件。不会对旧AOF文件进行任何读取、写入操作!</strong></p><p>​    文件重写的触发，分为手动触发和自动触发：</p><p>​    手动触发时，直接调用<strong>bgrewriteaof</strong>命令，该命令的执行与bgsave有些类似：都是fork子进程进行具体的工作，且都只有在fork时阻塞。</p></blockquote><h4 id="3-文件重写流程"><a href="#3-文件重写流程" class="headerlink" title="3.文件重写流程"></a>3.文件重写流程</h4><p><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180605092001589-1724580361.png" alt=""></p><blockquote><p>​    文件重写的流程如下：</p><ol><li><p>Redis父进程首先判断当前是否存在正在执行 bgsave/bgrewriteaof的子进程，如果存在则bgrewriteaof命令直接返回，如果存在bgsave命令则等bgsave执行完成后再执行。前面曾介绍过，这个主要是基于性能方面的考虑。</p></li><li><p><strong>父进程执行fork操作创建子进程，这个过程中父进程是阻塞的。</strong></p></li><li><p>3.1) 父进程fork后，bgrewriteaof命令返回”Background append only file rewrite started”信息并不再阻塞父进程，并可以响应其他命令。<strong>Redis的所有写命令依然写入AOF缓冲区，并根据appendfsync策略同步到硬盘，保证原有AOF机制的正确。</strong></p><p>3.2) 由于fork操作使用写时复制技术，子进程只能共享fork操作时的内存数据。<strong>由于父进程依然在响应命令，因此Redis使用AOF重写缓冲区(图中的aof_rewrite_buf)保存这部分数据，防止新AOF文件生成期间丢失这部分数据。也就是说，bgrewriteaof执行期间，Redis的写命令同时追加到aof_buf和aof_rewirte_buf两个缓冲区。</strong></p></li><li><p>子进程根据内存快照，按照命令合并规则写入到新的AOF文件。</p></li><li><p>5.1) 子进程写完新的AOF文件后，向父进程发信号，父进程更新统计信息，具体可以通过info persistence查看。</p><p>5.2) <strong>父进程把AOF重写缓冲区的数据写入到新的AOF文件，这样就保证了新AOF文件所保存的数据库状态和服务器当前状态一致。</strong></p><p>5.3) 使用新的AOF文件替换老文件，完成AOF重写。</p><p>​</p></li></ol></blockquote><blockquote><p>​    关于文件重写的流程，有两点需要特别注意：</p><ul><li>重写由父进程fork子进程进行；</li><li>重写期间Redis执行的写命令，需要追加到新的AOF文件中，为此Redis引入了aof_rewrite_buf缓存。</li></ul></blockquote><h3 id="混合持久化"><a href="#混合持久化" class="headerlink" title="混合持久化"></a>混合持久化</h3><blockquote><p>​    重启 Redis 时，我们很少使用 RDB来恢复内存状态，因为会丢失大量数据。我们通常使用 AOF 日志重放，但是重放 AOF 日志性能相对 RDB来说要慢很多，这样在 Redis 实例很大的情况下，启动需要花费很长的时间。</p><p>​    <strong>Redis 4.0</strong> 为了解决这个问题，带来了一个新的持久化选项——<strong>混合持久化</strong>。将 RDB文件的内容和增量的 AOF 日志文件存在一起。这里的 AOF 日志不再是全量的日志，而是 <strong>自持久化开始到持久化结束</strong> 的这段时间发生的增量 AOF 日志，通常这部分 AOF 日志很小。</p><p>​    于是在 Redis 重启的时候，可以先加载 <code>rdb</code> 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，重启效率因此大幅得到提升。</p></blockquote><p><img src="https://upload-images.jianshu.io/upload_images/7896890-2f7887f84eaa34d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Redis </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Mybatis实战笔记2.简单的parameterType和resultType介绍</title>
       <link href="/2019/06/05/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B02.%E7%AE%80%E5%8D%95%E7%9A%84parameterType%E5%92%8CresultType%E4%BB%8B%E7%BB%8D/"/>
       <url>/2019/06/05/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B02.%E7%AE%80%E5%8D%95%E7%9A%84parameterType%E5%92%8CresultType%E4%BB%8B%E7%BB%8D/</url>
@@ -1393,31 +1393,6 @@
     
     
     <entry>
-      <title>JVM内存区</title>
-      <link href="/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/"/>
-      <url>/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/</url>
-      
-        <content type="html"><![CDATA[<h3 id="运行时内存模型"><a href="#运行时内存模型" class="headerlink" title="运行时内存模型"></a>运行时内存模型</h3><p>​    内存模型在java1.6和1.8时有一些区别</p><a id="more"></a><p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9F.png" alt=""></p><p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3Java%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9FJDK1.8.png" alt=""></p><h3 id="堆Heap"><a href="#堆Heap" class="headerlink" title="堆Heap"></a>堆Heap</h3><blockquote><p>​    堆是内存区最大的一块区域，唯一目的就是存放对象实例，<strong>几乎所有的对象实例以及数组都在这里分配内存</strong>。jdk1.7以前堆内存被分为：新生代、老生代、永生代。jdk1.8将永生代移除，转换成元空间，直接使用直接内存。</p><p>​    大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加 1(Eden 区-&gt;Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 <code>-XX:MaxTenuringThreshold</code> 来设置。</p><p>​    <strong>现在的虚拟机采用动态计算年龄阈值。</strong></p></blockquote><p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/JVM%E5%A0%86%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84-jdk8.jpg" alt=""></p><h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><blockquote><p>​    用于存储已被虚拟机加载的<strong>类信息、常量、静态变量</strong>、即时编译器编译后的代码等数据。</p><p>​    运行时常量池是方法区的一部分。Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有常量池信息（用于存放编译期生成的各种字面量和符号引用）</p></blockquote><h3 id="对象的创建和使用"><a href="#对象的创建和使用" class="headerlink" title="对象的创建和使用"></a>对象的创建和使用</h3><p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/Java%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%BF%87%E7%A8%8B.png" alt=""></p><blockquote><h4 id="Step1-类加载检查"><a href="#Step1-类加载检查" class="headerlink" title="Step1:类加载检查"></a>Step1:类加载检查</h4><p>​    虚拟机遇到一条 new 指令时，首先将去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、解析和初始化过。如果没有，那必须先执行相应的类加载过程。</p><h4 id="Step2-分配内存"><a href="#Step2-分配内存" class="headerlink" title="Step2:分配内存"></a>Step2:分配内存</h4><p>​    在<strong>类加载检查</strong>通过后，接下来虚拟机将为新生对象<strong>分配内存</strong>。对象所需的内存大小在类加载完成后便可确定，为对象分配空间的任务等同于把一块确定大小的内存从 Java 堆中划分出来。<strong>分配方式</strong>有 <strong>“指针碰撞”</strong> 和 <strong>“空闲列表”</strong> 两种，<strong>选择那种分配方式由 Java 堆是否规整决定，而 Java 堆是否规整又由所采用的垃圾收集器是否带有压缩整理功能决定</strong>。</p><h4 id="Step3-初始化零值"><a href="#Step3-初始化零值" class="headerlink" title="Step3:初始化零值"></a>Step3:初始化零值</h4><p>​    内存分配完成后，虚拟机需要将分配到的内存空间都初始化为零值（不包括对象头），这一步操作保证了对象的实例字段在 Java 代码中可以不赋初始值就直接使用，程序能访问到这些字段的数据类型所对应的零值。</p><h4 id="Step4-设置对象头"><a href="#Step4-设置对象头" class="headerlink" title="Step4:设置对象头"></a>Step4:设置对象头</h4><p>​    初始化零值完成之后，<strong>虚拟机要对对象进行必要的设置</strong>，例如这个对象是那个类的实例、如何才能找到类的元数据信息、<strong>对象的哈希码、GC 分代年龄、锁状态标志</strong>等信息。 <strong>这些信息存放在对象头中。</strong> 另外，根据虚拟机当前运行状态的不同，如是否启用偏向锁等，对象头会有不同的设置方式。</p><h4 id="Step5-执行-init-方法"><a href="#Step5-执行-init-方法" class="headerlink" title="Step5:执行 init 方法"></a>Step5:执行 init 方法</h4><p>​    在上面工作都完成之后，从虚拟机的视角来看，一个新的对象已经产生了，但从 Java 程序的视角来看，对象创建才刚开始，<code>&lt;init&gt;</code> 方法还没有执行，所有的字段都还为零。所以一般来说，执行 new 指令之后会接着执行 <code>&lt;init&gt;</code> 方法，把对象按照程序员的意愿进行初始化，这样一个真正可用的对象才算完全产生出来。</p></blockquote><blockquote><h4 id="对象的访问："><a href="#对象的访问：" class="headerlink" title="对象的访问："></a>对象的访问：</h4><p>​    建立对象就是为了使用对象，我们的 Java 程序通过栈上的 reference 数据来操作堆上的具体对象。对象的访问方式由虚拟机实现而定，目前主流的访问方式有 <strong>①使用句柄</strong> 和 <strong>②直接指针</strong> 两种：</p><p>​    <strong>句柄：</strong> 如果使用句柄的话，那么 Java 堆中将会划分出一块内存来作为句柄池，reference 中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自的具体地址信息；</p><p>​    <strong>直接指针：</strong> 如果使用直接指针访问，那么 Java 堆对象的布局中就必须考虑如何放置访问类型数据的相关信息，而 reference 中存储的直接就是对象的地址。</p><p>​    这两种对象访问方式各有优势。使用句柄来访问的最大好处是 reference 中存储的是稳定的句柄地址，在对象被移动时只会改变句柄中的实例数据指针，而 reference 本身不需要修改。使用直接指针访问方式最大的好处就是速度快，它节省了一次指针定位的时间开销。</p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> GC调优 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> JVM </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>JVM垃圾回收</title>
       <link href="/2019/06/02/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"/>
       <url>/2019/06/02/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</url>
@@ -1435,6 +1410,31 @@
         <tags>
             
             <tag> 热门 </tag>
+            
+            <tag> JVM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JVM内存区</title>
+      <link href="/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/"/>
+      <url>/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/</url>
+      
+        <content type="html"><![CDATA[<h3 id="运行时内存模型"><a href="#运行时内存模型" class="headerlink" title="运行时内存模型"></a>运行时内存模型</h3><p>​    内存模型在java1.6和1.8时有一些区别</p><a id="more"></a><p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9F.png" alt=""></p><p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3Java%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9FJDK1.8.png" alt=""></p><h3 id="堆Heap"><a href="#堆Heap" class="headerlink" title="堆Heap"></a>堆Heap</h3><blockquote><p>​    堆是内存区最大的一块区域，唯一目的就是存放对象实例，<strong>几乎所有的对象实例以及数组都在这里分配内存</strong>。jdk1.7以前堆内存被分为：新生代、老生代、永生代。jdk1.8将永生代移除，转换成元空间，直接使用直接内存。</p><p>​    大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加 1(Eden 区-&gt;Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 <code>-XX:MaxTenuringThreshold</code> 来设置。</p><p>​    <strong>现在的虚拟机采用动态计算年龄阈值。</strong></p></blockquote><p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/JVM%E5%A0%86%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84-jdk8.jpg" alt=""></p><h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><blockquote><p>​    用于存储已被虚拟机加载的<strong>类信息、常量、静态变量</strong>、即时编译器编译后的代码等数据。</p><p>​    运行时常量池是方法区的一部分。Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有常量池信息（用于存放编译期生成的各种字面量和符号引用）</p></blockquote><h3 id="对象的创建和使用"><a href="#对象的创建和使用" class="headerlink" title="对象的创建和使用"></a>对象的创建和使用</h3><p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/Java%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%BF%87%E7%A8%8B.png" alt=""></p><blockquote><h4 id="Step1-类加载检查"><a href="#Step1-类加载检查" class="headerlink" title="Step1:类加载检查"></a>Step1:类加载检查</h4><p>​    虚拟机遇到一条 new 指令时，首先将去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、解析和初始化过。如果没有，那必须先执行相应的类加载过程。</p><h4 id="Step2-分配内存"><a href="#Step2-分配内存" class="headerlink" title="Step2:分配内存"></a>Step2:分配内存</h4><p>​    在<strong>类加载检查</strong>通过后，接下来虚拟机将为新生对象<strong>分配内存</strong>。对象所需的内存大小在类加载完成后便可确定，为对象分配空间的任务等同于把一块确定大小的内存从 Java 堆中划分出来。<strong>分配方式</strong>有 <strong>“指针碰撞”</strong> 和 <strong>“空闲列表”</strong> 两种，<strong>选择那种分配方式由 Java 堆是否规整决定，而 Java 堆是否规整又由所采用的垃圾收集器是否带有压缩整理功能决定</strong>。</p><h4 id="Step3-初始化零值"><a href="#Step3-初始化零值" class="headerlink" title="Step3:初始化零值"></a>Step3:初始化零值</h4><p>​    内存分配完成后，虚拟机需要将分配到的内存空间都初始化为零值（不包括对象头），这一步操作保证了对象的实例字段在 Java 代码中可以不赋初始值就直接使用，程序能访问到这些字段的数据类型所对应的零值。</p><h4 id="Step4-设置对象头"><a href="#Step4-设置对象头" class="headerlink" title="Step4:设置对象头"></a>Step4:设置对象头</h4><p>​    初始化零值完成之后，<strong>虚拟机要对对象进行必要的设置</strong>，例如这个对象是那个类的实例、如何才能找到类的元数据信息、<strong>对象的哈希码、GC 分代年龄、锁状态标志</strong>等信息。 <strong>这些信息存放在对象头中。</strong> 另外，根据虚拟机当前运行状态的不同，如是否启用偏向锁等，对象头会有不同的设置方式。</p><h4 id="Step5-执行-init-方法"><a href="#Step5-执行-init-方法" class="headerlink" title="Step5:执行 init 方法"></a>Step5:执行 init 方法</h4><p>​    在上面工作都完成之后，从虚拟机的视角来看，一个新的对象已经产生了，但从 Java 程序的视角来看，对象创建才刚开始，<code>&lt;init&gt;</code> 方法还没有执行，所有的字段都还为零。所以一般来说，执行 new 指令之后会接着执行 <code>&lt;init&gt;</code> 方法，把对象按照程序员的意愿进行初始化，这样一个真正可用的对象才算完全产生出来。</p></blockquote><blockquote><h4 id="对象的访问："><a href="#对象的访问：" class="headerlink" title="对象的访问："></a>对象的访问：</h4><p>​    建立对象就是为了使用对象，我们的 Java 程序通过栈上的 reference 数据来操作堆上的具体对象。对象的访问方式由虚拟机实现而定，目前主流的访问方式有 <strong>①使用句柄</strong> 和 <strong>②直接指针</strong> 两种：</p><p>​    <strong>句柄：</strong> 如果使用句柄的话，那么 Java 堆中将会划分出一块内存来作为句柄池，reference 中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自的具体地址信息；</p><p>​    <strong>直接指针：</strong> 如果使用直接指针访问，那么 Java 堆对象的布局中就必须考虑如何放置访问类型数据的相关信息，而 reference 中存储的直接就是对象的地址。</p><p>​    这两种对象访问方式各有优势。使用句柄来访问的最大好处是 reference 中存储的是稳定的句柄地址，在对象被移动时只会改变句柄中的实例数据指针，而 reference 本身不需要修改。使用直接指针访问方式最大的好处就是速度快，它节省了一次指针定位的时间开销。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> GC调优 </category>
+          
+      </categories>
+      
+      
+        <tags>
             
             <tag> JVM </tag>
             
@@ -1515,9 +1515,9 @@
       
         <tags>
             
-            <tag> 并发 </tag>
-            
             <tag> CAS </tag>
+            
+            <tag> 并发 </tag>
             
         </tags>
       
@@ -1569,9 +1569,9 @@
       
         <tags>
             
-            <tag> AQS </tag>
-            
             <tag> 并发 </tag>
+            
+            <tag> AQS </tag>
             
             <tag> 热门 </tag>
             
@@ -1598,9 +1598,9 @@
       
         <tags>
             
-            <tag> AQS </tag>
-            
             <tag> 并发 </tag>
+            
+            <tag> AQS </tag>
             
         </tags>
       
