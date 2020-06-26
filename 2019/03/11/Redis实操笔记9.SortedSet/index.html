@@ -16,11 +16,11 @@
 
   <!-- 页面元数据 -->
   
-    <title>Redis实操笔记7.List - </title>
+    <title>Redis实操笔记9.SortedSet - </title>
   
   
-    <meta name="description" content="List
-​    使用List的数据结构，可以做简单的消息队列的功能。">
+    <meta name="description" content="SortedSet
+​    在集合类型的基础上有序集合类型为集合中的每个元素都关联一个分数，这使得我们不仅可以完成插入、删除和判断元">
   
 
   <!-- feed -->
@@ -466,8 +466,8 @@
         
           
   <h1 class="title">
-    <a href="/2019/03/08/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B07.List/">
-      Redis实操笔记7.List
+    <a href="/2019/03/11/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/">
+      Redis实操笔记9.SortedSet
     </a>
   </h1>
 
@@ -510,7 +510,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年3月8日</p>
+    <p>2019年3月11日</p>
   </a>
 </div>
 
@@ -533,29 +533,42 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><blockquote>
-<p>​    使用List的数据结构，可以做简单的消息队列的功能。</p>
+          <h3 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h3><blockquote>
+<p>​    在集合类型的基础上有序集合类型为集合中的每个元素都关联一个分数，这使得我们不仅可以完成插入、删除和判断元</p>
 <a id="more"></a>
 
-<p>​    另外还有一个就是，可以利用lrange命令，做基于redis的分页功能，性能极佳，用户体验好。</p>
-<p>​    生产者和消费者的场景中，List可以很好的完成排队，先进先出的原则。</p>
+<p>素是否存在在集合中，还能够获得分数最高或最低的前N个元素、获取指定分数范围内的元素等与分数有关的操作。</p>
+<p>​    所以可以做排行榜应用，取TOP N的操作。朋友圈的跑步排行榜，游戏得分排行榜。</p>
 </blockquote>
-<h3 id="放入"><a href="#放入" class="headerlink" title="放入"></a>放入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">左侧放入</span><br><span class="line">lpush nums 1</span><br><span class="line">lpush nums 2 3    （结果：3 2 1）</span><br><span class="line"></span><br><span class="line">右侧放入</span><br><span class="line">rpush nums 4</span><br><span class="line">rpush nums 5 6     （结果：4 5 6）</span><br><span class="line"></span><br><span class="line">上述结果：3 2 1 4 5 6</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>​    在某些方面有序集合和列表类型有些相似:</p>
+<ul>
+<li>二者都是有序的。</li>
+<li>二者都可以获得某一范围的元素。</li>
+</ul>
+<p>​    但是，二者有着很大区别：</p>
+<ul>
+<li>list是通过链表实现的，获取靠近两端的数据速度极快，而当元素增多后，访问中间数据的速度会变慢。</li>
+<li>set使用散列表实现，所有即使读取位于中间部分的数据也很快。</li>
+<li>list中不能简单的调整某个元素的位置，但是有序集合可以（通过更改分数实现）</li>
+<li>set要比list更耗内存。</li>
+</ul>
+</blockquote>
+<h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zadd student 70 zhangsan 75 lis 80 wangwu 40 zhaoliu  添加多条数据</span><br><span class="line"></span><br><span class="line">zadd student 90 zhaoliu   元素zhaoliu存在,则score 90会替代40</span><br></pre></td></tr></table></figure>
 
-<h3 id="数量"><a href="#数量" class="headerlink" title="数量"></a>数量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">llen nums</span><br></pre></td></tr></table></figure>
-<h3 id="列出"><a href="#列出" class="headerlink" title="列出"></a>列出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lrange nums 0 -1   （全部列出）</span><br><span class="line"></span><br><span class="line">lrange nums 0 3</span><br><span class="line"></span><br><span class="line">lrange nums 0 6</span><br></pre></td></tr></table></figure>
-<h3 id="弹出"><a href="#弹出" class="headerlink" title="弹出"></a>弹出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">左侧弹出</span><br><span class="line">lpop nums</span><br><span class="line"></span><br><span class="line">右侧弹出</span><br><span class="line">rpop nums</span><br></pre></td></tr></table></figure>
-<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lrem nums 1 2		&#x2F;&#x2F;从左侧删除1个2</span><br><span class="line">lrem nums 2 2		&#x2F;&#x2F;从左侧删除2个2</span><br><span class="line"></span><br><span class="line">lrem nums 0 2        &#x2F;&#x2F;删除所有的2</span><br><span class="line"></span><br><span class="line">lrem nums -1 2       &#x2F;&#x2F;从右侧删除1个2</span><br></pre></td></tr></table></figure>
-<h3 id="保留部分"><a href="#保留部分" class="headerlink" title="保留部分"></a>保留部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ltrim nums 0 2     &#x2F;&#x2F; 保留了 第0 1 2个数据</span><br></pre></td></tr></table></figure>
+<h2 id="显示某个范围的元素列表"><a href="#显示某个范围的元素列表" class="headerlink" title="显示某个范围的元素列表"></a>显示某个范围的元素列表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">   zrange student 0 2   获取student的第0,1,2个元素(默认升序显示)</span><br><span class="line">1) &quot;zhaoliu&quot;</span><br><span class="line">2) &quot;zhangsan&quot;</span><br><span class="line">3) &quot;lis&quot;</span><br><span class="line"></span><br><span class="line">  zrange student 0 -1 withscores  显示元素时带着scores（升序）</span><br><span class="line"></span><br><span class="line">  zrevrange sudent 0 -1   降序显示所有元素</span><br><span class="line">1) &quot;qianqi&quot;</span><br><span class="line">2) &quot;wangwu&quot;</span><br><span class="line">3) &quot;lis&quot;</span><br><span class="line">4) &quot;zhangsan&quot;</span><br><span class="line">5) &quot;zhaoliu&quot;</span><br></pre></td></tr></table></figure>
 
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">linsert nums beform&#x2F;after 2 10     在数字2 前&#x2F;后 添加数字10</span><br></pre></td></tr></table></figure>
-<h3 id="获得"><a href="#获得" class="headerlink" title="获得"></a>获得</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lindex nums 2   获得nums列表中索引2的数据</span><br></pre></td></tr></table></figure>
+<h2 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zrem student zhangsan</span><br></pre></td></tr></table></figure>
 
-<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lset nums 2 x</span><br></pre></td></tr></table></figure>
+<h2 id="显示指定分数范围内数据"><a href="#显示指定分数范围内数据" class="headerlink" title="显示指定分数范围内数据"></a>显示指定分数范围内数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  zrangebyscore sudent 60 80   显示分数在60-80之间的数据</span><br><span class="line">1) &quot;lis&quot;</span><br><span class="line">2) &quot;wangwu&quot;</span><br></pre></td></tr></table></figure>
 
-<h3 id="转移元素"><a href="#转移元素" class="headerlink" title="转移元素"></a>转移元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpoplpush list newList</span><br></pre></td></tr></table></figure>
+<h2 id="增加值"><a href="#增加值" class="headerlink" title="增加值"></a>增加值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zincrby sudent 5 zhaoliu    给zhaoliu加5分，返回修改过后的值</span><br><span class="line">&quot;45&quot;</span><br></pre></td></tr></table></figure>
 
+<h2 id="数量"><a href="#数量" class="headerlink" title="数量"></a>数量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zcard student   获取student集合元素个数</span><br><span class="line">(integer) 5</span><br><span class="line"></span><br><span class="line">zcount student 70 90    获取 score 中分数在 70-90 之间的元素个数</span><br><span class="line">(integer) 2</span><br></pre></td></tr></table></figure>
 
+<h2 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zremrangebyscore sudent 60 80   删除范围60 80之间的student元素（返回删除个数）</span><br><span class="line">(integer) 2</span><br><span class="line"></span><br><span class="line">zremrangebyrank score 0 1   删除score第0,1名的元素</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取指定元素的排名"><a href="#获取指定元素的排名" class="headerlink" title="获取指定元素的排名"></a>获取指定元素的排名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zrank sudent qianqi   查看qiangqi的排名</span><br><span class="line">(integer) 2</span><br><span class="line"></span><br><span class="line">zrevrank sudent qianqi  查看倒序的排名</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
           
             <div class='article_footer'>
               
@@ -589,10 +602,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-08T00:00:00+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-11T00:00:00+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>2019年3月8日</p>
+    <p>2019年3月11日</p>
   </a>
 </div>
 
@@ -616,8 +629,8 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://18360732385.github.io/2019/03/08/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B07.List/&title=Redis实操笔记7.List - null&summary=List
-​    使用List的数据结构，可以做简单的消息队列的功能。"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://18360732385.github.io/2019/03/11/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/&title=Redis实操笔记9.SortedSet - null&summary=SortedSet
+​    在集合类型的基础上有序集合类型为集合中的每个元素都关联一个分数，这使得我们不仅可以完成插入、删除和判断元"
           
           >
           
@@ -629,8 +642,8 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://18360732385.github.io/2019/03/08/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B07.List/&title=Redis实操笔记7.List - null&summary=List
-​    使用List的数据结构，可以做简单的消息队列的功能。"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://18360732385.github.io/2019/03/11/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/&title=Redis实操笔记9.SortedSet - null&summary=SortedSet
+​    在集合类型的基础上有序集合类型为集合中的每个元素都关联一个分数，这使得我们不仅可以完成插入、删除和判断元"
           
           >
           
@@ -642,8 +655,8 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://18360732385.github.io/2019/03/08/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B07.List/&title=Redis实操笔记7.List - null&summary=List
-​    使用List的数据结构，可以做简单的消息队列的功能。"
+          href="http://service.weibo.com/share/share.php?url=https://18360732385.github.io/2019/03/11/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/&title=Redis实操笔记9.SortedSet - null&summary=SortedSet
+​    在集合类型的基础上有序集合类型为集合中的每个元素都关联一个分数，这使得我们不仅可以完成插入、删除和判断元"
           
           >
           
@@ -657,7 +670,7 @@
         <div class='hoverbox'>
           <a><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/wechat.png"></a>
           <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVgAAAFYCAAAAAAzB7ucAAAEYUlEQVR42u3aQW7kMAwEwPz/07sPWAxG7JZkZ1G6JXE8UmkOJNE/f6wj6wcBWLAWWLBgLbBXYH/C9fHFH57b9X/tvr7tp/UACxYsWLBgwYIFexd2uQD+sqFvUN8OkD7Xvn+XB1iwYMGCBQsWLNhnYL8WwOHzKdwUpv177QEWLFiwYMGCBQv2V8G2g+hxIV7+DBYsWLBgwYIFCxZsA502COlFpYNvsGDBggULFixYsO+GTQv1NCDRHmx3QOM1SRiwYMGCBQsWLFiwS7BtAf+//Rx7gAULFixYsGDBgr0C267tBfamwftqI9IGSf55L1iwYMGCBQsWLNgrsGmBvCvokB5w9ULbgMh0n2DBggULFixYsGDvwk6DFFOA9KJSgDZ4Eg/KwYIFCxYsWLBgwV6B3VVwnyr824tLB+vpPsGCBQsWLFiwYMHehZ0GGtqCenqAXYGNduD99fxgwYIFCxYsWLBgr8CuFtIpXFuQpxdbBy/CxgcsWLBgwYIFCxbsO2Dbg7UBiXQQf2o/YMGCBQsWLFiwYN8BOw1MxIXzJpjV/bUXlwZJwIIFCxYsWLBgwT4DmwYWpgDjDR8OeGwLmIAFCxYsWLBgwYK9AptuJC3A0wtYhd51wen7wYIFCxYsWLBgwd6BXS2EW7C0wE8bgfT56XnAggULFixYsGDBPgM7HeyeaiDav6cXPIUeD7rBggULFixYsGDBHoGdbrwNTKQbTgfh6RdkepFgwYIFCxYsWLBgn4FtC+zpe6Ygq79PP79tiMCCBQsWLFiwYMHehU0/eHrQtIFIB+K7Gpe4QQALFixYsGDBggX7CthdA+/286YXnA644wE7WLBgwYIFCxYs2FfAth88HVxPgxdtUGPXFwgsWLBgwYIFCxbsXdh2QDwNeEwL9fa500GUjw0CWLBgwYIFCxYs2KOwu4ML00ZgCpIOuFcbgHqQDhYsWLBgwYIFC/YR2HHQ9lChnV5wCtQGS8CCBQsWLFiwYMG+C3Y3wK7gx3RfabBjHBgBCxYsWLBgwYIF+0rYdJCdFuhtgZ9eTPwFAwsWLFiwYMGCBfsI7LSQTiF3DainwYx0f8vPgwULFixYsGDBgn0EdhpgGAcahgGRFLj9IqRBE7BgwYIFCxYsWLDPwrbBijbY0QY0dg3Mx+cHCxYsWLBgwYIF+whsWtC3hfx0pY3E6YYILFiwYMGCBQsW7B3YdrUBjF2Auz5n+kX5GNgACxYsWLBgwYIFexS2LdBb6GkDMb3wtGGIGx6wYMGCBQsWLFiwV2HbhqAt7HcNolO4Yw0CWLBgwYIFCxYs2CuwKdSu900bhLaxaf9vuUEACxYsWLBgwYIF+0rYtPBvAxirB24bh8caBLBgwYIFCxYsWLCPzGNPDcrT97ZfjK/nAwsWLFiwYMGCBfsI7DSw0QZ92/ee2m8clAYLFixYsGDBggV7FfbWwDptLOKDhhcTB0zAggULFixYsGDBXoG19i6wYMFaYMGCtcAeXX8BMMIXa/Q5DkAAAAAASUVORK5CYII=">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVgAAAFYCAAAAAAzB7ucAAAEaklEQVR42u3aUa7jMAgF0O5/0zMriAIX4uRJx3+tUpsc9wMQv3/WI+uHACxYCyxYsBbYI7C/cF1uXHyu+rurz924rs67i6PrARYsWLBgwYIFC/Ys7FZAaYDTi5ruv+UBFixYsGDBggUL9h3Y2wT45vlu4Kf3T39f9gALFixYsGDBggX7p2C7Detpgj6NGyxYsGDBggULFizYpJHdvZBpQ3pacIAFCxYsWLBgwYL9Nuw0MU8bzOmLdQc2po3xY5MwYMGCBQsWLFiwYEuw3bU9kPG1z7EHWLBgwYIFCxYs2COw07XdoN5uvKcN79gDLFiwYMGCBQsW7BHY7QGMacI9bbhPz53GCRYsWLBgwYIFC/YsbDpg0R2sqJ47BXhq8OT2M1iwYMGCBQsWLNgjsF3IrcT+bv90v+7+WwUKWLBgwYIFCxYs2Hdg00GJrcQ8LTy6UFuFx+X3YMGCBQsWLFiwYI/CTgclqi+eFgJpATNtxHd/DxYsWLBgwYIFC/Zd2LQhvZ14b13Y1jlgwYIFCxYsWLBgvwnbbuwOByW2EvOtP0S3IAELFixYsGDBggX7DuzWoEU6wDEtVO6er8adFgRgwYIFCxYsWLBg34GtFgBPN8DThLwLm/5xyhcHFixYsGDBggUL9ghs2pjuAm6DTAG7cOXGP1iwYMGCBQsWLNgjsN1ApwdXE/St57YGPNYa3WDBggULFixYsGBXYLdA0oZ4OricFg5bDfd25QUWLFiwYMGCBQv2EdhqINuBdwuBaXzV87oDLGDBggULFixYsGDfgZ0mymmDedqgTi+qW7isVV5gwYIFCxYsWLBgV2G3BiamjfMuyLRQSeMqD2yABQsWLFiwYMGCPQobJ8jDAiMtGLpxb/+BwIIFCxYsWLBgwZ6F7Sb4T69pg7obd1qI3Da6wYIFCxYsWLBgwT4KuzW4MH3x9gs0C5S0YGkXQmDBggULFixYsGCPwHYbytNEfNroTi+4WxikgyZgwYIFCxYsWLBgvwmbAmwl9FsXNy1QwIIFCxYsWLBgwX4TNh2s2C4wphDbgyK37wcWLFiwYMGCBQv2CGw34OmgR9po3hrMSOMrPw8WLFiwYMGCBQv2KGw1Ee42wtNEu9uYnjbuuwXK5blgwYIFCxYsWLBgX4GdAncb4tXG+NbzU7jywAZYsGDBggULFizYV2C3BjK2BzW6jemtgY+qF1iwYMGCBQsWLNgzsNM1HcBIG+GnCoH2/mDBggULFixYsGCPwP7CNQ1ge8DjN1xpwXFbeYEFCxYsWLBgwYJ9FHa7IEgLhK0Lmzbm1woEsGDBggULFixYsEdgtxLo6UVsX1z1Arq/KxcIYMGCBQsWLFiwYD8Jm774dJ90wKR7ftkHLFiwYMGCBQsW7J+Ene779HnbBcaxAgEsWLBgwYIFCxbs6sBGN6FOIdPCIE304/cFCxYsWLBgwYIFexQ2TZSnDefq91sXW070w/cFCxYsWLBgwYIFewbW2l1gwYK1wIIFa4F9dP0HduWVCXbGe24AAAAASUVORK5CYII=">
           </div>
         </div>
       
@@ -677,26 +690,21 @@
         
           <div class="prev-next">
             
-              <a class='prev' href='/2019/03/08/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B06.Hash/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis实操笔记6.Hash</p>
-                <p class='content'>Hash
-​    这里value存放的是结构化的对象，比较方便的就是操作其中的某个字段。
-
-
-​    做单点登录的时候，可以用这种数据结构存储用户信息。但是由于redis不支持hash数据单...</p>
+              <a class='prev' href='/2019/05/03/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E2%80%94%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>注册中心—多级缓存设计</p>
+                <p class='content'>1.读写锁
+​    ReentrantReadWriteLock ——读写锁，其内部封装了。读锁是共享锁，写锁是独占锁。
+​    如果有线程加了写锁，其他线程就不能加读锁了。如果有一个线程加...</p>
               </a>
             
             
-              <a class='next' href='/2019/03/07/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B04.%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/'>
-                <p class='title'>Redis实操笔记4.数据库操作<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>选择数据库(共16个)
+              <a class='next' href='/2019/03/10/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/'>
+                <p class='title'>Redis实操笔记8.Set<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>set类型
+​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空
 
-12345选择第1个数据select 0选择第2个数据库  (可以是0~15)select 1
 
-清空当前db数据1flushdb
-
-清空所有db数据1flushall
-</p>
+的散列表实现，所有这些操作的时间复杂度都为 0(1)。...</p>
               </a>
             
           </div>
@@ -741,7 +749,7 @@
 
   <script>
     window.subData = {
-      title: 'Redis实操笔记7.List',
+      title: 'Redis实操笔记9.SortedSet',
       tools: true
     }
   </script>
@@ -832,7 +840,7 @@
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\04\Redis实操笔记1.安装\" title="Redis实操笔记1.安装" rel="bookmark">Redis实操笔记1.安装</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\08\Redis实操笔记5.String\" title="Redis实操笔记5.String" rel="bookmark">Redis实操笔记5.String</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\04\Redis实操笔记1.安装\" title="Redis实操笔记1.安装" rel="bookmark">Redis实操笔记1.安装</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\05\Redis实操笔记2.配置\" title="Redis实操笔记2.配置" rel="bookmark">Redis实操笔记2.配置</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -941,7 +949,7 @@
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#放入"><span class="toc-text">放入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数量"><span class="toc-text">数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列出"><span class="toc-text">列出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#弹出"><span class="toc-text">弹出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除"><span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保留部分"><span class="toc-text">保留部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入"><span class="toc-text">插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获得"><span class="toc-text">获得</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置"><span class="toc-text">设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转移元素"><span class="toc-text">转移元素</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SortedSet"><span class="toc-text">SortedSet</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加"><span class="toc-text">添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#显示某个范围的元素列表"><span class="toc-text">显示某个范围的元素列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除元素"><span class="toc-text">删除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#显示指定分数范围内数据"><span class="toc-text">显示指定分数范围内数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#增加值"><span class="toc-text">增加值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数量"><span class="toc-text">数量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移除"><span class="toc-text">移除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取指定元素的排名"><span class="toc-text">获取指定元素的排名</span></a>
     </div>
   </section>
 

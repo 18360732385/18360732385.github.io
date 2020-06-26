@@ -16,8 +16,11 @@
 
   <!-- 页面元数据 -->
   
-    <title>Redis实操笔记9.SortedSet - </title>
+    <title>Redis实操笔记5.String - </title>
   
+  
+    <meta name="description" content="String
+最常规的set/get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。">
   
 
   <!-- feed -->
@@ -463,8 +466,8 @@
         
           
   <h1 class="title">
-    <a href="/2020/06/24/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/">
-      Redis实操笔记9.SortedSet
+    <a href="/2019/03/07/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B05.String/">
+      Redis实操笔记5.String
     </a>
   </h1>
 
@@ -492,6 +495,14 @@
           
             
               
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B0/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>Redis实操笔记</p>
+    </a>
+  </div>
+
 
             
           
@@ -499,7 +510,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2020年6月24日</p>
+    <p>2019年3月7日</p>
   </a>
 </div>
 
@@ -522,39 +533,33 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <h1 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h1><blockquote>
-<p>​    在集合类型的基础上有序集合类型为集合中的每个元素都关联一个分数，这使得我们不仅可以完成插入、删除和判断元素是否存在在集合中，还能够获得分数最高或最低的前N个元素、获取指定分数范围内的元素等与分数有关的操作。</p>
-<p>​    所以可以做排行榜应用，取TOP N的操作。朋友圈的跑步排行榜，游戏得分排行榜。</p>
-</blockquote>
-<blockquote>
-<p>​    在某些方面有序集合和列表类型有些相似:</p>
-<ul>
-<li>二者都是有序的。</li>
-<li>二者都可以获得某一范围的元素。</li>
-</ul>
-<p>​    但是，二者有着很大区别：</p>
-<ul>
-<li>list是通过链表实现的，获取靠近两端的数据速度极快，而当元素增多后，访问中间数据的速度会变慢。</li>
-<li>set使用散列表实现，所有即使读取位于中间部分的数据也很快。</li>
-<li>list中不能简单的调整某个元素的位置，但是有序集合可以（通过更改分数实现）</li>
-<li>set要比list更耗内存。</li>
-</ul>
-</blockquote>
-<h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zadd student 70 zhangsan 75 lis 80 wangwu 40 zhaoliu  添加多条数据</span><br><span class="line"></span><br><span class="line">zadd student 90 zhaoliu   元素zhaoliu存在,则score 90会替代40</span><br></pre></td></tr></table></figure>
+          <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><blockquote>
+<h5 id="最常规的set-get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。"><a href="#最常规的set-get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。" class="headerlink" title="最常规的set/get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。"></a>最常规的set/get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。</h5><a id="more"></a>
 
-<h2 id="显示某个范围的元素列表"><a href="#显示某个范围的元素列表" class="headerlink" title="显示某个范围的元素列表"></a>显示某个范围的元素列表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">   zrange student 0 2   获取student的第0,1,2个元素(默认升序显示)</span><br><span class="line">1) &quot;zhaoliu&quot;</span><br><span class="line">2) &quot;zhangsan&quot;</span><br><span class="line">3) &quot;lis&quot;</span><br><span class="line"></span><br><span class="line">  zrange student 0 -1 withscores  显示元素时带着scores（升序）</span><br><span class="line"></span><br><span class="line">  zrevrange sudent 0 -1   降序显示所有元素</span><br><span class="line">1) &quot;qianqi&quot;</span><br><span class="line">2) &quot;wangwu&quot;</span><br><span class="line">3) &quot;lis&quot;</span><br><span class="line">4) &quot;zhangsan&quot;</span><br><span class="line">5) &quot;zhaoliu&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="因为有incr和decr功能，一般做一些复杂的计数功能的缓存。"><a href="#因为有incr和decr功能，一般做一些复杂的计数功能的缓存。" class="headerlink" title="因为有incr和decr功能，一般做一些复杂的计数功能的缓存。"></a>因为有incr和decr功能，一般做一些复杂的计数功能的缓存。</h5></blockquote>
+<h3 id="set-get"><a href="#set-get" class="headerlink" title="set/get"></a>set/get</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set name zhangsan</span><br><span class="line"></span><br><span class="line">get name</span><br><span class="line"></span><br><span class="line">1.如果set k1 v1,后incr k1会报错：</span><br><span class="line">(error) ERR value is not an integer or out of range</span><br><span class="line"></span><br><span class="line">2.如果set k1 12,后get k1,结果整数12会变成字符串“12”，因string数据类型里没有整数类型</span><br></pre></td></tr></table></figure>
 
-<h2 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zrem student zhangsan</span><br></pre></td></tr></table></figure>
+<h3 id="getset"><a href="#getset" class="headerlink" title="getset"></a>getset</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">getset mykey &quot;hello&quot;</span><br><span class="line">&lt;nil&gt;</span><br><span class="line">getset mykey &quot;new hello&quot;</span><br><span class="line">&quot;hello&quot;</span><br><span class="line"></span><br><span class="line">设置指定key的值，并返回key旧的值.</span><br><span class="line">当指定key之前并不存在时，使用GETSET会为key创建一个值，并且返回nil；当key存在时，会为其指定一个新值，并且将原有值返回</span><br></pre></td></tr></table></figure>
 
-<h2 id="显示指定分数范围内数据"><a href="#显示指定分数范围内数据" class="headerlink" title="显示指定分数范围内数据"></a>显示指定分数范围内数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  zrangebyscore sudent 60 80   显示分数在60-80之间的数据</span><br><span class="line">1) &quot;lis&quot;</span><br><span class="line">2) &quot;wangwu&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="getrange"><a href="#getrange" class="headerlink" title="getrange"></a>getrange</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GETRANGE test 0 3 ：从索引0开始由左至右取到索引为3的字符</span><br><span class="line"></span><br><span class="line">GETRANGE test 0 -1 ：取到字符串的全部</span><br></pre></td></tr></table></figure>
 
-<h2 id="增加值"><a href="#增加值" class="headerlink" title="增加值"></a>增加值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zincrby sudent 5 zhaoliu    给zhaoliu加5分，返回修改过后的值</span><br><span class="line">&quot;45&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="del"><a href="#del" class="headerlink" title="del"></a>del</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del name</span><br></pre></td></tr></table></figure>
 
-<h2 id="数量"><a href="#数量" class="headerlink" title="数量"></a>数量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zcard student   获取student集合元素个数</span><br><span class="line">(integer) 5</span><br><span class="line"></span><br><span class="line">zcount student 70 90    获取 score 中分数在 70-90 之间的元素个数</span><br><span class="line">(integer) 2</span><br></pre></td></tr></table></figure>
+<h3 id="查看-有哪些key"><a href="#查看-有哪些key" class="headerlink" title="查看 有哪些key"></a>查看 有哪些key</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keys *</span><br></pre></td></tr></table></figure>
 
-<h2 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zremrangebyscore sudent 60 80   删除范围60 80之间的student元素（返回删除个数）</span><br><span class="line">(integer) 2</span><br><span class="line"></span><br><span class="line">zremrangebyrank score 0 1   删除score第0,1名的元素</span><br></pre></td></tr></table></figure>
+<h3 id="一次性设置多个"><a href="#一次性设置多个" class="headerlink" title="一次性设置多个"></a>一次性设置多个</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mset k1 v1 k2 v2 k3 v3</span><br></pre></td></tr></table></figure>
 
-<h2 id="获取指定元素的排名"><a href="#获取指定元素的排名" class="headerlink" title="获取指定元素的排名"></a>获取指定元素的排名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zrank sudent qianqi   查看qiangqi的排名</span><br><span class="line">(integer) 2</span><br><span class="line"></span><br><span class="line">zrevrank sudent qianqi  查看倒序的排名</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
+<h3 id="获取多个"><a href="#获取多个" class="headerlink" title="获取多个"></a>获取多个</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mget k1 k2 k3 name</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set money 100</span><br><span class="line"></span><br><span class="line">incr money  （默认+1）</span><br><span class="line"></span><br><span class="line">incrby money 10  （+10）</span><br></pre></td></tr></table></figure>
+
+<h3 id="减少"><a href="#减少" class="headerlink" title="减少"></a>减少</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">decr money （默认-1）</span><br><span class="line"></span><br><span class="line">decrby money 10 （-10）</span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串追加"><a href="#字符串追加" class="headerlink" title="字符串追加"></a>字符串追加</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set info hello</span><br><span class="line"></span><br><span class="line">append info world  (返回的是字符串长度integer)</span><br><span class="line">append info &#39; world&#39;  (如果有空格,追加字符串需要&#39;&#39;或“ ”括起来)</span><br><span class="line"></span><br><span class="line">get info</span><br></pre></td></tr></table></figure>
+
+<h3 id="得到字符串的长度"><a href="#得到字符串的长度" class="headerlink" title="得到字符串的长度"></a>得到字符串的长度</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strlen info</span><br></pre></td></tr></table></figure>
+
+
           
             <div class='article_footer'>
               
@@ -588,10 +593,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-13T14:57:00+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-07T00:00:00+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>2020年3月13日</p>
+    <p>2019年3月7日</p>
   </a>
 </div>
 
@@ -615,7 +620,8 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://18360732385.github.io/2020/06/24/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/&title=Redis实操笔记9.SortedSet - null&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://18360732385.github.io/2019/03/07/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B05.String/&title=Redis实操笔记5.String - null&summary=String
+最常规的set/get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。"
           
           >
           
@@ -627,7 +633,8 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://18360732385.github.io/2020/06/24/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/&title=Redis实操笔记9.SortedSet - null&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://18360732385.github.io/2019/03/07/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B05.String/&title=Redis实操笔记5.String - null&summary=String
+最常规的set/get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。"
           
           >
           
@@ -639,7 +646,8 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://18360732385.github.io/2020/06/24/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/&title=Redis实操笔记9.SortedSet - null&summary="
+          href="http://service.weibo.com/share/share.php?url=https://18360732385.github.io/2019/03/07/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B05.String/&title=Redis实操笔记5.String - null&summary=String
+最常规的set/get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。"
           
           >
           
@@ -653,7 +661,7 @@
         <div class='hoverbox'>
           <a><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/wechat.png"></a>
           <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVgAAAFYCAAAAAAzB7ucAAAEXElEQVR42u3aS47jMAwFwNz/0t0nCMzPs+wApV0GtkyVZkGy+fmzblkfBGDBWmDBgrXAHoH9DNfXjYvPVd/79rsb17fvXcXR9QALFixYsGDBggV7FjYV0DTA7UVt9095gAULFixYsGDBgn0G9jIBvni+G/jp/afvlz3AggULFixYsGDB/hTsNFGfJujbuMGCBQsWLFiwYMGC3Ryo+v62Ib0tOMCCBQsWLFiwYMG+G3abmKcS/erBps+9fhIGLFiwYMGCBQsWbAm2u9IDGW/7PfYACxYsWLBgwYIFewR2u1IN7lON92rDe+wBFixYsGDBggUL9gjsNEHuDmBM9003yLsDIt04wYIFCxYsWLBgwZ6FvXyhePDufttCYnpBV/uNG+VgwYIFCxYsWLBgj8B2IdMFxPQCp8BV0LEPWLBgwYIFCxYs2KOw00GJ7cBDt5DoNrjvKjy+/jtYsGDBggULFizYo7BpiGqhkY6jCzZthI8rL7BgwYIFCxYsWLC3wE4HIKaBbZ/rgm+/AxYsWLBgwYIFC/Y3YKcN5FThME3st/DTggYsWLBgwYIFCxbsGdhUYzpVWHShunFMf4MFCxYsWLBgwYJ9F2y1MNgm0qmG9Ra225hvXxxYsGDBggULFizYI7DTxvS04Z0C2QJ24aqFA1iwYMGCBQsWLNhnYD/LtW1Qp59LDXjE/oIAFixYsGDBggUL9hHYbgN7m4hvQcuJffO78QIBLFiwYMGCBQsWbAQ2Ffi28V1twG+/O70AsGDBggULFixYsL8BOw0oVVik45wOgsQLBLBgwYIFCxYsWLAj2NTAxLZR3QVJNa5TCyxYsGDBggULFuyzsNtBjXQhcPfFx/4DgQULFixYsGDBgj0C221c3722Depq3NtC5LLRDRYsWLBgwYIFC/ZW2NTgwvbg7QM0G9zThny7kQ4WLFiwYMGCBQv2COy08dxNpLcN5VSCPy0s2gMbYMGCBQsWLFiwYF8FuwXYDlBsL65beLTPAxYsWLBgwYIFC/YVsNOGc7exvG1snxoUuTwnWLBgwYIFCxYs2COw6cGIuxL41GBGd9/282DBggULFixYsGCPwnYHKLoN8G1DfXvB20Z9ubAACxYsWLBgwYIF+whsNbDte90CIvX8Fq48sAEWLFiwYMGCBQv2Edhpwj0dgNgOjHThugMf5QIKLFiwYMGCBQsW7BHY7ZoOPHQBnioE2vuDBQsWLFiwYMGCPQL7Ga5tAOkBj89yTQuOy8oLLFiwYMGCBQsW7K2w6YJgWiCkLmzbmI8VCGDBggULFixYsGCPwKYS6O1FpC+uegHd98oFAliwYMGCBQsWLNhXwm732+7TLXC65yifByxYsGDBggULFuxPwnYPlD5wNfFPFRjHCgSwYMGCBQsWLFiw0YGNVMP6rsJgmuh34wQLFixYsGDBggX7DOw0Ue5+eAoxPmhocKMcH1iwYMGCBQsWLNgjsFZ2gQUL1gILFqwF9tb1D0wVErZpJitAAAAAAElFTkSuQmCC">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVgAAAFYCAAAAAAzB7ucAAAEZUlEQVR42u3aQZLbMAwEQP//05t7qlwGBhDpTZo3byyJavoATPD6sR5ZLwRgwVpgwYK1wB6BfYWrev2n71X/Pd3v39e9u9+aB1iwYMGCBQsWLNijsOUC+MP3pwfThaj+fXr/qgdYsGDBggULFizYO7DbhXa64W4Dkv4gqvuueoAFCxYsWLBgwYL9HbDVhiF93hS+u3+wYMGCBQsWLFiw/yfs1sbTA6sOfIAFCxYsWLBgwYL9t2DbAwrhAEZ3gGN7v18/CQMWLFiwYMGCBQu2BNtdTzcMtz/HHmDBggULFixYsGCPwE5XtaDubrDbcFT/Ph0Q+fieYMGCBQsWLFiwYI/Abg1GdAPlbuCdwqYHGA+AgAULFixYsGDBgr0Cm8KlBXhaoG8NXmwPloAFCxYsWLBgwYK9A5sW7mmDMA3Mt4P0cQAPFixYsGDBggUL9ihsGjRPA+64EB8OZkwP/u3zwYIFCxYsWLBgwV6BnQ5YpIMgaQDdvd/04D4eAFiwYMGCBQsWLNijsOlgRPeA0uB5OmixDQ8WLFiwYMGCBQv2u2CnAwxPQ28F3d33Lb83WLBgwYIFCxYs2CuwW8F0ev/txiENrrsHCRYsWLBgwYIFC/Ys7DbgKchu0D39QYAFCxYsWLBgwYL9LthusNsNuKcFfvd+W4F8fKBgwYIFCxYsWLBgvwp26wC2Cvn0ful7PdYggAULFixYsGDBgl2BTQPp6QDIU41DNzgfB+RgwYIFCxYsWLBgr8BuNQjd+3UL+O6AybH9gwULFixYsGDBgr0K+1NccSG9FJB3P3d/MN2DBQsWLFiwYMGCBXsGtgqQPjh9TntQIgyutwNvsGDBggULFixYsHdh041PA+yt56SNTxqkgwULFixYsGDBgr0LOx1w6Bbg06B6WvCnQfzb68CCBQsWLFiwYMEegZ0GwmlhvXVdF2x6n4/gYMGCBQsWLFiwYI/AVgvw9AW6B9dtKLrXbR1sHHSDBQsWLFiwYMGCXYHdCn6r13eB0he+FuSDBQsWLFiwYMGCvQLb3dC0IO82IFuB9lbj8/F/EMCCBQsWLFiwYMEehU0D6i7QdkCdDnKsfR8sWLBgwYIFCxbsEdh0w2kBnx7ktICfBtnlgwMLFixYsGDBggV7BbY7ANH9XndwowsybVi67wkWLFiwYMGCBQv2Dmz6Ik8H1FsDJN2DGwfmYMGCBQsWLFiwYI/AbjcKacDcPbAp6DQwf6zzAgsWLFiwYMGCBVuC3SqUp8H0NBifDmBsPR8sWLBgwYIFCxbsWditQY3uhqvPqwbhKdD0fcCCBQsWLFiwYMHehd0ahEiD7xR+WuCnDRJYsGDBggULFizY3wmbFtZpEJ7ue3r/eGADLFiwYMGCBQsW7FfDpoV/2ig8/QOIocGCBQsWLFiwYMFegZ0ObKQb3240qgcRB9rv9gUWLFiwYMGCBQv2KGz6wO3P1X1tA641SmDBggULFixYsGCPwFq7CyxYsBZYsGAtsI+uP9S1HCCig7WxAAAAAElFTkSuQmCC">
           </div>
         </div>
       
@@ -673,12 +681,24 @@
         
           <div class="prev-next">
             
-            
-              <a class='next' href='/2020/05/05/Redission%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/'>
-                <p class='title'>Redission分布式锁<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>使用及原理
+              <a class='prev' href='/2019/03/07/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B04.%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis实操笔记4.数据库操作</p>
+                <p class='content'>选择数据库(共16个)
 
-1234&#x2F;&#x2F;看门狗（锁）RLock lock &#x3D; redisson.getLock(&quot;myLock&quot;);lock.lock();l...</p>
+12345选择第1个数据select 0选择第2个数据库  (可以是0~15)select 1
+
+清空当前db数据1flushdb
+
+清空所有db数据1flushall
+</p>
+              </a>
+            
+            
+              <a class='next' href='/2019/03/06/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B03.%E6%90%AD%E5%BB%BARedis%E9%9B%86%E7%BE%A4/'>
+                <p class='title'>Redis实操笔记3.搭建Redis集群<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>3.Linux下搭建Redis(3.0和5.0有区别)集群1.安装一个redis
+
+12341.新建redis-cluster文件夹mkdir redis-cluster2.在文件下搭建第一个r...</p>
               </a>
             
           </div>
@@ -723,7 +743,7 @@
 
   <script>
     window.subData = {
-      title: 'Redis实操笔记9.SortedSet',
+      title: 'Redis实操笔记5.String',
       tools: true
     }
   </script>
@@ -814,7 +834,7 @@
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\10\AQS抽象队列同步器\" title="AQS抽象队列同步器" rel="bookmark">AQS抽象队列同步器</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\07\10\Bean生命周期\" title="Bean生命周期" rel="bookmark">Bean生命周期</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\04\Redis实操笔记1.安装\" title="Redis实操笔记1.安装" rel="bookmark">Redis实操笔记1.安装</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\05\Redis实操笔记2.配置\" title="Redis实操笔记2.配置" rel="bookmark">Redis实操笔记2.配置</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -923,7 +943,7 @@
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加"><span class="toc-text">添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#显示某个范围的元素列表"><span class="toc-text">显示某个范围的元素列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除元素"><span class="toc-text">删除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#显示指定分数范围内数据"><span class="toc-text">显示指定分数范围内数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#增加值"><span class="toc-text">增加值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数量"><span class="toc-text">数量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移除"><span class="toc-text">移除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取指定元素的排名"><span class="toc-text">获取指定元素的排名</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-text">String</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#最常规的set-get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。"><span class="toc-text">最常规的set&#x2F;get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#因为有incr和decr功能，一般做一些复杂的计数功能的缓存。"><span class="toc-text">因为有incr和decr功能，一般做一些复杂的计数功能的缓存。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set-get"><span class="toc-text">set&#x2F;get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getset"><span class="toc-text">getset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getrange"><span class="toc-text">getrange</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#del"><span class="toc-text">del</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看-有哪些key"><span class="toc-text">查看 有哪些key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次性设置多个"><span class="toc-text">一次性设置多个</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取多个"><span class="toc-text">获取多个</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加"><span class="toc-text">增加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#减少"><span class="toc-text">减少</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串追加"><span class="toc-text">字符串追加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#得到字符串的长度"><span class="toc-text">得到字符串的长度</span></a></li></ol>
     </div>
   </section>
 

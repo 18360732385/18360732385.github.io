@@ -5,6 +5,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -16,11 +18,8 @@
 
   <!-- 页面元数据 -->
   
-    <title>Redis实操笔记8.Set - </title>
+    <title>归档：2019/3 - </title>
   
-  
-    <meta name="description" content="set类型
-​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空">
   
 
   <!-- feed -->
@@ -73,7 +72,7 @@
   
   <div class="cover-wrapper">
     
-      <cover class='cover post half'>
+      <cover class='cover  half'>
         <div class='cover-body'>
   <div class='a'>
     
@@ -451,11 +450,16 @@
       
 
 <div class='l_main'>
-  
-
-  
-    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+	
+		
+  <section class="post-list ">
+    
+    
       
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
 
 
   <section class='meta'>
@@ -465,11 +469,11 @@
       <div class="meta" id="header-meta">
         
           
-  <h1 class="title">
-    <a href="/2019/03/09/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/">
-      Redis实操笔记8.Set
+  <h2 class="title">
+    <a href="/2019/03/04/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B01.%E5%AE%89%E8%A3%85/">
+      Redis实操笔记1.安装
     </a>
-  </h1>
+  </h2>
 
 
         
@@ -494,25 +498,17 @@
             
           
             
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B0/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>Redis实操笔记</p>
-    </a>
-  </div>
-
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>2019年3月4日</p>
+  </a>
+</div>
 
             
           
             
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年3月9日</p>
-  </a>
-</div>
+              
 
             
           
@@ -530,219 +526,54 @@
   </section>
 
 
-      <section class="article typo">
-        <div class="article-entry" itemprop="articleBody">
-          
-          <h3 id="set类型"><a href="#set类型" class="headerlink" title="set类型"></a>set类型</h3><blockquote>
-<p>​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空</p>
-<a id="more"></a>
-
-<p>的散列表实现，所有这些操作的时间复杂度都为 0(1)。</p>
-<p>​    因为set堆放的是一堆不重复值的集合。所以可以做全局去重的功能。为什么不用JVM自带的Set进行去重？因为我们的系统一般都是集群部署，使用JVM自带的Set，比较麻烦，难道为了一个做一个全局去重，再起一个公共服务，太麻烦了。</p>
-<p>​    另外，就是利用交集、并集、差集等操作，可以计算共同喜好，共同好友，全部的喜好，自己独有的喜好等功能。（微信里的共同好友，好友推荐等）</p>
-</blockquote>
-<h2 id="1-添加"><a href="#1-添加" class="headerlink" title="1 添加"></a>1 添加</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sadd nums 10 20 30 10</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-获得所有元素"><a href="#2-获得所有元素" class="headerlink" title="2 获得所有元素"></a>2 获得所有元素</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smembers nums</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-得到差集"><a href="#3-得到差集" class="headerlink" title="3 得到差集"></a>3 得到差集</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sdiff nums nums2</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-得到交集"><a href="#4-得到交集" class="headerlink" title="4. 得到交集"></a>4. 得到交集</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinter nums nums2</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-得到并集"><a href="#5-得到并集" class="headerlink" title="5. 得到并集"></a>5. 得到并集</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sunion nums nums2</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-得到数量"><a href="#6-得到数量" class="headerlink" title="6. 得到数量"></a>6. 得到数量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scard nums    集合不存在则返回0</span><br></pre></td></tr></table></figure>
-
-<h2 id="7-随机弹出一个"><a href="#7-随机弹出一个" class="headerlink" title="7. 随机弹出一个"></a>7. 随机弹出一个</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spop nums</span><br></pre></td></tr></table></figure>
-
-
-
-
-          
-            <div class='article_footer'>
-              
-                
-  
-    
-    
-
-
-
-  
-
-  
-    
-    
-
-
-
-  
-
-
-              
-            </div>
-          
-        </div>
-        
-          
-
-
-  <section class='meta' id="footer-meta">
-    <div class='new-meta-box'>
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
       
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-09T00:00:00+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>2019年3月9日</p>
-  </a>
-</div>
-
-        
-      
-        
-          
-
-        
-      
-        
-          
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
-          
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://18360732385.github.io/2019/03/09/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/&title=Redis实操笔记8.Set - null&summary=set类型
-​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空"
-          
-          >
-          
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
-          
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://18360732385.github.io/2019/03/09/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/&title=Redis实操笔记8.Set - null&summary=set类型
-​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空"
-          
-          >
-          
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
-          
-          href="http://service.weibo.com/share/share.php?url=https://18360732385.github.io/2019/03/09/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/&title=Redis实操笔记8.Set - null&summary=set类型
-​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空"
-          
-          >
-          
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
-          
-        </a>
-      
-    
-      
-        
-        <div class='hoverbox'>
-          <a><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/wechat.png"></a>
-          <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVgAAAFYCAAAAAAzB7ucAAAEZ0lEQVR42u3aQXbbMAwFQN//0ukJ9MQPQJCTDneubZkcdgEg//NjPbI+CMCCtcCCBWuBXYH9FNflgy8+d/e9q89dva7u624/XQ+wYMGCBQsWLFiwu7DHBXAIdAqTwqYg3ecfXxhYsGDBggULFizYV2CnN9Y9yPb7bQ+wYMGCBQsWLFiwvwo2/V4Kcfr89PfBggULFixYsGDB/t+w04X5VADk9HlgwYIFCxYsWLBgfzdsHFC42Wj3Qu4O9meTMGDBggULFixYsGCPYNO1FeB463XZAyxYsGDBggULFuwKbHdNF+DTAZLqwLvsARYsWLBgwYIFC3YFtlogp8GK9HvdC62ep3p+sGDBggULFixYsO/Adg9+WsBXfzcFmAqexK/BggULFixYsGDBrsBWoU5hugdJ91ndV7dBAQsWLFiwYMGCBbsL2y2Mnx5sTwc2phqPy38HCxYsWLBgwYIFuwq7NQieWvGB0+BFtTECCxYsWLBgwYIFuwI7BVotsLuD6KnnjjUgYMGCBQsWLFiwYF+F7a7jgENzgD51EWnDcPk5sGDBggULFixYsCuwKUS34E7BuwGPpwMgYMGCBQsWLFiwYN+BnQoqTA3Aqxc7NfjuXjhYsGDBggULFizYHdg0UFEt0E+hqoV79/nVIAdYsGDBggULFizY74Kt/tB2QzANmb5/+xcEsGDBggULFixYsI/ATh0sLeCr8N3gRtrApPsBCxYsWLBgwYIFuwubQj3VCEwFKLpBk7QRAgsWLFiwYMGCBbsLWw1mVA9YLezT96cDG3GDABYsWLBgwYIFC3YFtlpIdwv6bqPQHVxP/ccCCxYsWLBgwYIF+y5sCpA2BunBnmow0gttNwhgwYIFCxYsWLBgR2GrA+zqYPqpgj4NksRBjNMBOFiwYMGCBQsWLNgV2KngwvTguXqh3QagfR6wYMGCBQsWLFiwK7DVg1aDGd1Bd7WRmNr/cWADLFiwYMGCBQsW7KOw1UI+HZRX308bh7QR6DZIYMGCBQsWLFiwYN+FnRosVz+XrunnVAfeYMGCBQsWLFiwYL8DtjqATgfO3QalGszoBlBu9w8WLFiwYMGCBQt2Fbb7w+nBpgMb3cBFtRGJ/4IAFixYsGDBggUL9lHYn+Ka2mAVKi7oi4PwsSQMWLBgwYIFCxYs2BHYboHfHSBXAxmnA/ip54MFCxYsWLBgwYJ9F7a7ugV4OmhPB/LdBiW+KLBgwYIFCxYsWLArsJ/iqsJPXVQ34FEdhN82QmDBggULFixYsGBXYacOfgqbFujTDUL1ouIGASxYsGDBggULFuwKbBpYSDc6NSivNjinDcXp944bBLBgwYIFCxYsWLBfCdsFmB54Vwv+tDF5vEEACxYsWLBgwYIFuwI7NaCuHnj6wuOGByxYsGDBggULFuwrsOlguh1wKB68u9/2QDsddIMFCxYsWLBgwYJ9BLYafJgaEKcXNw1YHYiDBQsWLFiwYMGCfQfWml1gwYK1wIIFa4F9dP0DrvOTJx7ILnIAAAAASUVORK5CYII=">
-          </div>
-        </div>
-      
-    
-  </div>
-</div>
-
-
-
-        
+        <h3 id="方式一-源码方式安装"><a href="#方式一-源码方式安装" class="headerlink" title="方式一  源码方式安装"></a>方式一  源码方式安装</h3><h3 id="0-安装编译工具"><a href="#0-安装编译工具" class="headerlink" title="0. 安装编译工具"></a>0. 安装编译工具</h3>
       
     </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2019/03/04/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B01.%E5%AE%89%E8%A3%85/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
   </section>
+</article>
 
-
-        
-        
-          <div class="prev-next">
-            
-              <a class='prev' href='/2019/05/03/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E2%80%94%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>注册中心—多级缓存设计</p>
-                <p class='content'>1.读写锁
-​    ReentrantReadWriteLock ——读写锁，其内部封装了。读锁是共享锁，写锁是独占锁。
-​    如果有线程加了写锁，其他线程就不能加读锁了。如果有一个线程加...</p>
-              </a>
-            
-            
-              <a class='next' href='/2019/03/08/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B05.String/'>
-                <p class='title'>Redis实操笔记5.String<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>String
-最常规的set/get操作，value可以是String也可以是数字。在遇到数值操作时，redis会将字符串类型转换成数值。
-
-因为有incr和decr功能，一般做一些复杂的计数功...</p>
-              </a>
-            
           </div>
         
-      </section>
-    </article>
+      
+    
+  </section>
   
-
-  
-    <!-- 显示推荐文章和评论 -->
-
-
-
-  <article class="post white-box reveal comments shadow">
-    <section class="article typo">
-      <p ct><i class='fas fa-comments'></i> 评论</p>
-      
-      
-      
-      
-      
-      
-        <section id="comments">
-          <div id="valine_container" class="valine_thread">
-            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-          </div>
-        </section>
-      
-      
-    </section>
-  </article>
-
+    
+      <br>
+      <div class="prev-next">
+        
+          <a class="prev" rel="prev" href="/archives/2019/03/">
+            <section class="post prev white-box shadow" >
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+            </section>
+          </a>
+        
+        <p class="current">
+          2 / 2
+        </p>
+        
+      </div>
+    
+    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+    
+    
 
   
 
 
-
-
-<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
-
-
-
-  <script>
-    window.subData = {
-      title: 'Redis实操笔记8.Set',
-      tools: true
-    }
-  </script>
-
-
+	
 </div>
 <aside class='l_side'>
   
@@ -818,17 +649,64 @@
     
   
 
-  <section class="widget related_posts shadow desktop">
+  <section class="widget category shadow desktop">
     
   <header>
     
-      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span class='name'>相关文章</span>
+      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
     
   </header>
 
 
-    <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\04\Redis实操笔记1.安装\" title="Redis实操笔记1.安装" rel="bookmark">Redis实操笔记1.安装</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\08\Redis实操笔记5.String\" title="Redis实操笔记5.String" rel="bookmark">Redis实操笔记5.String</a></h3></div></li></ul>
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/GC%E8%B0%83%E4%BC%98/" href="/categories/GC%E8%B0%83%E4%BC%98/"
+            id="categoriesGCE8B083E4BC98"
+            ><div class='name'>GC调优</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Java%E5%B9%B6%E5%8F%91/" href="/categories/Java%E5%B9%B6%E5%8F%91/"
+            id="categoriesJavaE5B9B6E58F91"
+            ><div class='name'>Java并发</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/MyBatis/" href="/categories/MyBatis/"
+            id="categoriesMyBatis"
+            ><div class='name'>MyBatis</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/MySql%E8%BF%9B%E9%98%B6/" href="/categories/MySql%E8%BF%9B%E9%98%B6/"
+            id="categoriesMySqlE8BF9BE998B6"
+            ><div class='name'>MySql进阶</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Redis/" href="/categories/Redis/"
+            id="categoriesRedis"
+            ><div class='name'>Redis</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B0/" href="/categories/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B0/"
+            id="categoriesRedisE5AE9EE6938DE7AC94E8AEB0"
+            ><div class='name'>Redis实操笔记</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"
+            id="categoriesE58886E5B883E5BC8F"
+            ><div class='name'>分布式</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
+            id="categoriesE5BEAEE69C8DE58AA1"
+            ><div class='name'>微服务</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+            id="categoriesE8AEBEE8AEA1E6A8A1E5BC8F"
+            ><div class='name'>设计模式</div><div class='badge'>(7)</div></a></li>
+        
+      </ul>
     </div>
   </section>
 
@@ -838,106 +716,19 @@
   
     
     
-
-
   
 
-<section class="widget list group shadow desktop">
-  
-  <header>
-    
-      <a href='/tags/热门/'><i class="fas fa-flag fa-fw fa-fw" aria-hidden="true"></i><span class='name'>热门文章</span></a>
-    
-  </header>
-
-
-  <div class='content'>
-    <ul class="list entry navigation">
-      
-        <li><a class="flat-box" title="/2019/07/10/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" href="/2019/07/10/Bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"
-          
-          
-          id="20190710BeanE7949FE591BDE591A8E69C9F"
-          >
-          <div class='name'>
-            
-            Bean生命周期
-          </div>
-          
-        </a></li>
-      
-        <li><a class="flat-box" title="/2019/05/11/AQS%E7%BB%84%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/" href="/2019/05/11/AQS%E7%BB%84%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/"
-          
-          
-          id="20190511AQSE7BB84E4BBB6E58E9FE79086E58F8AE4BDBFE794A8"
-          >
-          <div class='name'>
-            
-            AQS组件原理及使用
-          </div>
-          
-        </a></li>
-      
-        <li><a class="flat-box" title="/2019/06/01/GC%E8%B0%83%E4%BC%98/" href="/2019/06/01/GC%E8%B0%83%E4%BC%98/"
-          
-          
-          id="20190601GCE8B083E4BC98"
-          >
-          <div class='name'>
-            
-            GC调优
-          </div>
-          
-        </a></li>
-      
-        <li><a class="flat-box" title="/2019/06/02/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" href="/2019/06/02/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"
-          
-          
-          id="20190602JVME59E83E59CBEE59B9EE694B6"
-          >
-          <div class='name'>
-            
-            JVM垃圾回收
-          </div>
-          
-        </a></li>
-      
-        <li><a class="flat-box" title="/2019/07/07/%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8%E3%80%81%E5%88%87%E7%89%87%E5%BC%82%E5%90%8C%E7%82%B9/" href="/2019/07/07/%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8%E3%80%81%E5%88%87%E7%89%87%E5%BC%82%E5%90%8C%E7%82%B9/"
-          
-          
-          id="20190707E8BF87E6BBA4E599A8E38081E68BA6E688AAE599A8E38081E58887E78987E5BC82E5908CE782B9"
-          >
-          <div class='name'>
-            
-            过滤器、拦截器、切片异同点
-          </div>
-          
-        </a></li>
-      
-    </ul>
-  </div>
-</section>
-
-
-
-  
-
-  
-    
-    
-
-
-  <section class="widget toc-wrapper shadow desktop mobile">
+  <section class="widget tagcloud shadow desktop mobile">
     
   <header>
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
     
   </header>
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#set类型"><span class="toc-text">set类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-添加"><span class="toc-text">1 添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-获得所有元素"><span class="toc-text">2 获得所有元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-得到差集"><span class="toc-text">3 得到差集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-得到交集"><span class="toc-text">4. 得到交集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-得到并集"><span class="toc-text">5. 得到并集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-得到数量"><span class="toc-text">6. 得到数量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-随机弹出一个"><span class="toc-text">7. 随机弹出一个</span></a>
+      <a href="/tags/AOP/" style="font-size: 14px; color: #999">AOP</a> <a href="/tags/AQS/" style="font-size: 16px; color: #8b8b8b">AQS</a> <a href="/tags/Bean/" style="font-size: 14px; color: #999">Bean</a> <a href="/tags/CAS/" style="font-size: 14px; color: #999">CAS</a> <a href="/tags/Docker/" style="font-size: 16px; color: #8b8b8b">Docker</a> <a href="/tags/Eruka/" style="font-size: 14px; color: #999">Eruka</a> <a href="/tags/FastJson/" style="font-size: 14px; color: #999">FastJson</a> <a href="/tags/GC/" style="font-size: 14px; color: #999">GC</a> <a href="/tags/HashMap/" style="font-size: 14px; color: #999">HashMap</a> <a href="/tags/ID%E7%94%9F%E6%88%90/" style="font-size: 14px; color: #999">ID生成</a> <a href="/tags/IO%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">IO模式</a> <a href="/tags/Idea/" style="font-size: 14px; color: #999">Idea</a> <a href="/tags/JVM/" style="font-size: 16px; color: #8b8b8b">JVM</a> <a href="/tags/Java8%E6%96%B0%E7%89%B9%E6%80%A7/" style="font-size: 14px; color: #999">Java8新特性</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Java基础</a> <a href="/tags/MySql/" style="font-size: 16px; color: #8b8b8b">MySql</a> <a href="/tags/MySql%E8%BF%9B%E9%98%B6/" style="font-size: 20px; color: #707070">MySql进阶</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Redis/" style="font-size: 22px; color: #636363">Redis</a> <a href="/tags/Zookeeper/" style="font-size: 14px; color: #999">Zookeeper</a> <a href="/tags/kafka/" style="font-size: 14px; color: #999">kafka</a> <a href="/tags/synchronized/" style="font-size: 14px; color: #999">synchronized</a> <a href="/tags/volatile/" style="font-size: 14px; color: #999">volatile</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 18px; color: #7e7e7e">中间件</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 18px; color: #7e7e7e">事务</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 20px; color: #707070">分布式</a> <a href="/tags/%E5%8A%A0%E8%A7%A3%E5%AF%86/" style="font-size: 16px; color: #8b8b8b">加解密</a> <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">单例模式</a> <a href="/tags/%E5%9B%BD%E5%AF%86/" style="font-size: 14px; color: #999">国密</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 18px; color: #7e7e7e">工具</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 24px; color: #555">并发</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 16px; color: #8b8b8b">微服务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 14px; color: #999">消息队列</a> <a href="/tags/%E7%83%AD%E9%97%A8/" style="font-size: 22px; color: #636363">热门</a> <a href="/tags/%E7%A7%92%E6%9D%80/" style="font-size: 14px; color: #999">秒杀</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18px; color: #7e7e7e">算法</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">线程</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 14px; color: #999">缓存</a> <a href="/tags/%E8%BF%87%E6%BB%A4%E5%99%A8/" style="font-size: 14px; color: #999">过滤器</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a>
     </div>
   </section>
 
@@ -1039,6 +830,14 @@
   </footer>
 
 <script>setLoadingBarProgress(80);</script>
+
+
+
+
+	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+	
+
+	
 
 
       <script>setLoadingBarProgress(60);</script>
@@ -1153,60 +952,6 @@
 
 
 
-
-  
-    
-<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
-
-  
-  <script>
-  var GUEST_INFO = ['nick','mail','link'];
-  var meta = 'nick,mail,link'.split(',').filter(function(item){
-    return GUEST_INFO.indexOf(item) > -1
-  });
-  var REQUIRED_FIELDS = ['nick','mail','link'];
-  var requiredFields = 'nick,mail'.split(',').filter(function(item){
-    return REQUIRED_FIELDS.indexOf(item) > -1
-  });
-  var valine = new Valine();
-  function emoji(path, idx, ext) {
-      return path + "/" + path + "-" + idx + "." + ext;
-  }
-  var emojiMaps = {};
-  for (var i = 1; i <= 54; i++) {
-    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
-  }
-  for (var i = 1; i <= 101; i++) {
-    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
-  }
-  for (var i = 1; i <= 116; i++) {
-    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
-  }
-  for (var i = 1; i <= 125; i++) {
-    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
-  }
-  for (var i = 1; i <= 4; i++) {
-    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
-  }
-  valine.init({
-    el: '#valine_container',
-    meta: meta,
-    
-    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
-    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
-    placeholder: "快来评论吧~",
-    pageSize:'10',
-    avatar:'robohash',
-    lang:'zh-cn',
-    visitor: 'true',
-    highlight: 'true',
-    mathJax: 'false',
-    enableQQ: 'true',
-    requiredFields: requiredFields,
-    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
-    emojiMaps: emojiMaps
-  })
-  </script>
 
 
 

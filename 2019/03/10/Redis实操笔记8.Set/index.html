@@ -16,10 +16,11 @@
 
   <!-- 页面元数据 -->
   
-    <title>Redis实操笔记3.搭建Redis集群 - </title>
+    <title>Redis实操笔记8.Set - </title>
   
   
-    <meta name="description" content="3.Linux下搭建Redis(3.0和5.0有区别)集群1.安装一个redis">
+    <meta name="description" content="set类型
+​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空">
   
 
   <!-- feed -->
@@ -465,8 +466,8 @@
         
           
   <h1 class="title">
-    <a href="/2019/03/04/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B03.%E6%90%AD%E5%BB%BARedis%E9%9B%86%E7%BE%A4/">
-      Redis实操笔记3.搭建Redis集群
+    <a href="/2019/03/10/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/">
+      Redis实操笔记8.Set
     </a>
   </h1>
 
@@ -509,7 +510,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年3月4日</p>
+    <p>2019年3月10日</p>
   </a>
 </div>
 
@@ -532,39 +533,30 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <h3 id="3-Linux下搭建Redis-3-0和5-0有区别-集群"><a href="#3-Linux下搭建Redis-3-0和5-0有区别-集群" class="headerlink" title="3.Linux下搭建Redis(3.0和5.0有区别)集群"></a>3.Linux下搭建Redis(3.0和5.0有区别)集群</h3><h4 id="1-安装一个redis"><a href="#1-安装一个redis" class="headerlink" title="1.安装一个redis"></a>1.安装一个redis</h4><a id="more"></a>
+          <h3 id="set类型"><a href="#set类型" class="headerlink" title="set类型"></a>set类型</h3><blockquote>
+<p>​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空</p>
+<a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.新建redis-cluster文件夹</span><br><span class="line">mkdir redis-cluster</span><br><span class="line"></span><br><span class="line">2.在文件下搭建第一个redis-01</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2.修改配置文件"></a>2.修改配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1.修改redis-01的配置文件</span><br><span class="line">vi redis.conf</span><br><span class="line"></span><br><span class="line">修改信息:</span><br><span class="line">appendonly yes    --开启aof持久化方案</span><br><span class="line">appendfilename &quot;appendonly7001.aof&quot;        -- 设置aof持久化的文件名</span><br><span class="line">protected-mode no   --关闭密码保护(不设密码时设置)</span><br><span class="line">requirepass root  --密码</span><br><span class="line">port 7001   --端口</span><br><span class="line">cluster-enabled yes   --开启集群</span><br><span class="line">cluster-config-file nodes-7001.conf  --保存节点配置，自动创建，自动更新</span><br><span class="line">cluster-node-timeout 5000  --集群超时时间，节点超过这个时间没反应就断定是宕机</span><br><span class="line">daemonize yes   --后台运行</span><br><span class="line">pidfile &#x2F;var&#x2F;run&#x2F;redis_7001.pid    --进程文件及路径设置</span><br><span class="line">logfile &quot;7001.log&quot;    --日志文件</span><br><span class="line">dir &#x2F;redis&#x2F;data   --aof和rdb文件存储位置,先建redis&#x2F;data文件夹</span><br><span class="line">#bind 192.168.2.2  --公网连接,注释</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">记得关闭防火墙,或开启端口连接!!!!</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-复制redis"><a href="#3-复制redis" class="headerlink" title="3.复制redis"></a>3.复制redis</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.在redis-cluster文件夹里,将redis-01复制五份,为02,03,04,05,06</span><br><span class="line">2.修改每个redis实例的端口号port(7002,7003,7004,7005,7006)</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-编写启动停止文件"><a href="#4-编写启动停止文件" class="headerlink" title="4.编写启动停止文件"></a>4.编写启动停止文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">1.创建启动文件</span><br><span class="line">touch redis-cluster-start.sh </span><br><span class="line">vi redis-cluster-start.sh</span><br><span class="line"></span><br><span class="line">2.编写内容</span><br><span class="line">cd redis-01</span><br><span class="line">redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">cd redis-02</span><br><span class="line">redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">cd redis-03</span><br><span class="line">redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">cd redis-04</span><br><span class="line">redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">cd redis-05</span><br><span class="line">redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">cd redis-06</span><br><span class="line">redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">3.创建停止文件</span><br><span class="line">touch redis-cluster-stop.sh </span><br><span class="line">vi redis-cluster-stop.sh</span><br><span class="line"></span><br><span class="line">4.编辑内容相似</span><br><span class="line">redis-cli -h 192.168.2.2 -p 7001 -a root shutdown</span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line">5.修改文件的运行权限</span><br><span class="line">chmod 755 redis-cluster-start.sh </span><br><span class="line">chmod 755 redis-cluster-stop.sh </span><br><span class="line"></span><br><span class="line">6.启动</span><br><span class="line">.&#x2F;redis-cluster-start.sh</span><br><span class="line"></span><br><span class="line">7.查看redis进程</span><br><span class="line">ps -ef|grep redis</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-1redis5-0以下搭建ruby运行环境"><a href="#5-1redis5-0以下搭建ruby运行环境" class="headerlink" title="5.1redis5.0以下搭建ruby运行环境"></a>5.1redis5.0以下搭建ruby运行环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.安装 ruby</span><br><span class="line">yum install ruby</span><br><span class="line">yum install rubygems</span><br><span class="line"></span><br><span class="line">2.上传redis-3.0.0.gem到根目录,并运行</span><br><span class="line">cd ~</span><br><span class="line">rz</span><br><span class="line">gem install redis-3.0.0.gem</span><br><span class="line"></span><br><span class="line">3. redis-3.0.0&#x2F;src 下的 ruby 脚本复制到 redis-cluster </span><br><span class="line">ruby的脚本为redis-trib.rb</span><br><span class="line">cp redis-trib.rb usr&#x2F;local&#x2F;myapp&#x2F;redis-cluster</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-2使用-ruby-脚本搭建集群"><a href="#5-2使用-ruby-脚本搭建集群" class="headerlink" title="5.2使用 ruby 脚本搭建集群"></a>5.2使用 ruby 脚本搭建集群</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;redis-trib.rb create --replicas 1 192.168.93.120:7001 192.168.93.120:7002 192.168.93.120:7003 192.168.93.120:7004 192.168.93.120:7005 192.168.93.120:7006</span><br><span class="line"></span><br><span class="line">注意:replicas 1表示搭建1个副本,即一个redis有一个副本,共6&#x2F;(1+1)&#x3D;3台主机</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-redis5-0搭建集群"><a href="#6-redis5-0搭建集群" class="headerlink" title="6.redis5.0搭建集群"></a>6.redis5.0搭建集群</h4><blockquote>
-<p>无需ruby环境</p>
+<p>的散列表实现，所有这些操作的时间复杂度都为 0(1)。</p>
+<p>​    因为set堆放的是一堆不重复值的集合。所以可以做全局去重的功能。为什么不用JVM自带的Set进行去重？因为我们的系统一般都是集群部署，使用JVM自带的Set，比较麻烦，难道为了一个做一个全局去重，再起一个公共服务，太麻烦了。</p>
+<p>​    另外，就是利用交集、并集、差集等操作，可以计算共同喜好，共同好友，全部的喜好，自己独有的喜好等功能。（微信里的共同好友，好友推荐等）</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster create   192.168.2.2:7001 192.168.2.2:7002 192.168.2.2:7003 192.168.2.2:7004 192.168.2.2:7005 192.168.2.2:7006 -a root --cluster-replicas 1</span><br></pre></td></tr></table></figure>
+<h2 id="1-添加"><a href="#1-添加" class="headerlink" title="1 添加"></a>1 添加</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sadd nums 10 20 30 10</span><br></pre></td></tr></table></figure>
 
-<h4 id="7-条件"><a href="#7-条件" class="headerlink" title="7.条件"></a>7.条件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">此时redis-cluster下应有9(或8)个文件:</span><br><span class="line">redis-01~redis-06</span><br><span class="line">redis-trib.rb</span><br><span class="line">redis-cluster-start.sh </span><br><span class="line">redis-cluster-stop.sh</span><br></pre></td></tr></table></figure>
+<h2 id="2-获得所有元素"><a href="#2-获得所有元素" class="headerlink" title="2 获得所有元素"></a>2 获得所有元素</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smembers nums</span><br></pre></td></tr></table></figure>
 
-<h4 id="8-连接集群"><a href="#8-连接集群" class="headerlink" title="8.连接集群"></a>8.连接集群</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 192.168.2.2 -p 7001 -a root -c --raw</span><br><span class="line">-c代表连接集群</span><br><span class="line">-a代表密码</span><br><span class="line">--raw代表utf-8</span><br></pre></td></tr></table></figure>
+<h2 id="3-得到差集"><a href="#3-得到差集" class="headerlink" title="3 得到差集"></a>3 得到差集</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sdiff nums nums2</span><br></pre></td></tr></table></figure>
 
-<h4 id="9-集群命令"><a href="#9-集群命令" class="headerlink" title="9.集群命令"></a>9.集群命令</h4><blockquote>
-<p>在集群内操作命令</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cluster info   查看集群信息</span><br><span class="line">cluster nodes   查看集群节点</span><br><span class="line">info replication  查看该节点信息</span><br><span class="line"></span><br><span class="line">redis-cli --cluster del-node 127.0.0.1:8000  删除节点</span><br><span class="line"></span><br><span class="line">redis-cli --cluster add-node 127.0.0.1:8000 127.0.0.1:8001</span><br><span class="line">将刚才删除的端口8000的节点添加到集群中的8001的主节点</span><br></pre></td></tr></table></figure>
+<h2 id="4-得到交集"><a href="#4-得到交集" class="headerlink" title="4. 得到交集"></a>4. 得到交集</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinter nums nums2</span><br></pre></td></tr></table></figure>
 
-<h4 id="10-链接"><a href="#10-链接" class="headerlink" title="10.链接"></a>10.链接</h4><blockquote>
-<p><a href="https://blog.csdn.net/u010520146/article/details/84932104" target="_blank" rel="noopener">https://blog.csdn.net/u010520146/article/details/84932104</a>   Redis5.0搭建集群</p>
-<p><a href="https://blog.csdn.net/plei_yue/article/details/79362372" target="_blank" rel="noopener">https://blog.csdn.net/plei_yue/article/details/79362372</a>   SpringBoot整合Redis</p>
-<p><a href="https://www.cnblogs.com/zeng1994/p/03303c805731afc9aa9c60dbbd32a323.html" target="_blank" rel="noopener">https://www.cnblogs.com/zeng1994/p/03303c805731afc9aa9c60dbbd32a323.html</a>    redis配置类和工具类</p>
-</blockquote>
+<h2 id="5-得到并集"><a href="#5-得到并集" class="headerlink" title="5. 得到并集"></a>5. 得到并集</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sunion nums nums2</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-得到数量"><a href="#6-得到数量" class="headerlink" title="6. 得到数量"></a>6. 得到数量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scard nums    集合不存在则返回0</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-随机弹出一个"><a href="#7-随机弹出一个" class="headerlink" title="7. 随机弹出一个"></a>7. 随机弹出一个</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spop nums</span><br></pre></td></tr></table></figure>
+
+
+
 
           
             <div class='article_footer'>
@@ -599,10 +591,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-04T00:00:00+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-10T00:00:00+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>2019年3月4日</p>
+    <p>2019年3月10日</p>
   </a>
 </div>
 
@@ -626,7 +618,8 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://18360732385.github.io/2019/03/04/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B03.%E6%90%AD%E5%BB%BARedis%E9%9B%86%E7%BE%A4/&title=Redis实操笔记3.搭建Redis集群 - null&summary=3.Linux下搭建Redis(3.0和5.0有区别)集群1.安装一个redis"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://18360732385.github.io/2019/03/10/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/&title=Redis实操笔记8.Set - null&summary=set类型
+​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空"
           
           >
           
@@ -638,7 +631,8 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://18360732385.github.io/2019/03/04/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B03.%E6%90%AD%E5%BB%BARedis%E9%9B%86%E7%BE%A4/&title=Redis实操笔记3.搭建Redis集群 - null&summary=3.Linux下搭建Redis(3.0和5.0有区别)集群1.安装一个redis"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://18360732385.github.io/2019/03/10/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/&title=Redis实操笔记8.Set - null&summary=set类型
+​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空"
           
           >
           
@@ -650,7 +644,8 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://18360732385.github.io/2019/03/04/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B03.%E6%90%AD%E5%BB%BARedis%E9%9B%86%E7%BE%A4/&title=Redis实操笔记3.搭建Redis集群 - null&summary=3.Linux下搭建Redis(3.0和5.0有区别)集群1.安装一个redis"
+          href="http://service.weibo.com/share/share.php?url=https://18360732385.github.io/2019/03/10/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/&title=Redis实操笔记8.Set - null&summary=set类型
+​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空"
           
           >
           
@@ -664,7 +659,7 @@
         <div class='hoverbox'>
           <a><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/wechat.png"></a>
           <div class='target'>
-            <img src="data:image/png;base64,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">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVgAAAFYCAAAAAAzB7ucAAAEZklEQVR42u3aQZIjIQwEQP//07sv6G1KEmBvJDfPtGlIfKAU+vwxtowPArBgDbBgwRpgj8B+iuNx4ofn3r739NzT5+q63tbT9QALFixYsGDBggV7Fnb5AhwCrcKksClId/7lAwMLFixYsGDBggV7BXZ6Yd2NnP5/2wMsWLBgwYIFCxbsT8FWC+TdAFBdN1iwYMGCBQsWLFiwSWF49T1TDSCr84EFCxYsWLBgwYL9bdi4QeFlodVGj+4BdAPB9U4YsGDBggULFixYsEuw1YL1//q57AEWLFiwYMGCBQv2CGx3pIFhaqNTgaVaMH+cFyxYsGDBggULFuwR2OoFebXQXG3IqB5o9aLf3QdYsGDBggULFizYO7BTG1+9sHcbMKobr65z+TNYsGDBggULFizYI7BpITjdcApRDQppIJkOKGDBggULFixYsGDPwnYvxilQ9SI/1bAxFTwe/w4WLFiwYMGCBQv2KOzuwFANAN31rK4zDRLLAQEsWLBgwYIFCxbsFtjphotPOLqF6DSYdAvvYMGCBQsWLFiwYH8Tdgps+iC7B5EGhsfnwIIFCxYsWLBgwR6BrRaeu9BpY0e3IL+rAQQsWLBgwYIFCxbsHdipRoUqVBooqoEjfa58MGDBggULFixYsGCPwq5OXL2gr0JVL+7d+dMfAFiwYMGCBQsWLNjvgK0WtNONTweCacj0/8uFbrBgwYIFCxYsWLCjsOkXpwrkVfhu40YaYNL1gAULFixYsGDBgj0L222IqAaJ9KDSAFNtNEmDEFiwYMGCBQsWLNg7sFMBoXsBnypMTzdsXE9eYMGCBQsWLFiwYP8JW22cqF78u0GhW9Du/qCWGzbAggULFixYsGDBboVNg0O38SKdPw0qu34A5eQFFixYsGDBggULdgR2qoC9q5FjqmCevn91vseAABYsWLBgwYIFC3Yr7K4Gh10gaSG7W7CP9wMWLFiwYMGCBQv2CGx1o9OF8mpAmWrs6BbYwYIFCxYsWLBgwZ6FrV7kpwvl1XmqBzfdWAIWLFiwYMGCBQv2Dmz6omohOW2oSANKdZ5qwRssWLBgwYIFCxbsd8BWA8Cuz+lzXaBqoR8sWLBgwYIFCxbsHdjqi6fhxwrOzedTYLBgwYIFCxYsWLB3YdMN71pgFSq+0BcL4cuFbrBgwYIFCxYsWLBHYU8VqqcaMt4OYHp+sGDBggULFixYsHdhu6N7AU8L7WlBvhtQ4oMCCxYsWLBgwYIFewT2UxxV+G9p8KgWwl+DEFiwYMGCBQsWLNijsFMbrzZ2TH8/hdsWEMCCBQsWLFiwYMEegU0bFtKFThXKqwFnNVCsfm85IIAFCxYsWLBgwYL9StjuBqYL3tULfxpMtgcEsGDBggULFixYsEdgpxsy0g2nBzneoAIWLFiwYMGCBQv2CmwKs2uDaQDpNnzEBe200A0WLFiwYMGCBQt2C2y18WEaKD24KcBqQRwsWLBgwYIFCxbsHVhjdoAFC9YACxasAXbr+AuH7hOnx8OBzAAAAABJRU5ErkJggg==">
           </div>
         </div>
       
@@ -684,16 +679,25 @@
         
           <div class="prev-next">
             
-              <a class='prev' href='/2019/03/04/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B01.%E5%AE%89%E8%A3%85/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis实操笔记1.安装</p>
-                <p class='content'>方式一  源码方式安装0. 安装编译工具
+              <a class='prev' href='/2019/03/11/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis实操笔记9.SortedSet</p>
+                <p class='content'>SortedSet
+​    在集合类型的基础上有序集合类型为集合中的每个元素都关联一个分数，这使得我们不仅可以完成插入、删除和判断元
 
-12yum install gcc-c++如果不进行这一步,后面的make命令可能会报错,原因是没有c++环境
 
-
-1.1 下载redis的源码(2选...</p>
+素是否存在在集合中，还能够获得分数最高或最低的前N个元...</p>
               </a>
             
+            
+              <a class='next' href='/2019/03/09/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B07.List/'>
+                <p class='title'>Redis实操笔记7.List<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>List
+​    使用List的数据结构，可以做简单的消息队列的功能。
+
+
+​    另外还有一个就是，可以利用lrange命令，做基于redis的分页功能，性能极佳，用户体验好。
+​    ...</p>
+              </a>
             
           </div>
         
@@ -737,7 +741,7 @@
 
   <script>
     window.subData = {
-      title: 'Redis实操笔记3.搭建Redis集群',
+      title: 'Redis实操笔记8.Set',
       tools: true
     }
   </script>
@@ -828,7 +832,7 @@
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\04\Redis实操笔记1.安装\" title="Redis实操笔记1.安装" rel="bookmark">Redis实操笔记1.安装</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\08\Redis实操笔记5.String\" title="Redis实操笔记5.String" rel="bookmark">Redis实操笔记5.String</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\04\Redis实操笔记1.安装\" title="Redis实操笔记1.安装" rel="bookmark">Redis实操笔记1.安装</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\03\05\Redis实操笔记2.配置\" title="Redis实操笔记2.配置" rel="bookmark">Redis实操笔记2.配置</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -937,7 +941,7 @@
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Linux下搭建Redis-3-0和5-0有区别-集群"><span class="toc-text">3.Linux下搭建Redis(3.0和5.0有区别)集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-安装一个redis"><span class="toc-text">1.安装一个redis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-修改配置文件"><span class="toc-text">2.修改配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-复制redis"><span class="toc-text">3.复制redis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-编写启动停止文件"><span class="toc-text">4.编写启动停止文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1redis5-0以下搭建ruby运行环境"><span class="toc-text">5.1redis5.0以下搭建ruby运行环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2使用-ruby-脚本搭建集群"><span class="toc-text">5.2使用 ruby 脚本搭建集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-redis5-0搭建集群"><span class="toc-text">6.redis5.0搭建集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-条件"><span class="toc-text">7.条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-连接集群"><span class="toc-text">8.连接集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-集群命令"><span class="toc-text">9.集群命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-链接"><span class="toc-text">10.链接</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#set类型"><span class="toc-text">set类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-添加"><span class="toc-text">1 添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-获得所有元素"><span class="toc-text">2 获得所有元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-得到差集"><span class="toc-text">3 得到差集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-得到交集"><span class="toc-text">4. 得到交集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-得到并集"><span class="toc-text">5. 得到并集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-得到数量"><span class="toc-text">6. 得到数量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-随机弹出一个"><span class="toc-text">7. 随机弹出一个</span></a>
     </div>
   </section>
 

@@ -657,13 +657,15 @@
         
           <div class="prev-next">
             
-              <a class='prev' href='/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis持久化</p>
+              <a class='prev' href='/2019/06/06/Redis%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis缓存设计问题</p>
                 <p class='content'>
-​    Redis持久化分为RDB持久化和AOF持久化：前者将当前数据快照保存到硬盘，后者则是将每次执行的写命令保存到硬盘（类似于MySQL的binlog）。
+​    Redis是单线程（伪，IO多路复用），线程安全。
+​    设计一个缓存系统，不得不要考虑的问题就是：缓存穿透、缓存击穿与失效时的雪崩效应。
 
 
-​    由于AOF持久化...</p>
+##缓存穿透
+​        缓...</p>
               </a>
             
             
@@ -807,7 +809,7 @@
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\06\04\Mybatis实战笔记1.SqlMapConfig.xml文件配置\" title="Mybatis实战笔记1.SqlMapConfig.xml文件配置" rel="bookmark">Mybatis实战笔记1.SqlMapConfig.xml文件配置</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\06\14\Mybatis实战笔记10.懒加载机制\" title="Mybatis实战笔记10.懒加载机制" rel="bookmark">Mybatis实战笔记10.懒加载机制</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\06\15\Mybatis实战笔记11.比较全的多表查询\" title="Mybatis实战笔记11.比较全的多表查询" rel="bookmark">Mybatis实战笔记11.比较全的多表查询</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\06\04\Mybatis实战笔记1.SqlMapConfig.xml文件配置\" title="Mybatis实战笔记1.SqlMapConfig.xml文件配置" rel="bookmark">Mybatis实战笔记1.SqlMapConfig.xml文件配置</a></h3></div></li></ul>
     </div>
   </section>
 
