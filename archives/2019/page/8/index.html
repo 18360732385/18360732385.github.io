@@ -470,8 +470,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/07/Redis%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F/">
-      Redis集群模式
+    <a href="/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/">
+      JVM内存区
     </a>
   </h2>
 
@@ -495,7 +495,7 @@
             
               
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JVM/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>JVM</p></a></div>
 
 
             
@@ -504,7 +504,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年6月7日</p>
+    <p>2019年6月2日</p>
   </a>
 </div>
 
@@ -532,16 +532,13 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h3><blockquote>
-<p>​    主从复制有两种情况，<strong>完全由从节点发起slaveof命令</strong>开始：</p>
-<ol>
-<li><p>全量复制：用于初次复制或其他无法进行部分复制的情况，将主节点中的所有数据都发送给从节点，是一个非常重型的操作。</p>
+        <h3 id="运行时内存模型"><a href="#运行时内存模型" class="headerlink" title="运行时内存模型"></a>运行时内存模型</h3><p>​    内存模型在java1.6和1.8时有一些区别</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/07/Redis%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F/">
+          <a href="/2019/06/02/JVM%E5%86%85%E5%AD%98%E5%8C%BA/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -567,8 +564,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B03.%E5%BD%93%E4%BC%A0%E5%8F%82%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E6%97%B6%EF%BC%884%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%89/">
-      Mybatis实战笔记3.当传参传入多个参数时（4种方法）
+    <a href="/2019/05/13/volatile/">
+      volatile
     </a>
   </h2>
 
@@ -591,6 +588,9 @@
           
             
               
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/volatile/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>volatile</p></a></div>
+
 
             
           
@@ -598,7 +598,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年6月6日</p>
+    <p>2019年5月13日</p>
   </a>
 </div>
 
@@ -626,13 +626,14 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3>
+        <h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><blockquote>
+<p>​    可见性，是指线程之间的可见性，一个线程修改的状态对另一个线程是可见的。比如：用volatile修饰的变量，就会具有可见性。volatile修饰的变量不允许线程内部缓存和重排序，即直接修改内存。所以对其他线程是可见的。</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B03.%E5%BD%93%E4%BC%A0%E5%8F%82%E4%BC%A0%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E6%97%B6%EF%BC%884%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%89/">
+          <a href="/2019/05/13/volatile/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -658,8 +659,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B04.resultMap%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
-      Mybatis实战笔记4.resultMap的简单使用
+    <a href="/2019/05/12/CAS%E8%87%AA%E6%97%8B/">
+      CAS自旋
     </a>
   </h2>
 
@@ -682,6 +683,9 @@
           
             
               
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CAS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>CAS</p></a></div>
+
 
             
           
@@ -689,7 +693,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年6月6日</p>
+    <p>2019年5月12日</p>
   </a>
 </div>
 
@@ -717,109 +721,15 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2019/06/06/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B04.resultMap%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2019/06/06/Redis%E5%88%86%E6%AE%B5%E9%94%81%E4%BC%98%E5%8C%96/">
-      Redis分段锁优化
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
-    <p>明菜</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>分布式</p></a></div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年6月6日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    作为分布式锁，多应用在多服务器针对某一公共资源的竞争问题上，例如电商业务中的库存超卖、秒杀场景中。</p>
+        <p>###CAS机制及优点</p>
 <blockquote>
-<p>​    库存超卖问题是有很多种技术解决方案的，比如<strong>悲观锁，分布式锁，乐观锁，队列串行化，Redis原子操作</strong>等等。</p>
+<p>​    CAS——<strong>Compare And Swap，比较并替换</strong>。CAS能保证变量操作的原子性。</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/06/Redis%E5%88%86%E6%AE%B5%E9%94%81%E4%BC%98%E5%8C%96/">
+          <a href="/2019/05/12/CAS%E8%87%AA%E6%97%8B/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -845,8 +755,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
-      Redis持久化
+    <a href="/2019/05/12/synchronized/">
+      synchronized
     </a>
   </h2>
 
@@ -870,7 +780,7 @@
             
               
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/synchronized/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>synchronized</p></a></div>
 
 
             
@@ -879,7 +789,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年6月6日</p>
+    <p>2019年5月12日</p>
   </a>
 </div>
 
@@ -907,14 +817,14 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>​    Redis持久化分为RDB持久化和AOF持久化：<strong>前者将当前数据快照保存到硬盘，后者则是将每次执行的写命令保存到硬盘（类似于MySQL的binlog）。</strong></p>
+        <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><blockquote>
+<p>​    在java代码中使用synchronized可是使用在代码块和方法中，根据Synchronized用的位置可以有这些使用场景：</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/06/Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
+          <a href="/2019/05/12/synchronized/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -940,8 +850,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/06/Redis%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/">
-      Redis缓存设计问题
+    <a href="/2019/05/11/AQS%E7%BB%84%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/">
+      AQS组件原理及使用
     </a>
   </h2>
 
@@ -965,7 +875,7 @@
             
               
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BC%93%E5%AD%98/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>缓存</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/AQS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>AQS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%83%AD%E9%97%A8/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>热门</p></a></div>
 
 
             
@@ -974,7 +884,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年6月6日</p>
+    <p>2019年5月11日</p>
   </a>
 </div>
 
@@ -1002,15 +912,14 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>​    Redis是单线程（伪，IO多路复用），线程安全。</p>
-<p>​    设计一个缓存系统，不得不要考虑的问题就是：<strong>缓存穿透、缓存击穿与失效时的雪崩效应</strong>。</p>
+        <h3 id="Semaphore信号量"><a href="#Semaphore信号量" class="headerlink" title="Semaphore信号量"></a>Semaphore信号量</h3><blockquote>
+<p>​    <strong>synchronized</strong> 和 <strong>ReentrantLock</strong> 都是一次只允许一个线程访问某个资源，<strong>Semaphore</strong>允许多个线程同时访问。获取许可方式是<strong>acquire()</strong> 方法，释放一个许可则是<strong>release()</strong>方法。</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/06/Redis%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/">
+          <a href="/2019/05/11/AQS%E7%BB%84%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -1036,8 +945,105 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/05/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B02.%E7%AE%80%E5%8D%95%E7%9A%84parameterType%E5%92%8CresultType%E4%BB%8B%E7%BB%8D/">
-      Mybatis实战笔记2.简单的parameterType和resultType介绍
+    <a href="/2019/05/03/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E2%80%94%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/">
+      注册中心—多级缓存设计
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://github.com/18360732385" target="_blank" rel="nofollow noopener">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/B18FCBB3-67FD-48CC-B4F3-457BA145F17A.jpeg">
+    <p>明菜</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>并发</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Eruka/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Eruka</p></a></div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>2019年5月3日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-读写锁"><a href="#1-读写锁" class="headerlink" title="1.读写锁"></a>1.读写锁</h3><blockquote>
+<p>​    <strong>ReentrantReadWriteLock</strong> ——读写锁，其内部封装了。读锁是共享锁，写锁是独占锁。</p>
+<p>​    如果有线程加了写锁，其他线程就不能加读锁了。如果有一个线程加了读锁，别的线程是可以随意同时加读锁的。</p>
+</blockquote>
+      
+    </div>
+    
+      
+        <div class="button readmore">
+          <a href="/2019/05/03/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E2%80%94%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2019/03/11/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/">
+      Redis实操笔记9.SortedSet
     </a>
   </h2>
 
@@ -1067,7 +1073,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年6月5日</p>
+    <p>2019年3月11日</p>
   </a>
 </div>
 
@@ -1095,13 +1101,14 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3>
+        <h3 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h3><blockquote>
+<p>​    在集合类型的基础上有序集合类型为集合中的每个元素都关联一个分数，这使得我们不仅可以完成插入、删除和判断元</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/05/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B02.%E7%AE%80%E5%8D%95%E7%9A%84parameterType%E5%92%8CresultType%E4%BB%8B%E7%BB%8D/">
+          <a href="/2019/03/11/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B09.SortedSet/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -1127,8 +1134,8 @@
         
           
   <h2 class="title">
-    <a href="/2019/06/04/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B01.SqlMapConfig.xml%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/">
-      Mybatis实战笔记1.SqlMapConfig.xml文件配置
+    <a href="/2019/03/10/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/">
+      Redis实操笔记8.Set
     </a>
   </h2>
 
@@ -1158,7 +1165,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019年6月4日</p>
+    <p>2019年3月10日</p>
   </a>
 </div>
 
@@ -1186,13 +1193,14 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3>
+        <h3 id="set类型"><a href="#set类型" class="headerlink" title="set类型"></a>set类型</h3><blockquote>
+<p>​    集合类型的常用操作是向集合中加入或删除元素、判断某个元素是否存在等，由于集合类型的 Redis 内部是使用值为空</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/2019/06/04/Mybatis%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B01.SqlMapConfig.xml%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/">
+          <a href="/2019/03/10/Redis%E5%AE%9E%E6%93%8D%E7%AC%94%E8%AE%B08.Set/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -1218,7 +1226,7 @@
           </a>
         
         <p class="current">
-          8 / 11
+          8 / 9
         </p>
         
           <a class="next" rel="next" href="/archives/2019/page/9/">
