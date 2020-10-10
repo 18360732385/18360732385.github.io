@@ -21,6 +21,8 @@
     <meta name="keywords" content="并发">
   
   
+    <meta name="description" content="ThreadLocalThreadLocal如何实现线程隔离​    多线程访问共享变量时，每个线程都有可能改变这个变量。ThreadLocal对象可以提供线程局部变量，本质上是把共享变量变成线程私有变量，使多个线程互不干扰。">
+  
 
   <!-- feed -->
   
@@ -536,6 +538,8 @@
         <div class="article-entry" itemprop="articleBody">
           
           <h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><h2 id="ThreadLocal如何实现线程隔离"><a href="#ThreadLocal如何实现线程隔离" class="headerlink" title="ThreadLocal如何实现线程隔离"></a>ThreadLocal如何实现线程隔离</h2><p>​    多线程访问共享变量时，每个线程都有可能改变这个变量。ThreadLocal对象可以提供线程局部变量，<strong>本质上是把共享变量变成线程私有变量，使多个线程互不干扰。</strong></p>
+<a id="more"></a>
+
 <p>​    每个线程thread都有自己的ThreadLocalMap，它是类似HashMap的结构。ThreadLocalMap有自己的独立实现，可以简单地将它的key视作ThreadLocal，value为代码中放入的值（实际上key并不是ThreadLocal本身，而是它的一个<strong>弱引用</strong>）。</p>
 <p>​    <strong>最终的变量是放在了当前线程的 ThreadLocalMap 中，并不是存在 ThreadLocal 上。ThreadLocal 可以理解为只是ThreadLocalMap的封装，传递了变量值。</strong> <code>ThrealLocal</code> 类中可以通过<code>Thread.currentThread()</code>获取到当前线程对象后，直接通过<code>getMap(Thread t)</code>可以访问到该线程的<code>ThreadLocalMap</code>对象。</p>
 <p>​    <strong>每个Thread中都具备一个ThreadLocalMap，而ThreadLocalMap可以存储以ThreadLocal为 key ，Object 对象为 value 的键值对。</strong></p>
@@ -639,7 +643,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://18360732385.github.io/2020/10/08/ThreadLocal/&title=ThreadLocal - null&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://18360732385.github.io/2020/10/08/ThreadLocal/&title=ThreadLocal - null&summary=ThreadLocalThreadLocal如何实现线程隔离​    多线程访问共享变量时，每个线程都有可能改变这个变量。ThreadLocal对象可以提供线程局部变量，本质上是把共享变量变成线程私有变量，使多个线程互不干扰。"
           
           >
           
@@ -651,7 +655,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://18360732385.github.io/2020/10/08/ThreadLocal/&title=ThreadLocal - null&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://18360732385.github.io/2020/10/08/ThreadLocal/&title=ThreadLocal - null&summary=ThreadLocalThreadLocal如何实现线程隔离​    多线程访问共享变量时，每个线程都有可能改变这个变量。ThreadLocal对象可以提供线程局部变量，本质上是把共享变量变成线程私有变量，使多个线程互不干扰。"
           
           >
           
@@ -663,7 +667,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://18360732385.github.io/2020/10/08/ThreadLocal/&title=ThreadLocal - null&summary="
+          href="http://service.weibo.com/share/share.php?url=https://18360732385.github.io/2020/10/08/ThreadLocal/&title=ThreadLocal - null&summary=ThreadLocalThreadLocal如何实现线程隔离​    多线程访问共享变量时，每个线程都有可能改变这个变量。ThreadLocal对象可以提供线程局部变量，本质上是把共享变量变成线程私有变量，使多个线程互不干扰。"
           
           >
           
@@ -840,7 +844,7 @@
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\10\AQS抽象队列同步器\" title="AQS抽象队列同步器" rel="bookmark">AQS抽象队列同步器</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\11\AQS组件原理及使用\" title="AQS组件原理及使用" rel="bookmark">AQS组件原理及使用</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\12\CAS自旋\" title="CAS自旋" rel="bookmark">CAS自旋</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\12\synchronized\" title="synchronized" rel="bookmark">synchronized</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\13\volatile\" title="volatile" rel="bookmark">volatile</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\10\AQS抽象队列同步器\" title="AQS抽象队列同步器" rel="bookmark">AQS抽象队列同步器</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\11\AQS组件原理及使用\" title="AQS组件原理及使用" rel="bookmark">AQS组件原理及使用</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\12\CAS自旋\" title="CAS自旋" rel="bookmark">CAS自旋</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\13\volatile\" title="volatile" rel="bookmark">volatile</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2019\05\12\synchronized\" title="synchronized" rel="bookmark">synchronized</a></h3></div></li></ul>
     </div>
   </section>
 
